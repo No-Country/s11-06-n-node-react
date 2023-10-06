@@ -1,11 +1,12 @@
 const { Sequelize } = require("sequelize");
+require('dotenv').config();
 
 const dbInstance = new Sequelize({
-  host: "localhost",
-  username: "root",
-  password: "contraseña_secreta",
-  database: "s11_06_n_node_react",
-  port: 3306,
+  host: process.env.DB_HOST || "localhost",
+  username: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "contraseña_secreta",
+  database: process.env.DB_NAME || "s11_06_n_node_react",
+  port: process.env.DB_PORT || 3306,
   dialect: "mysql"
 });
 

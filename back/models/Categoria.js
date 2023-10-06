@@ -1,30 +1,30 @@
+const {dbInstance} = require('../options/mysql.config');
+const {Model, DataTypes} = require('sequelize')
 
-class Categoria {
-  constructor() {
-  }
 
-  async findAll() {
-    try {
-      const response = await knex.from('categorias').select('*');
-      return response;
-    } catch (err) {
-      throw err;
-    } finally {
-      await knex.destroy();
+class Categoria extends Model {} 
+
+Categoria.init({
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        unique: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    nombre: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    foto: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
-  }
+}, {
+    sequelize: dbInstance,
+    modelName: "categorias",
+    createdAt: false,
+    updatedAt: false
+})
 
-  async findByPk(id) {
-    try {
-      const response = await knex.from('categorias').select('*').where('id', id);
-      return response;
-    } catch (err) {
-      throw err;
-    } finally {
-      await knex.destroy();
-    }
-  }
-}
-
-const categoria = new Categoria()
-module.exports = categoria;
+module.exports = {Categoria}
