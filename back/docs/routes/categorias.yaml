@@ -1,0 +1,71 @@
+tags:
+  - name: Categorias
+    description: API para manejar solicitudes de categorias
+
+paths:
+  /categorias:
+    get:
+      summary: Consultar lista de categorias
+      tags:
+        - Categorias
+      responses:
+        "200":
+          description: Lista de categorias encontrada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Categoria"
+  /categorias/{id}:
+    get:
+      summary: Obtener una categoria por id
+      tags:
+        - Categorias
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: id de la categoria a obtener
+      responses:
+        "200":
+          description: Categoria obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Categoria"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  categoria:
+                    $ref: "#/components/schemas/Categoria"
+        "404":
+          description: Categoria no encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Categoria no encontrada"
+components:
+  schemas:
+    Categoria:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+        nombre:
+          type: string
+          example: "Cultura"

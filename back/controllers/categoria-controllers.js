@@ -13,7 +13,6 @@ async function getByIdCategoria(req, res) {
   const { id } = req.params;
   try {
     const response = await categoriaServices.getById(id);
-    console.log(response)
     if (!response) {
       res.status(404).send({error: "Categoría no encontrada"})
     } else {

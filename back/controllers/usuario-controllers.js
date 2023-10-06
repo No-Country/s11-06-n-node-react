@@ -93,7 +93,6 @@ async function deleteUsuario(req, res) {
   const { id } = req.params;
   try {
     const response = await UsuarioServices.deleteUsuario(id);
-    console.log(response)
     if (response == "Usuario no encontrado") {
       res.status(404).send({error: response})
     } else {

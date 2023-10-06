@@ -1,0 +1,322 @@
+tags:
+  - name: Usuarios
+    description: API para manejar solicitudes de usuarios
+
+paths:
+  /usuarios:
+    get:
+      summary: Consultar lista de usuarios
+      tags:
+        - Usuarios
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Lista de usuarios encontrada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Usuario"
+    post:
+      summary: Crear un nuevo usuario
+      tags:
+        - Usuarios
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                  example: "Juan Pérez"
+                email:
+                  type: string
+                  format: email
+                  example: "juan@example.com"
+                password:
+                  type: string
+                  example: "secretpassword"
+      responses:
+        "201":
+          description: Usuario creado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Usuario creado exitosamente"
+                  usuario:
+                    $ref: "#/components/schemas/Usuario"
+        "400_missing_data":
+          description: Faltan datos obligatorios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Faltan datos obligatorios"
+                  usuario:
+                    $ref: "#/components/schemas/Usuario"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  usuario:
+                    $ref: "#/components/schemas/Usuario"
+        "409":
+          description: El email ya existe en la base de datos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "El email ya existe en la base de datos"
+                  usuario:
+                    $ref: "#/components/schemas/Usuario"
+        "500":
+          description: Error al crear el usuario
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error al crear el usuario"
+    put:
+      summary: Editar un usuario existente
+      tags:
+        - Usuarios
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Usuario"
+      responses:
+        "200":
+          description: Usuario editado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Usuario editado exitosamente"
+        "400_missing_data":
+          description: Faltan datos obligatorios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Faltan datos obligatorios"
+                  usuario:
+                    $ref: "#/components/schemas/Usuario"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  usuario:
+                    $ref: "#/components/schemas/Usuario"
+        "500":
+          description: Error al editar el usuario
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error al editar el usuario"
+  /usuarios/{id}:
+    get:
+      summary: Obtener un usuario por id
+      tags:
+        - Usuarios
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: id del usuario a obtener
+      responses:
+        "200":
+          description: Usuario obtenido exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Usuario"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  usuario:
+                    $ref: "#/components/schemas/Usuario"
+        "404":
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Usuario no encontrado"
+  /usuarios/email/{email}:
+    get:
+      summary: Obtener un usuario por email
+      tags:
+        - Usuarios
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: email
+          in: path
+          required: true
+          schema:
+            type: string
+          description: email del usuario a obtener
+      responses:
+        "200":
+          description: Usuario obtenido exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Usuario"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  usuario:
+                    $ref: "#/components/schemas/Usuario"
+        "404":
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Usuario no encontrado"
+  /usuarios/login:
+    post:
+      summary: inicio de sesión del usuario
+      tags:
+        - Usuarios
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: "juan@example.com"
+                password:
+                  type: string
+                  example: "secretpassword"
+      responses:
+        "200":
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                    description: Token de acceso para el usuario autenticado
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                  usuario:
+                    $ref: "#/components/schemas/Usuario"
+        "404":
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Usuario no encontrado"
+components:
+  schemas:
+    Usuario:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+        nombre:
+          type: string
+          example: "Juan Pérez"
+        email:
+          type: string
+          format: email
+          example: "juan@example.com"
+        password:
+          type: string
+          example: "secretpassword"
+        localidad_id:
+          type: string
+          example: "Córdoba"
+        location_lat:
+          type: string
+          example: "-56.00000"
+        location_lng:
+          type: string
+          example: "-56.0000"
+        avatar:
+          type: string
+          example: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJJ0BV5K7y5Rz-747xO2111YBnxs60u-QdTxpjHUtsfQ&s"
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

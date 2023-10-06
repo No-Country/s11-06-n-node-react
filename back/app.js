@@ -1,12 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
-const cors = require('cors');
+const {initializeAuthentication} = require('./options/auth');
 
+const cors = require('cors');
 const swaggerUI = require('swagger-ui-express')
 const swaggerJSDoc = require('swagger-jsdoc')
 
-const apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:4001';
+const apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:8080';
 
 const swaggerSpec = {
   definition: {
@@ -45,6 +46,7 @@ const sess = {
     secure: true,
   },
 };
+initializeAuthentication();
 app.use(cors())
 app.use(session(sess));
 app.use(express.json());
