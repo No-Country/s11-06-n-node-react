@@ -1,50 +1,42 @@
-const {dbInstance} = require('../options/mysql.config');
-const {Model, DataTypes} = require('sequelize')
+const {Schema, model} = require('mongoose');
 
 
-class Usuario extends Model {} 
-
-Usuario.init({
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        unique: true,
-        allowNull: false,
-        primaryKey: true
-    },
+const schema = new Schema ({
     nombre: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: String,
+        required: true
     },
     email: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: String,
+        required: true
     },
     password: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: String,
+        required: true
     },
-    localidad_id: {
-        type: DataTypes.INTEGER,
-        /* references: {
-        model: 'Localidad',
-        key: 'id',
-      }, */
-        
+    pais: {
+        type: String,   
+    },
+    fecha_nacimiento: {
+        type: Date
+    },
+    celular: {
+        type: String
     },
     location_lat: {
-        type: DataTypes.STRING,
+        type: String,
     },
     location_lng: {
-        type: DataTypes.STRING
+        type: String
+    }, 
+    avatar_url: {
+        type: String
     }
 }, {
-    sequelize: dbInstance,
-    modelName: "usuario",
-    createdAt: false,
-    updatedAt: false
+    timestamps: false
 })
 
-module.exports = {Usuario}
+const Usuario = model('Usuario', schema);
 
+module.exports = Usuario
 

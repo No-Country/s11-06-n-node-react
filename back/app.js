@@ -1,7 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
-const {initializeAuthentication} = require('./options/auth');
+const mongoose = require('mongoose')
+const passport = require('passport')
+const {initializePassport} = require('./options/passport.config')
+
 
 const cors = require('cors');
 const swaggerUI = require('swagger-ui-express')
@@ -30,6 +33,18 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 
 
+mongoose.set('strictQuery', false)
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log('Conexión a MongoDB Atlas establecida con éxito');
+}).catch((err) => {
+  console.error('Error al conectar a MongoDB Atlas:', err);
+});
+
+
+
 // Rutes:
 const routes = require('./routes');
 
@@ -46,9 +61,13 @@ const sess = {
     secure: true,
   },
 };
-initializeAuthentication();
+initializePassport();
 app.use(cors())
 app.use(session(sess));
+app.use(passport.initialize())
+
+app.use(passport.session())
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
