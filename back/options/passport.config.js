@@ -24,6 +24,8 @@ const initializePassport = () => {
             email,
             password: createHash(password),
             nombre: req.body.nombre,
+            apellido: req.body.apellido,
+            status: "habilitado"
           };
           try {
             let result = await Usuario.create(nuevoUsuario);
@@ -80,9 +82,7 @@ const PassportStrategy = new StrategyJwt(
     secretOrKey: "ClaveUltraSecreta", 
   },
   async (jwtPayload, next) => {
-    console.log(jwtPayload)
     const usuario = await Usuario.findById(jwtPayload.id);
-    console.log(usuario)
     if (usuario) {
       next(null, usuario);
     } else {
@@ -95,22 +95,4 @@ passport.use("jwt", PassportStrategy);
 
 
 module.exports = { initializePassport, PassportStrategy };
-/* const ExtractJwt = passportJwt.ExtractJwt;
-const StrategyJwt = passportJwt.Strategy;
 
-const PassportStrategy = new StrategyJwt(
-  {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: "ClaveUltraSecreta",
-  },
-  async (jwtPayload, next) => {
-    const usuario = await Usuario.findByPk(jwtPayload.id);
-    if (usuario) {
-      next(false, usuario, null);
-    } else {
-      next(true, null, null);
-    }
-  }
-);
-
-module.exports = { PassportStrategy }; */

@@ -18,18 +18,21 @@ const schema = new Schema ({
         type: String,   
     },
     fecha_nacimiento: {
-        type: Date
+        type: String
     },
     celular: {
         type: String
     },
-    location_lat: {
+    apellido: {
         type: String,
     },
-    location_lng: {
+    idiomas: {
+        type: Array,
+    }, 
+    avatar: {
         type: String
     }, 
-    avatar_url: {
+    status: {
         type: String
     }
 }, {

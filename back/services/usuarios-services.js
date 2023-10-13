@@ -4,6 +4,17 @@ const jwt = require("jsonwebtoken");
 async function getAll() {
   try {
     const usuarios = await Usuario.find();
+    console.log(usuarios)
+    return usuarios;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error al obtener los usuarios");
+  }
+}
+
+async function getAllToDashboard() {
+  try {
+    const usuarios = await Usuario.find().select('nombre apellido avatar pais idiomas');;
     return usuarios;
   } catch (error) {
     console.log(error);
@@ -36,7 +47,9 @@ async function login(email) {
     },
     "ClaveUltraSecreta"
   );
-  return { accessToken: token };
+  usuario.status = "conectado"
+  usuario.save()
+  return { accessToken: token, usuario };
 }
 
 async function getById(id) {
@@ -54,24 +67,28 @@ async function getById(id) {
 async function edit(
   id,
   nombre,
+  apellido,
   email,
   password,
   avatar,
-  location_lat,
-  location_lng,
-  localidad_id
+  pais,
+  idiomas,
+  fecha_nacimiento,
+  celular
 ) {
   try {
     const usuario = await Usuario.findById(id);
     if (usuario) {
       try {
-        if (localidad_id) usuario.localidad_id = localidad_id;
         if (nombre) usuario.nombre = nombre;
+        if (apellido) usuario.apellido = apellido;
         if (email) usuario.email = email;
         if (password) usuario.password = password;
-        if (location_lat) usuario.location_lat = location_lat;
-        if (location_lng) usuario.location_lng = location_lng;
         if (avatar) usuario.avatar = avatar;
+        if (pais) usuario.pais = pais;
+        if (idiomas) usuario.idiomas = idiomas
+        if (fecha_nacimiento) usuario.fecha_nacimiento = fecha_nacimiento
+        if (celular) usuario.celular = celular
         const usuarioEditado = await usuario.save();
         return usuarioEditado;
       } catch (error) {
@@ -87,7 +104,7 @@ async function edit(
 
 async function deleteUsuario(id) {
   try {
-    const usuario = await Usuario.findByPk(id);
+    const usuario = await Usuario.findById(id);
     if (usuario) {
       await usuario.destroy();
       return "Usuario eliminado";
@@ -99,30 +116,14 @@ async function deleteUsuario(id) {
   }
 }
 
-async function getByEmail(email) {
-  try {
-    const usuario = await Usuario.findOne({
-      where: {
-        email: email,
-      },
-    });
-    if (usuario) {
-      return usuario;
-    } else {
-      return "Usuario no encontrado";
-    }
-  } catch (err) {
-    console.log(err);
-    throw new Error("Email inexistente");
-  }
-}
+
 
 module.exports = {
   getAll,
   signUp,
-  getByEmail,
   edit,
   deleteUsuario,
   login,
   getById,
+  getAllToDashboard
 };
