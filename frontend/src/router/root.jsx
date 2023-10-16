@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/Layaout";
 import HomePage from "../features/Home/pages";
 import { DASHBOARD_PATH, EVENT_PATH, INDEX_PATH, USER_PATH } from "./routes";
-import { DashboardPage } from "../features/Dashboard/pages";
+import DashboardPage from "../features/Dashboard/pages";
 
 
 export const router = createBrowserRouter([
@@ -16,8 +16,8 @@ export const router = createBrowserRouter([
             element: <HomePage/>,
         },
         {
-            path: DASHBOARD_PATH,
-            element: <DashboardPage/>,
+            path: '/dashboard',
+            element: <DashboardPage/>
         },
         {
             path: EVENT_PATH,
