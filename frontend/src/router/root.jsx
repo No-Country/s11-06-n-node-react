@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/Layaout";
 import HomePage from "../features/Home/pages";
 import { EVENT_PATH, INDEX_PATH, USER_PATH } from "./routes";
+import DashboardPage from "../features/Dashboard/pages";
 
 
 export const router = createBrowserRouter([
@@ -13,6 +14,10 @@ export const router = createBrowserRouter([
         {
             index: true,
             element: <HomePage/>,
+        },
+        {
+            path: '/dashboard',
+            element: <DashboardPage/>
         },
         {
             path: EVENT_PATH,
