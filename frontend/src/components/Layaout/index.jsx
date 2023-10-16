@@ -3,7 +3,7 @@ export default function Layout() {
     return (
         <>
             <div className='body-layout'>
-                Layout
+
                 {/* <Navbar />             */}
                 <div className='max-w-screen overflow-x-hidden'>
                     <Outlet />
