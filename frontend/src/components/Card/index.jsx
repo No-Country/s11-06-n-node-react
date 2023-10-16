@@ -6,6 +6,11 @@
 //     children: React.ReactNode;
 // }
 
+// interface HeaderProps {
+//     className?: string;
+//     children: React.ReactNode;
+// }
+
 const CustomCard = ({ isActive = false, onClick, children, className }) => {
 
     const classIsActive = isActive ? "border-gray-950 shadow-xl" : "shadow-lg hover:border-gray-400";
@@ -13,7 +18,7 @@ const CustomCard = ({ isActive = false, onClick, children, className }) => {
     return (
         <div
             onClick={onClick}
-            className={` ${classIsActive} w-full  px-6 py-10 pb-10 bg-white rounded-3xl border-2  
+            className={` ${classIsActive} w-full bg-white rounded-3xl border-2  
             flex-col justify-start items-end inline-flex
             gap-4 ${className}`}>
 
@@ -22,12 +27,6 @@ const CustomCard = ({ isActive = false, onClick, children, className }) => {
         </div>
     )
 }
-
-
-// interface HeaderProps {
-//     className?: string;
-//     children: React.ReactNode;
-// }
 
 const Header = ({ className, children }) => {
     return (

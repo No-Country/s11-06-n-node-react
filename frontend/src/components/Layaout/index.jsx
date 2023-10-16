@@ -5,7 +5,7 @@ export default function Layout() {
             <div className='body-layout'>
                 hola
                 {/* <Navbar />             */}
-                <div className='max-w-screen lg:w-10/12 overflow-x-hidden' >
+                <div className='max-w-screen overflow-x-hidden' >
                     <Outlet />
                 </div>
                 {/* <Footer/> */}
