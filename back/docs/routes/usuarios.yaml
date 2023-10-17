@@ -5,7 +5,7 @@ tags:
 paths:
   /usuarios:
     get:
-      summary: Consultar lista de usuarios
+      summary: Consultar lista de usuarios conectados o habilitados
       tags:
         - Usuarios
       security:
@@ -32,7 +32,10 @@ paths:
               properties:
                 nombre:
                   type: string
-                  example: "Juan Pérez"
+                  example: "Juan"
+                apellido:
+                  type: string
+                  example: "Pérez"
                 email:
                   type: string
                   format: email
@@ -158,7 +161,7 @@ paths:
                     example: "Error al editar el usuario"
   /usuarios/{id}:
     get:
-      summary: Obtener un usuario por id
+      summary: Obtener un usuario habilitado por id
       tags:
         - Usuarios
       security:
@@ -170,49 +173,6 @@ paths:
           schema:
             type: string
           description: id del usuario a obtener
-      responses:
-        "200":
-          description: Usuario obtenido exitosamente
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Usuario"
-        "400_invalid_data":
-          description: Tipos de datos incorrectos
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: "Tipos de datos incorrectos"
-                  usuario:
-                    $ref: "#/components/schemas/Usuario"
-        "404":
-          description: Usuario no encontrado
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: "Usuario no encontrado"
-  /usuarios/email/{email}:
-    get:
-      summary: Obtener un usuario por email
-      tags:
-        - Usuarios
-      security:
-        - BearerAuth: []
-      parameters:
-        - name: email
-          in: path
-          required: true
-          schema:
-            type: string
-          description: email del usuario a obtener
       responses:
         "200":
           description: Usuario obtenido exitosamente
@@ -285,6 +245,75 @@ paths:
                   error:
                     type: string
                     example: "Usuario no encontrado"
+  /usuarios/logout/{id}:
+    get:
+      summary: Cerrar sesión de usuario
+      tags:
+        - Usuarios
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: id del usuario a obtener
+      responses:
+        "200":
+          description: Usuario desconectado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Usuario desconectado exitosamente"
+        "404":
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Usuario no encontrado"
+  /usuarios/dashboard:
+    get:
+      summary: Consultar lista de usuarios conectados o habilitados
+      tags:
+        - Usuarios
+      responses:
+        "200":
+          description: Lista de usuarios encontrada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    nombre:
+                      type: string
+                      example: "Juan"
+                    apellido:
+                      type: string
+                      example: "Pérez"
+                    idiomas:
+                      type: array
+                      format: string
+                      example: ["español", "ingles"]
+                    pais:
+                      type: string
+                      example: "Argentina"
+                    avatar:
+                      type: string
+                      example: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJJ0BV5K7y5Rz-747xO2111YBnxs60u-QdTxpjHUtsfQ&s"
+                    _id:
+                      type: string
+                      example: "652ebcefb2e4df899453902d"
 components:
   schemas:
     Usuario:
@@ -292,10 +321,13 @@ components:
       properties:
         id:
           type: string
-          example: "1"
+          example: "652ebcefb2e4df899453902d"
         nombre:
           type: string
-          example: "Juan Pérez"
+          example: "Juan"
+        apellido:
+          type: string
+          example: "Pérez"
         email:
           type: string
           format: email
@@ -303,15 +335,21 @@ components:
         password:
           type: string
           example: "secretpassword"
-        localidad_id:
+        pais:
           type: string
-          example: "Córdoba"
-        location_lat:
+          example: "Argentina"
+        fecha_nacimiento:
           type: string
-          example: "-56.00000"
-        location_lng:
+          example: "30/01/1995"
+        celular:
           type: string
-          example: "-56.0000"
+          example: "123123456"
+        status:
+          type: string
+          example: "conectado"
+        idiomas:
+          type: array
+          example: ["español", "ingles"]
         avatar:
           type: string
           example: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJJ0BV5K7y5Rz-747xO2111YBnxs60u-QdTxpjHUtsfQ&s"

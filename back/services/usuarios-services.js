@@ -3,8 +3,8 @@ const jwt = require("jsonwebtoken");
 
 async function getAll() {
   try {
-    const usuarios = await Usuario.find();
-    console.log(usuarios)
+    const usuarios = await Usuario.find({ status: { $in: ["habilitado", "conectado"]} })
+
     return usuarios;
   } catch (error) {
     console.log(error);
@@ -28,6 +28,7 @@ async function signUp(nombre, email, password) {
     usuario.nombre = nombre;
     usuario.email = email;
     usuario.password = password;
+    usuario.status = habilitado
     await usuario.save();
     return "Usuario creado con éxito";
   } catch (error) {
@@ -40,7 +41,6 @@ async function login(email) {
   const usuario = await Usuario.findOne({
     email: email,
   });
-  
   const token = jwt.sign(
     {
       id: usuario._id,
@@ -55,9 +55,10 @@ async function login(email) {
 async function getById(id) {
   try {
     const usuario = await Usuario.findById(id);
-    if (!usuario) {
+    if (!usuario || usuario.status == "deshabilitado") {
       return "Usuario no encontrado";
     }
+  
     return usuario;
   } catch (error) {
     throw new Error("Error al obtener el usuario");
@@ -78,7 +79,7 @@ async function edit(
 ) {
   try {
     const usuario = await Usuario.findById(id);
-    if (usuario) {
+    if (usuario && usuario.status !== "deshabilitado") {
       try {
         if (nombre) usuario.nombre = nombre;
         if (apellido) usuario.apellido = apellido;
@@ -105,8 +106,9 @@ async function edit(
 async function deleteUsuario(id) {
   try {
     const usuario = await Usuario.findById(id);
-    if (usuario) {
-      await usuario.destroy();
+    if (usuario && usuario.status !== "deshabilitado") {
+      usuario.status = "deshabilitado"
+      await usuario.save()
       return "Usuario eliminado";
     } else {
       return "Usuario no encontrado";
@@ -116,7 +118,21 @@ async function deleteUsuario(id) {
   }
 }
 
-
+async function logout(id) {
+  try {
+    const usuario = await Usuario.findById(id);
+    if (usuario && usuario.status !== "deshabilitado") {
+      usuario.status = "desconectado"
+      await usuario.save()
+      console.log(usuario)
+      return "Usuario desconectado";
+    } else {
+      return "Usuario no encontrado";
+    }
+  } catch (error) {
+    throw new Error("Error al obtener el usuario");
+  }
+}
 
 module.exports = {
   getAll,
@@ -125,5 +141,6 @@ module.exports = {
   deleteUsuario,
   login,
   getById,
-  getAllToDashboard
+  getAllToDashboard,
+  logout
 };
