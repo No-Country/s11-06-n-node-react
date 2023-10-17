@@ -1,6 +1,6 @@
 const Router = require("express")
 
-const { jwtValidation } = require('../middlewares/jwtValidation')
+// const { jwtValidation } = require('../middlewares/jwtValidation')
 
 const {
     getEvents,
@@ -12,7 +12,7 @@ const {
 
 const { body } = require('express-validator')
 const router = Router()
-const { validateErrors } = require("../middlewares/validateErrors")
+// const { validateErrors } = require("../middlewares/validateErrors")
 
 // Rutas 
 //Mostrar todos los Eventos

@@ -29,11 +29,12 @@ const getEventById = async (req, res) => {
 const createEvent = async (req, res) => {
     try {
         const newEvent = {
-            type: req.body.type,
-            unitPrice: req.body.unitPrice,
-            retailPrice: req.body.retailPrice,
-            wholesalePrice: req.body.wholesalePrice,
-            stock: req.body.stock,
+            name: req.body.name,
+            date: req.body.date,
+            category: req.body.category,
+            locationLat: req.body.locationLat,
+            locationLong: req.body.locationLong,
+            image: req.body.image
         }
         const event = await Events.create(newEvent);
         res.status(201).send({ mensaje: "Evento agregado exitosamente", idEvent: event._id });
@@ -60,11 +61,12 @@ const deleteEvent = async (req, res) => {
 const editEvent = async (req, res) => {
     const id = req.params.id;
     const newEventData = {
-        type: req.body.type,
-        unitPrice: req.body.unitPrice,
-        retailPrice: req.body.retailPrice,
-        wholesalePrice: req.body.wholesalePrice,
-        stock: req.body.stock,
+        name: req.body.name,
+        date: req.body.date,
+        category: req.body.category,
+        locationLat: req.body.locationLat,
+        locationLong: req.body.locationLong,
+        image: req.body.image
     }
     try {
         const updatedEvent = await Events.findByIdAndUpdate(id, newEventData, { new: true });

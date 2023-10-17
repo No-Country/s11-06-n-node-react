@@ -27,14 +27,15 @@ const eventSchema = new Schema({
     image: {
         type: String,
         required: false,
-    },
-    user:{
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: User
-    },
+    }
+    // ,
+    // user:{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     required: true,
+    //     ref: User
+    // },
 });
 
-const Evento = model("Event", eventSchema);
+const Event = model("Event", eventSchema);
 
-module.exports = Client;
+module.exports = Event;

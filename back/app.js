@@ -47,7 +47,6 @@ mongoose.connect(process.env.MONGO_URL, {
 
 // Rutes:
 const routes = require('./routes');
-
 const app = express();
 const PORT = process.env.PORT || 8080
 const server = app.listen(PORT, ()=> console.log("Server up on port " + PORT))
@@ -62,16 +61,14 @@ const sess = {
   },
 };
 initializePassport();
+
 app.use(cors())
 app.use(session(sess));
 app.use(passport.initialize())
-
 app.use(passport.session())
-
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
-
 app.use('/documentation', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 app.use('/', routes);
+
 module.exports = app;
