@@ -14,9 +14,7 @@ const authRoutes = require('./auth-routes');
 
 app.use('/auth', authRoutes);
 app.use('/usuarios', usuarioRoutes);
-//app.use('/localidades', localidadRoutes);
-//app.use('/eventos', eventoRoutes);
-//app.use('/posts', postRoutes);
+app.use('/events', eventRoutes);
 
 
 module.exports = app;
