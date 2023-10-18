@@ -1,0 +1,221 @@
+paths:
+  /news:
+    get:
+      summary: Obtener todas las noticias
+      tags:
+        - News
+      responses:
+        "200":
+          description: Lista de noticias
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/News"
+    post:
+      summary: Crear una nueva noticia
+      tags:
+        - News
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewsInput"
+      responses:
+        "201":
+          description: Noticia creada con éxito
+        "400":
+          description: Error en los datos de entrada
+  /news/{id}:
+    get:
+      summary: Obtener una noticia por ID
+      tags:
+        - News
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID de la noticia
+      responses:
+        "200":
+          description: Noticia encontrada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/News"
+        "404":
+          description: Noticia no encontrada
+    put:
+      summary: Editar una noticia existente
+      tags:
+        - News
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID de la noticia
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewsInput"
+      responses:
+        "200":
+          description: Noticia editada con éxito
+        "400":
+          description: Error en los datos de entrada
+        "404":
+          description: Noticia no encontrada
+    delete:
+      summary: Eliminar una noticia por ID
+      tags:
+        - News
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID de la noticia
+      responses:
+        "200":
+          description: Noticia eliminada
+        "404":
+          description: Noticia no encontrada
+  /news/{id}/comment:
+    put:
+      summary: Agregar un comentario a una noticia
+      tags:
+        - News
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID de la noticia
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+      responses:
+        "200":
+          description: Comentario agregado con éxito
+        "400":
+          description: Error en los datos de entrada
+        "404":
+          description: Noticia no encontrada
+
+  /news/user/{id}:
+    get:
+      summary: Obtener noticias de un usuario por ID
+      tags:
+        - News
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID del usuario
+      responses:
+        "200":
+          description: Noticias encontradas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/News"
+        "404":
+          description: Usuario no encontrado
+
+  /news/dashboard:
+    get:
+      summary: Obtener noticias para el dashboard
+      tags:
+        - News
+      responses:
+        "200":
+          description: Noticias para el dashboard
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/News"
+        "404":
+          description: Noticias no encontradas
+components:
+  schemas:
+    News:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        location:
+          type: string
+        photo:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+        idUser:
+          type: string
+        comments:
+          type: array
+          items:
+            type: object
+            properties:
+              idUser:
+                type: string
+              text:
+                type: string
+              date:
+                type: string
+      required:
+        - title
+        - idUser
+    NewsInput:
+      type: object
+      properties:
+        title:
+          type: string
+        location:
+          type: string
+        photo:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+      required:
+        - title
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
