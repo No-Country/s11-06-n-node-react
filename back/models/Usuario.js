@@ -8,11 +8,9 @@ const schema = new Schema ({
     },
     email: {
         type: String,
-        required: true
     },
     password: {
         type: String,
-        required: true
     },
     pais: {
         type: String,   
@@ -25,6 +23,7 @@ const schema = new Schema ({
     },
     apellido: {
         type: String,
+        require: true
     },
     idiomas: {
         type: Array,
