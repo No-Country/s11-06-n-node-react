@@ -4,12 +4,11 @@ const session = require('express-session');
 const mongoose = require('mongoose')
 const passport = require('passport')
 const {initializePassport} = require('./options/passport.config')
-
-
+const googleStrategy = require('./options/google')
 const cors = require('cors');
 const swaggerUI = require('swagger-ui-express')
 const swaggerJSDoc = require('swagger-jsdoc')
-
+const passportUtils = require('./utils/passportUtils')
 const apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:8080';
 
 const swaggerSpec = {
@@ -60,12 +59,14 @@ const sess = {
     secure: true,
   },
 };
+
 initializePassport();
 
 app.use(cors())
 app.use(session(sess));
 app.use(passport.initialize())
 app.use(passport.session())
+passport.use(googleStrategy)
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use('/documentation', swaggerUI.serve, swaggerUI.setup(swaggerDocs));

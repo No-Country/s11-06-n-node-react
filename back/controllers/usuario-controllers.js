@@ -53,6 +53,20 @@ async function getUsuarioById(req, res) {
   }
 }
 
+async function logoutUsuario (req, res) {
+  const {id} = req.params;
+  try {
+    const response = await UsuarioServices.logout(id)
+    if (response == "Usuario no encontrado") {
+      return res.status(404).json({ error: response });
+    } else {
+      return res.status(200).send(response);
+    }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
 
 async function editUsuario(req, res) {
   const {
@@ -115,9 +129,9 @@ async function deleteUsuario(req, res) {
 }
 
 async function login(req, res) {
-  const {email, password} = req.body
+  const {email} = req.body
   try {
-    const response = await UsuarioServices.login(email, password)
+    const response = await UsuarioServices.login(email)
     res.status(200).send(response)
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -137,5 +151,6 @@ module.exports = {
   login,
   signUpUsuario,
   loginFail,
-  getAllUsuariosToDashboard
+  getAllUsuariosToDashboard,
+  logoutUsuario
 };
