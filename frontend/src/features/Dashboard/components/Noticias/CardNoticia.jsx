@@ -1,5 +1,6 @@
-import user1 from '../../../../public/user1.jpeg'
+import user1 from '../../../../../public/user1.jpeg'
 import { CiLocationOn } from 'react-icons/ci';
+import { ImageProfileUserMedium } from '../../../../components/Images/ImageProfileUser';
 
 export default function CardNoticia() {
     return (
@@ -16,11 +17,7 @@ export default function CardNoticia() {
             <div className="px-7 py-8 flex flex-col justify-between h-96">
                 <div>
                     <div className="flex justify-between items-center mb-5">
-                        <div 
-                            className="w-20 h-20 rounded-full bg-cover bg-center"
-                            style={{backgroundImage: `url(${user1})`}}
-                        >
-                        </div>
+                        <ImageProfileUserMedium imagen={user1}/>
                         <div>
                             <p className="text-xl font-bold">Juanito Alimaña</p>
                             <p className="text-end">12/10/23</p>
