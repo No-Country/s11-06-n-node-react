@@ -1,5 +1,5 @@
 import { BsChevronDown } from 'react-icons/bs';
-import CardNoticia from '../CardNoticia';
+import CardNoticia from './CardNoticia';
 
 export default function Noticias() {
     return (
