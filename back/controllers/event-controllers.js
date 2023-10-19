@@ -1,53 +1,42 @@
 const Events = require("../models/event.model");
-require('dotenv').config();
+const EventService = require("../services/event.service");
 
-// Obtener todos los eventos
 const getEvents = async (req, res) => {
     try {
-        const events = await Events.find();
+        const events = await EventService.getAllEvents();
         res.status(200).send(events);
     } catch (error) {
         res.status(500).send({ error: "Error interno del servidor" });
     }
 }
 
-// Obtener un evento por ID
 const getEventById = async (req, res) => {
     try {
         const id = req.params.id;
-        const events = await Events.findById(id);
-        if (!events) {
+        const event = await EventService.getEventById(id);
+        if (!event) {
             return res.status(404).send({ error: "Evento no encontrado" });
         }
-        res.status(200).send(events);
+        res.status(200).send(event);
     } catch (error) {
         res.status(500).send({ error: "Error interno del servidor" });
     }
 }
 
-// Agregar un nuevo evento
 const createEvent = async (req, res) => {
     try {
-        const newEvent = {
-            name: req.body.name,
-            date: req.body.date,
-            category: req.body.category,
-            locationLat: req.body.locationLat,
-            locationLong: req.body.locationLong,
-            image: req.body.image
-        }
-        const event = await Events.create(newEvent);
+        const newEvent = req.body;
+        const event = await EventService.createEvent(newEvent);
         res.status(201).send({ mensaje: "Evento agregado exitosamente", idEvent: event._id });
     } catch (error) {
         res.status(400).send({ error: "Solicitud incorrecta" });
     }
 }
 
-// Eliminar un evento
 const deleteEvent = async (req, res) => {
     const id = req.params.id;
     try {
-        const event = await Events.findByIdAndDelete(id);
+        const event = await EventService.deleteEvent(id);
         if (!event) {
             return res.status(404).send({ error: "Evento no encontrado" });
         }
@@ -57,19 +46,11 @@ const deleteEvent = async (req, res) => {
     }
 }
 
-// Modificar un evento
 const editEvent = async (req, res) => {
     const id = req.params.id;
-    const newEventData = {
-        name: req.body.name,
-        date: req.body.date,
-        category: req.body.category,
-        locationLat: req.body.locationLat,
-        locationLong: req.body.locationLong,
-        image: req.body.image
-    }
+    const newEventData = req.body;
     try {
-        const updatedEvent = await Events.findByIdAndUpdate(id, newEventData, { new: true });
+        const updatedEvent = await EventService.editEvent(id, newEventData);
         if (!updatedEvent) {
             return res.status(404).send({ mensaje: "No se encontró el evento" });
         }
