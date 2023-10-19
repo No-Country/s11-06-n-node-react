@@ -1,9 +1,12 @@
 import React from 'react'
+import { NavBar } from '../../../components/NavBar'
 
 function HomePage() {
   return (
     <>
-      <h2>Landing Page</h2>
+      <div>
+        <NavBar />
+      </div>
     </>
   )
 }
