@@ -1,5 +1,6 @@
 import { BsChevronDown } from 'react-icons/bs';
 import CardNoticia from './CardNoticia';
+import { Link } from 'react-router-dom'
 
 export default function Noticias() {
     return (
@@ -10,11 +11,10 @@ export default function Noticias() {
                 <CardNoticia/>
                 <CardNoticia/>
                 <CardNoticia/>
-                <CardNoticia/>
             </div>
 
             <div className="my-10 border-b-2 border-gray-300 pb-2">
-                <button className="w-full flex justify-end items-center cursor-pointer">Más noticias <span className="ml-2 text-xl"><BsChevronDown/></span></button>
+                <Link to={'/noticias'} className="w-full flex justify-end items-center cursor-pointer">Más noticias <span className="ml-2 text-xl"><BsChevronDown/></span></Link>
             </div>
         </div>
     )
