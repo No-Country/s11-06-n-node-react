@@ -1,12 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
-import HomePage from "../features/Home/pages";
 import DashboardPage from "../features/Dashboard/pages";
 import Noticias from "../features/Noticias/pages/Noticias";
+import Layout from "../components/Layaout";
+import Login from "../features/Login/Login";
+import HomePage from "../features/Home/pages";
 
 export const router = createBrowserRouter([
     {
-        path:"/",
+    path: "/",
+    element: <Layout />,
+    children:[
+    {
         element: <HomePage />,
+        index:true
     },
     {
         path:"/dashboard",
@@ -14,7 +20,7 @@ export const router = createBrowserRouter([
     },
     {
         path:"/login",
-        element:<></>
+        element:<Login />
     },
     {
         path:"/mensajes",
@@ -36,4 +42,6 @@ export const router = createBrowserRouter([
         path:"/preguntasfrecuentes",
         element:<></>
     }
+    ]
+}
     ]);
