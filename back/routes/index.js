@@ -7,7 +7,7 @@ const usuarioRoutes = require('./usuario-routes');
 const eventRoutes = require('./event-routes');
 const authRoutes = require('./auth-routes');
 //const localidadRoutes = require('./localidad-routes')
-//const eventoRoutes = require('./evento-routes')
+const eventRoutes = require('./event-routes')
 //const postRoutes = require('./post-routes')
 
 
