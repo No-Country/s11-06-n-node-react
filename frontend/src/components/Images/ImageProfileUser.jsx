@@ -16,8 +16,18 @@ function ImageProfileUserMedium({imagen}) {
             </div> 
     )
 }
+function ImagenBg({imagen}) {
+    return (
+            <div 
+                className="h-full rounded-md bg-cover bg-center"
+                style={{backgroundImage: `url(${imagen})`}}
+            >
+            </div> 
+    )
+}
 
 export {
     ImageProfileUserMedium,
     ImageProfileUserSmall,
+    ImagenBg
 } 
