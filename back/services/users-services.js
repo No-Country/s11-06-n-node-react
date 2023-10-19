@@ -1,10 +1,10 @@
-const Usuario = require("../models/Usuario");
+const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 
 async function getAll() {
   try {
-    const usuarios = await Usuario.find();
-    console.log(usuarios)
+    const usuarios = await User.find({ status: { $in: ["habilitado", "conectado"]} })
+
     return usuarios;
   } catch (error) {
     console.log(error);
@@ -14,7 +14,7 @@ async function getAll() {
 
 async function getAllToDashboard() {
   try {
-    const usuarios = await Usuario.find().select('nombre apellido avatar pais idiomas');;
+    const usuarios = await User.find().select('name lastname avatar location languages');;
     return usuarios;
   } catch (error) {
     console.log(error);
@@ -22,12 +22,13 @@ async function getAllToDashboard() {
   }
 }
 
-async function signUp(nombre, email, password) {
+async function signUp(name, email, password) {
   try {
-    const usuario = new Usuario();
-    usuario.nombre = nombre;
+    const usuario = new User();
+    usuario.name = name;
     usuario.email = email;
     usuario.password = password;
+    usuario.status = habilitado
     await usuario.save();
     return "Usuario creado con éxito";
   } catch (error) {
@@ -37,10 +38,9 @@ async function signUp(nombre, email, password) {
 }
 
 async function login(email) {
-  const usuario = await Usuario.findOne({
+  const usuario = await User.findOne({
     email: email,
   });
-  
   const token = jwt.sign(
     {
       id: usuario._id,
@@ -54,10 +54,11 @@ async function login(email) {
 
 async function getById(id) {
   try {
-    const usuario = await Usuario.findById(id);
-    if (!usuario) {
+    const usuario = await User.findById(id);
+    if (!usuario || usuario.status == "deshabilitado") {
       return "Usuario no encontrado";
     }
+  
     return usuario;
   } catch (error) {
     throw new Error("Error al obtener el usuario");
@@ -66,29 +67,29 @@ async function getById(id) {
 
 async function edit(
   id,
-  nombre,
-  apellido,
+  name,
+  lastname,
   email,
   password,
   avatar,
-  pais,
-  idiomas,
-  fecha_nacimiento,
-  celular
+  location,
+  languages,
+  birthdate,
+  phone
 ) {
   try {
-    const usuario = await Usuario.findById(id);
-    if (usuario) {
+    const usuario = await User.findById(id);
+    if (usuario && usuario.status !== "deshabilitado") {
       try {
-        if (nombre) usuario.nombre = nombre;
-        if (apellido) usuario.apellido = apellido;
+        if (name) usuario.name = name;
+        if (lastname) usuario.lastname = lastname;
         if (email) usuario.email = email;
         if (password) usuario.password = password;
         if (avatar) usuario.avatar = avatar;
-        if (pais) usuario.pais = pais;
-        if (idiomas) usuario.idiomas = idiomas
-        if (fecha_nacimiento) usuario.fecha_nacimiento = fecha_nacimiento
-        if (celular) usuario.celular = celular
+        if (location) usuario.location = location;
+        if (languages) usuario.languages = languages
+        if (birthdate) usuario.birthdate = birthdate
+        if (phone) usuario.phone = phone
         const usuarioEditado = await usuario.save();
         return usuarioEditado;
       } catch (error) {
@@ -102,11 +103,12 @@ async function edit(
   }
 }
 
-async function deleteUsuario(id) {
+async function deleteUser(id) {
   try {
-    const usuario = await Usuario.findById(id);
-    if (usuario) {
-      await usuario.destroy();
+    const usuario = await User.findById(id);
+    if (usuario && usuario.status !== "deshabilitado") {
+      usuario.status = "deshabilitado"
+      await usuario.save()
       return "Usuario eliminado";
     } else {
       return "Usuario no encontrado";
@@ -116,14 +118,29 @@ async function deleteUsuario(id) {
   }
 }
 
-
+async function logout(id) {
+  try {
+    const usuario = await User.findById(id);
+    if (usuario && usuario.status !== "deshabilitado") {
+      usuario.status = "desconectado"
+      await usuario.save()
+      console.log(usuario)
+      return "Usuario desconectado";
+    } else {
+      return "Usuario no encontrado";
+    }
+  } catch (error) {
+    throw new Error("Error al obtener el usuario");
+  }
+}
 
 module.exports = {
   getAll,
   signUp,
   edit,
-  deleteUsuario,
+  deleteUser,
   login,
   getById,
-  getAllToDashboard
+  getAllToDashboard,
+  logout
 };
