@@ -81,39 +81,12 @@ async function updateGroup(req, res) {
   }
 }
 
-// async function deleteUsuario(req, res) {
-//   const { id } = req.params;
-//   try {
-//     const response = await UsuarioServices.deleteUsuario(id);
-//     if (response == "Usuario no encontrado") {
-//       res.status(404).send({ error: response });
-//     } else {
-//       res.status(200).send({ response });
-//     }
-//   } catch (error) {
-//     res.status(404).json({ error: "usuario no encontrado" });
-//   }
-// }
 
-// async function login(req, res) {
-//   const {email, password} = req.body
-//   try {
-//     const response = await UsuarioServices.login(email, password)
-//     res.status(200).send(response)
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// }
-
-// async function loginFail(req, res) {
-//   return res.status(404).send({mensaje: "Usuario o contraseña incorrectos"});
-// }
 
 module.exports = {
   getAll,
   createNewGroup, 
   getById,
   updateGroup
-  // deleteUsuario,
-  // login,
+ 
 };
