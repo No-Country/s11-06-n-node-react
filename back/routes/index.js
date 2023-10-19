@@ -4,6 +4,7 @@ const app = Express();
 // Rutas
 
 const userRoutes = require('./user-routes');
+const eventRoutes = require('./event-routes');
 const authRoutes = require('./auth-routes');
 //const localidadRoutes = require('./localidad-routes')
 const eventRoutes = require('./event-routes')
