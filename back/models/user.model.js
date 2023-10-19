@@ -2,7 +2,7 @@ const {Schema, model} = require('mongoose');
 
 
 const schema = new Schema ({
-    nombre: {
+    name: {
         type: String,
         required: true
     },
@@ -12,20 +12,20 @@ const schema = new Schema ({
     password: {
         type: String,
     },
-    pais: {
+    location: {
         type: String,   
     },
-    fecha_nacimiento: {
+    birthdate: {
+        type: Date
+    },
+    phone: {
         type: String
     },
-    celular: {
-        type: String
-    },
-    apellido: {
+    lastname: {
         type: String,
         require: true
     },
-    idiomas: {
+    languages: {
         type: Array,
     }, 
     avatar: {
@@ -38,7 +38,7 @@ const schema = new Schema ({
     timestamps: false
 })
 
-const Usuario = model('Usuario', schema);
+const User = model('users', schema);
 
-module.exports = Usuario
+module.exports = User
 
