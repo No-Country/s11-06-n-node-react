@@ -4,7 +4,7 @@ import { BsSearch } from 'react-icons/bs';
 
 export default function SearchBar() {
     return (
-        <div className="flex gap-x-6 md:gap-x-14 my-8 h-20">
+        <div className="flex items-center gap-x-6 md:gap-x-14 my-8 h-20">
 
 
             <div className="w-full relative flex items-center">
