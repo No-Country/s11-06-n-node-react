@@ -8,6 +8,7 @@ router.get('/', NewsControllers.getAllNews);
 router.get('/dashboard', NewsControllers.getAllNewsToDashboard);
 router.post('/', isAuthenticated, NewsControllers.postNews)
 router.put('/:id', isAuthenticated,  NewsControllers.editNews);
+router.put('/:idNews/comments/:idComment', isAuthenticated, NewsControllers.deleteComment)
 router.put('/:id/comment', isAuthenticated, NewsControllers.postComment)
 router.get('/:id', NewsControllers.getNewsById);
 router.delete('/:id', isAuthenticated, NewsControllers.deleteNews)

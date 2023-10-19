@@ -48,7 +48,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/News"
+                $ref: "#/components/schemas/NewsComplete"
         "404":
           description: Noticia no encontrada
     put:
@@ -166,6 +166,31 @@ paths:
                   $ref: "#/components/schemas/News"
         "404":
           description: Noticias no encontradas
+  /news/{idNews}/comments/{idComment}:
+    put:
+      summary: Eliminar un comentario en una noticia
+      tags:
+        - News
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: idNews
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID de la noticia
+        - name: idComment
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID del comentario
+      responses:
+        "200":
+          description: Comentario eliminado con éxito
+        "404":
+          description: Noticia o comentario no encontrado
 components:
   schemas:
     News:
@@ -196,9 +221,47 @@ components:
                 type: string
               date:
                 type: string
+    required:
+      - title
+      - idUser
+    NewsComplete:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        location:
+          type: string
+        photo:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+        idUser:
+          type: string
+        comments:
+          type: array
+          items:
+            type: object
+            properties:
+              idUser:
+                type: string
+              text:
+                type: string
+              date:
+                type: string
+              user:
+                type: object
+                properties:
+                  name: string
+                  lastname: string
+                  avatar: string
       required:
         - title
         - idUser
+
     NewsInput:
       type: object
       properties:

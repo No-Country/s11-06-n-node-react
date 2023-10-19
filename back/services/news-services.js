@@ -37,7 +37,9 @@ async function getAllToDashboard() {
 
 async function getAllFromUser(id) {
   try {
-    const news = await News.find({ idUser: id }).select("title description photo location createdAt");
+    const news = await News.find({ idUser: id }).select(
+      "title description photo location createdAt"
+    );
     return news;
   } catch (error) {
     console.log(error);
@@ -70,6 +72,18 @@ async function getById(id) {
       lastname: user.lastname,
       avatar: user.avatar,
     };
+    const arrayOfComments = await Promise.all(
+      news.comments.map(async (el) => {
+        const user = await User.findById(el.idUser);
+        const newUser = {
+          name: user.name,
+          lastname: user.lastname,
+          avatar: user.avatar,
+        };
+        return { ...el, user: newUser };
+      })
+    );
+    news.comments = arrayOfComments;
     return { ...news.toObject(), user: newUser };
   } catch (error) {
     console.log(error);
@@ -102,19 +116,19 @@ async function edit(id, title, photo, location, description, idUser) {
 async function postComment(id, text, idUser) {
   try {
     const news = await News.findById(id);
-    const date = new Date()
+    const date = new Date();
     let idComment;
     if (news.comments.length > 0) {
-       idComment = news.comments[news.comments.length- 1].id +1
+      idComment = news.comments[news.comments.length - 1].id + 1;
     } else {
-      idComment = 1
+      idComment = 1;
     }
 
     const comment = {
       idUser: idUser,
       text,
       date,
-      id: idComment
+      id: idComment,
     };
     if (news) {
       try {
@@ -128,19 +142,38 @@ async function postComment(id, text, idUser) {
               lastname: user.lastname,
               avatar: user.avatar,
             };
-            return { ...el,  user: newUser };
+            return { ...el, user: newUser };
           })
         );
         noticiaEditada.comments = arrayOfComments;
         return noticiaEditada;
       } catch (error) {
-        console.log(error)
+        console.log(error);
         throw new Error("Error al editar la noticia");
       }
     } else {
       return "Noticia no encontrada";
     }
   } catch (error) {
+    throw new Error("Error al editar la noticia");
+  }
+}
+
+async function deleteComment(idNews, idComment, idUser) {
+  try {
+    const news = await News.findById(idNews);
+    if (news.idUser == idUser) {
+      const comment = news.comments.find((el) => el.id == idComment);
+      if (comment) {
+        let updatedComments = news.comments.filter((el) => el.id != idComment);
+        news.comments = updatedComments;
+        await news.save();
+        return "Se eliminó con éxito";
+      }
+    } else {
+      return "Noticia no encontrada";
+    }
+  } catch (err) {
     throw new Error("Error al editar la noticia");
   }
 }
@@ -168,4 +201,5 @@ module.exports = {
   getAllToDashboard,
   deleteNews,
   postComment,
+  deleteComment
 };

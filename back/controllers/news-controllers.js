@@ -85,6 +85,24 @@ async function editNews(req, res) {
   }
 }
 
+async function deleteComment(req, res) {
+  const {idNews, idComment} = req.params
+  const { id: idUser } = req.user;
+  try {
+    const response = await NewsServices.deleteComment(
+      idNews,
+      idComment,
+      idUser,
+    );
+    if (response == "Noticia no encontrada") {
+      return res.status(404).send({ error: response });
+    }
+    res.status(200).send(response);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
 async function deleteNews(req, res) {
   const { id } = req.params;
   const { id: idUser } = req.user;
@@ -127,4 +145,5 @@ module.exports = {
   postNews,
   getAllNewsFromUser,
   postComment,
+  deleteComment
 };
