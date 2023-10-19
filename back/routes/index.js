@@ -13,7 +13,6 @@ const newsRoutes = require('./news-routes')
 
 
 // use
-
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/events', eventRoutes);
