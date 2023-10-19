@@ -3,6 +3,7 @@ import React from 'react'
 import Noticias from '../components/Noticias'
 import SearchBar from '../../../components/SearchBar/SearchBar'
 import Sidebar from '../../../components/Sidebar/Sidebar'
+import NavBar from '../../../components/NavBar'
 
 export default function DashboardPage() {
     return (
@@ -10,6 +11,7 @@ export default function DashboardPage() {
             <div className='hidden md:block'><Sidebar/></div>
 
             <div className="mb-20 ml-0 md:ml-60 px-5 md:px-10 mx-auto w-full">
+                
                 <SearchBar/>
                 <div className='mt-20'><Noticias/></div>
             </div>
