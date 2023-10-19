@@ -98,11 +98,28 @@ async function editGroup(
   }
 }
 
-// async function deleteUsuario(id) {
+//borrado logico
+async function deleteGroup(id) {
+  try {
+    const group = await Group.findById(id);
+    if (group) {
+  group.status = "eliminado"
+  const groupDelete = await group.save();
+      return groupDelete;
+    } else {
+      return "Grupo no encontrado";
+    }
+  } catch (error) {
+    throw new Error("Error al obtener el grupo");
+  }
+}
+
+//eliminar permanentemente
+// async function deleteGroup(id) {
 //   try {
-//     const usuario = await Usuario.findById(id);
+//     const group = await Group.findById(id);
 //     if (usuario) {
-//       await usuario.destroy();
+//       await group.destroy();
 //       return "Usuario eliminado";
 //     } else {
 //       return "Usuario no encontrado";
@@ -118,6 +135,7 @@ module.exports = {
   getAllGroups,
   createGroup,
   getGroupById,
-  editGroup
+  editGroup,
+  deleteGroup
 
 };

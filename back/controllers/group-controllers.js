@@ -81,12 +81,26 @@ async function updateGroup(req, res) {
   }
 }
 
+async function deleteGroupStatus(req, res) {
+  const { id } = req.params;
+  try {
+    const response = await GroupsServices.deleteGroup(id);
+    if (response == "Grupo no encontrado") {
+      return res.status(404).send({ error: response });
+    }
+    res.status(200).send(response);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
 
 
 module.exports = {
   getAll,
   createNewGroup, 
   getById,
-  updateGroup
+  updateGroup,
+  deleteGroupStatus
  
 };
