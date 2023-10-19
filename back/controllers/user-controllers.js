@@ -1,36 +1,36 @@
-const UsuarioServices = require("../services/usuarios-services");
+const UserServices = require("../services/users-services");
 
-async function getAllUsuarios(req, res) {
+async function getAllUsers(req, res) {
   try {
-    const usuarios = await UsuarioServices.getAll();
-    res.status(200).send(usuarios);
+    const users = await UserServices.getAll();
+    res.status(200).send(users);
   } catch (error) {
     res.status(500).json({ error: "Error interno del servidor" });
   }
 }
 
-async function getAllUsuariosToDashboard(req, res) {
+async function getAllUsersToDashboard(req, res) {
   try {
-    const usuarios = await UsuarioServices.getAllToDashboard();
-    res.status(200).send(usuarios);
+    const users = await UserServices.getAllToDashboard();
+    res.status(200).send(users);
   } catch (error) {
     res.status(500).json({ error: "Error interno del servidor" });
   }
 }
 
 
-async function signUpUsuario(req, res) {
+async function signUpUser(req, res) {
   return res.status(201).send({ message: "Usuario creado con éxito" });
 }
 
-async function signUpUsuarioFail(req, res) {
-  const { nombre, apellido, email, password } = req.body;
-  if (!nombre || !apellido ||  !email || !password) {
+async function signUpUserFail(req, res) {
+  const { name, lastname, email, password } = req.body;
+  if (!name || !lastname ||  !email || !password) {
     return res.status(400).json({ message: "Faltan datos obligatorios" });
   }
   if (
-    typeof nombre !== "string" ||
-    typeof apellido !== "string" ||
+    typeof name !== "string" ||
+    typeof lastname !== "string" ||
     typeof email !== "string" ||
     typeof password !== "string"
   ) {
@@ -39,10 +39,10 @@ async function signUpUsuarioFail(req, res) {
   return res.status(400).json({ error: "Usuario ya existe" });
 }
 
-async function getUsuarioById(req, res) {
+async function getUserById(req, res) {
   const { id } = req.params;
   try {
-    const response = await UsuarioServices.getById(id);
+    const response = await UserServices.getById(id);
     if (response == "Usuario no encontrado") {
       return res.status(404).json({ error: response });
     } else {
@@ -53,10 +53,10 @@ async function getUsuarioById(req, res) {
   }
 }
 
-async function logoutUsuario (req, res) {
+async function logoutUser (req, res) {
   const {id} = req.params;
   try {
-    const response = await UsuarioServices.logout(id)
+    const response = await UserServices.logout(id)
     if (response == "Usuario no encontrado") {
       return res.status(404).json({ error: response });
     } else {
@@ -68,42 +68,42 @@ async function logoutUsuario (req, res) {
 }
 
 
-async function editUsuario(req, res) {
+async function editUser(req, res) {
   const {
     id,
-    nombre,
-    apellido,
+    name,
+    lastname,
     email,
     password,
     avatar,
-    pais,
-    idiomas,
-    fecha_nacimiento,
-    celular
+    location,
+    languages,
+    birthdate,
+    phone
   } = req.body;
   try {
     if (
-      (nombre && typeof nombre !== "string") ||
-      (apellido && typeof apellido !== "string") ||
+      (name && typeof name !== "string") ||
+      (lastname && typeof lastname !== "string") ||
       (email && typeof email !== "string") ||
       (password && typeof password !== "string") || 
-      (fecha_nacimiento && typeof fecha_nacimiento !== "string") || 
-      (celular && typeof celular !== "string") || 
-      (pais && typeof pais !== "string") 
+      (birthdate && typeof birthdate !== "date") || 
+      (phone && typeof phone !== "string") || 
+      (location && typeof location !== "string") 
     ) {
       return res.status(400).json({ message: "Tipos de datos incorrectos" });
     }
-    const response = await UsuarioServices.edit(
+    const response = await UserServices.edit(
       id,
-      nombre,
-      apellido,
+      name,
+      lastname,
       email,
       password,
       avatar,
-      pais,
-      idiomas,
-      fecha_nacimiento,
-      celular
+      location,
+      languages,
+      birthdate,
+      phone
     );
     if (response == "Usuario no encontrado") {
       return res.status(404).send({ error: response });
@@ -114,10 +114,10 @@ async function editUsuario(req, res) {
   }
 }
 
-async function deleteUsuario(req, res) {
+async function deleteUser(req, res) {
   const { id } = req.params;
   try {
-    const response = await UsuarioServices.deleteUsuario(id);
+    const response = await UserServices.deleteUser(id);
     if (response == "Usuario no encontrado") {
       res.status(404).send({ error: response });
     } else {
@@ -131,7 +131,7 @@ async function deleteUsuario(req, res) {
 async function login(req, res) {
   const {email} = req.body
   try {
-    const response = await UsuarioServices.login(email)
+    const response = await UserServices.login(email)
     res.status(200).send(response)
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -143,14 +143,14 @@ async function loginFail(req, res) {
 }
 
 module.exports = {
-  getAllUsuarios,
-  signUpUsuarioFail,
-  getUsuarioById,
-  editUsuario,
-  deleteUsuario,
+  getAllUsers,
+  signUpUserFail,
+  getUserById,
+  editUser,
+  deleteUser,
   login,
-  signUpUsuario,
+  signUpUser,
   loginFail,
-  getAllUsuariosToDashboard,
-  logoutUsuario
+  getAllUsersToDashboard,
+  logoutUser
 };
