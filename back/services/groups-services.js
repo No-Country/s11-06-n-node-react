@@ -1,4 +1,5 @@
-const Group = require("../models/Group");
+const Group = require("../models/group.model");
+const User = require("../models/user.model");
 // const jwt = require("jsonwebtoken");
 
 async function getAllGroups() {
@@ -31,7 +32,7 @@ async function createGroup(name, image, idUser) {
     await newGroup.save();
     return `Grupo ${name} creado con éxito`;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw new Error("Error al crear el grupo");
   }
 }
@@ -118,17 +119,31 @@ async function deleteGroup(id) {
 // async function deleteGroup(id) {
 //   try {
 //     const group = await Group.findById(id);
-//     if (usuario) {
+//     if (group) {
 //       await group.destroy();
-//       return "Usuario eliminado";
+//       return "Grupo eliminado";
 //     } else {
-//       return "Usuario no encontrado";
+//       return "Grupo no encontrado";
 //     }
 //   } catch (error) {
-//     throw new Error("Error al obtener el usuario");
+//     throw new Error("Error al obtener el grupo");
 //   }
 // }
-
+async function addToGroup(groupId,userId){
+  console.log(groupId,userId);
+  try {
+    const group = await Group.findById(groupId);
+    const user = await User.findById(userId);
+    console.log(user);
+    if(!user || !group){ return "No se encuentra grupo o usuario en la base de datos"}
+    if(group.users_common.includes(userId)){ return "El usuario ya se encuentra en el grupo"}
+    group.users_common.push(userId);
+    await group.save();
+    return group
+    } catch (error) {
+    throw new Error("Error al agregar usuario");
+  }
+}
 
 
 module.exports = {
@@ -136,6 +151,7 @@ module.exports = {
   createGroup,
   getGroupById,
   editGroup,
-  deleteGroup
+  deleteGroup,
+  addToGroup
 
 };

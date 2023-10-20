@@ -10,6 +10,7 @@ router.post('/', GroupControllers.createNewGroup);
 router.get('/:id', GroupControllers.getById);
 router.put('/', GroupControllers.updateGroup);
 router.delete('/:id',  GroupControllers.deleteGroupStatus);
-
+//ruta para agregar un usuario a undeterminado grupo 
+router.post('/add-user', GroupControllers.addUserToGroup);
 
 module.exports = router;

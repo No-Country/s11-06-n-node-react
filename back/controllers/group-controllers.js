@@ -1,3 +1,5 @@
+const Group = require("../models/group.model");
+const User = require("../models/user.model");
 const GroupsServices = require("../services/groups-services");
 
 // Obtener todos los grupos
@@ -28,6 +30,7 @@ async function createNewGroup(req, res) {
 //Obtener grupo por Id
 async function getById(req, res) {
   const { id } = req.params;
+  console.log(id);
   try {
     const response = await GroupsServices.getGroupById(id);
     if (response == "Usuario no encontrado") {
@@ -93,6 +96,26 @@ async function deleteGroupStatus(req, res) {
     res.status(400).json({ error: error.message });
   }
 }
+const addUserToGroup = async (req, res) => {
+  try {
+
+    const groupId = req.query.groupId;
+    const userId = req.query.userId;
+    const response = await GroupsServices.addToGroup(groupId,userId);
+    // verificar que existan
+    if (response == "No se encuentra grupo o usuario en la base de datos") {
+      return res.status(404).json({ message: 'Group or user not found' });
+    }
+    if (response == "El usuario ya se encuentra en el grupo") {
+      return res.status(400).json({ message: 'User is already in the group' });
+    }
+    return res.status(200).json({ message: 'User added to the group successfully' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 
 
 
@@ -101,6 +124,7 @@ module.exports = {
   createNewGroup, 
   getById,
   updateGroup,
-  deleteGroupStatus
+  deleteGroupStatus,
+  addUserToGroup
  
 };
