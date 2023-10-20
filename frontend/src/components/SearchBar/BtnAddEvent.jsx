@@ -25,15 +25,15 @@ export default function BtnAddEvent() {
 
             {displayIcons && (
                 <div className='absolute  duration-200'>
-                    <Link to={'/'} className='w-14 h-14 bg-green-700 rounded-full m-1 absolute -top-14 right-6 text-white flex flex-col justify-center items-center'>
+                    <Link to={'/'} className='w-14 h-14 bg-green-700 rounded-full m-1 absolute -top-14 right-10 text-white flex flex-col justify-center items-center'>
                         <span className='text-xl'><AiOutlineTags/></span>
                         <p className='text-xs'>Evento</p>
                     </Link>
-                    <Link to={'/'} className='w-14 h-14 bg-green-700 rounded-full m-1 absolute top-0 md:top-2 -right-2 text-white flex flex-col justify-center items-center'>
+                    <Link to={'/'} className='w-14 h-14 bg-green-700 rounded-full m-1 absolute top-0 md:top-0 -right-0 text-white flex flex-col justify-center items-center'>
                         <span className='text-xl'><HiOutlineUserGroup/></span>
                         <p className='text-xs'>Grupo</p>
                     </Link>
-                    <Link to={'/'} className='w-14 h-14 bg-green-700 rounded-full m-1 absolute top-10 md:top-16 -right-14 text-white flex flex-col justify-center items-center'>
+                    <Link to={'/'} className='w-14 h-14 bg-green-700 rounded-full m-1 absolute top-10 md:top-10 -right-14 text-white flex flex-col justify-center items-center'>
                         <span className='text-xl'><BsPostcard/></span>
                         <p className='text-xs'>Post</p>
                     </Link>

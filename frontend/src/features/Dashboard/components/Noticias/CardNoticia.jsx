@@ -14,8 +14,8 @@ export default function CardNoticia() {
 
 
             {/* ----- Info */}
-            <div className="px-7 py-8 flex flex-col justify-between h-96">
-                <div>
+            <div className="px-7 py-8 flex flex-col">
+                <div className='mb-12'>
                     <div className="flex justify-between items-center mb-5">
                         <ImageProfileUserMedium imagen={user1}/>
                         <div>
