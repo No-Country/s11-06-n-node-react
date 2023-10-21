@@ -15,12 +15,12 @@ async function getAll(req, res) {
 
 //crear un nuevo grupo
 async function createNewGroup(req, res) {
-  const { name, image, idUser } = req.body;
+  const { name, image, idUser, rules } = req.body;
   try {
     if (!name || !image ||  !idUser ) {
     return res.status(400).json({ message: "Faltan datos obligatorios para crear el grupo" });
   }else{
-   const response = await GroupsServices.createGroup(name, image, idUser)
+   const response = await GroupsServices.createGroup(name, image, idUser, rules)
    return res.status(200).json(response);
   }
   } catch (error) {
@@ -42,6 +42,12 @@ async function getById(req, res) {
     res.status(400).json({ error: error.message });
   }
 }
+// Obtener grupos de un usuario
+
+
+
+
+
 
 // Funcion para editar datos de un grupo
 async function updateGroup(req, res) {
@@ -109,6 +115,13 @@ const addUserToGroup = async (req, res) => {
     if (response == "El usuario ya se encuentra en el grupo") {
       return res.status(400).json({ message: 'User is already in the group' });
     }
+    if (response == "El usuario ya se encuentra como administrador en el grupo") {
+      return res.status(400).json({ message: 'The user is an administrator of the group' });
+    }
+    if (response == "Tú solicitud de unión al grupo está pendiente") {
+      return res.status(400).json({ message: 'Your request is pending' });
+    }
+  
     return res.status(200).json({ message: 'User added to the group successfully' });
   } catch (error) {
     console.error(error);
@@ -117,7 +130,31 @@ const addUserToGroup = async (req, res) => {
 };
 
 
+async function getAllByIdUser(req, res) {
+  try {
+    const userId = req.params.userId;
+    const groups = await GroupsServices.getAllGroupsByUser(userId);
+    // console.log(groups);
+    res.status(200).send(groups);
+  } catch (error) {
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+}
 
+
+
+async function leaveGroup(req, res) {
+  try {
+    const userId = req.params.userId;
+    const groupId = req.params.groupId;
+    const response = await GroupsServices.leaveUserGroup(groupId, userId);
+    // console.log(userId);
+    // console.log(groupId);
+    res.status(200).send(response);
+  } catch (error) {
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+}
 
 module.exports = {
   getAll,
@@ -125,6 +162,8 @@ module.exports = {
   getById,
   updateGroup,
   deleteGroupStatus,
-  addUserToGroup
+  addUserToGroup,
+  getAllByIdUser,
+  leaveGroup
  
 };

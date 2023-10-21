@@ -13,22 +13,27 @@ async function getAllGroups() {
   }
 }
 
-// async function getAllToDashboard() {
-//   try {
-//     const usuarios = await Usuario.find().select('nombre apellido avatar pais idiomas');;
-//     return usuarios;
-//   } catch (error) {
-//     console.log(error);
-//     throw new Error("Error al obtener los usuarios");
-//   }
-// }
+async function getAllGroupsByUser(userId) {
+  try {
+    // Busco grupos en los tres arrays posibles
+    const commonGroups = await Group.find({ users_common: userId });
+    const adminGroups = await Group.find({ users_admin: userId });
+    // const pendingGroups = await Group.find({ users_pending: userId });
+            const allGroups = [...commonGroups, ...adminGroups];
+    return allGroups;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error al obtener los usuarios");
+  }
+}
 
-async function createGroup(name, image, idUser) {
+async function createGroup(name, image, idUser, rules) {
   try {
     const newGroup = new Group();
     newGroup.name = name;
     newGroup.image = image;
     newGroup.users_admin = [idUser];
+    newGroup.rules = rules;
     await newGroup.save();
     return `Grupo ${name} creado con éxito`;
   } catch (error) {
@@ -37,21 +42,7 @@ async function createGroup(name, image, idUser) {
   }
 }
 
-// async function login(email) {
-//   const usuario = await Usuario.findOne({
-//     email: email,
-//   });
-  
-//   const token = jwt.sign(
-//     {
-//       id: usuario._id,
-//     },
-//     "ClaveUltraSecreta"
-//   );
-//   usuario.status = "conectado"
-//   usuario.save()
-//   return { accessToken: token, usuario };
-// }
+
 
 async function getGroupById(id) {
   try {
@@ -64,6 +55,39 @@ async function getGroupById(id) {
     throw new Error("Error al obtener el usuario");
   }
 }
+
+async function leaveUserGroup(groupId, userId) {
+  try {
+    const groupFound = await Group.findById(groupId);
+    const userFound = await User.findById(userId);
+console.log(groupFound);
+
+    if (!groupFound) {
+      return "Grupo no encontrado";
+    }
+    if (!userFound) {
+      return "Usuario no encontrado";
+    }
+    if (!groupFound.users_common.includes(userId) && !groupFound.users_admin.includes(userId) && !groupFound.users_pending.includes(userId)){
+      return 'User is not a member of this group'
+    }
+    if(groupFound.users_common.includes(userId)){
+      groupFound.users_common = groupFound.users_common.filter(id => id !== userId);
+      await groupFound.save();
+      return 'User has left the group'
+    }
+    if(groupFound.users_admin.includes(userId) && groupFound.users_admin.length > 1 ){
+      groupFound.users_admin = groupFound.users_admin.filter(id => id !== userId);
+      await groupFound.save();
+      return 'User has left the group'
+    }else{
+      return 'El usuario es el único administrador del grupo'
+    }
+  } catch (error) {
+    throw new Error("Error al obtener el usuario");
+  }
+}
+
 
 async function editGroup(
   id,
@@ -137,6 +161,9 @@ async function addToGroup(groupId,userId){
     console.log(user);
     if(!user || !group){ return "No se encuentra grupo o usuario en la base de datos"}
     if(group.users_common.includes(userId)){ return "El usuario ya se encuentra en el grupo"}
+    if(group.users_admin.includes(userId)){ return "El usuario ya se encuentra como administrador en el grupo"}
+    if(group.usuarios_pending.includes(userId)){ return "Tú solicitud de unión al grupo está pendiente"}
+    
     group.users_common.push(userId);
     await group.save();
     return group
@@ -152,6 +179,8 @@ module.exports = {
   getGroupById,
   editGroup,
   deleteGroup,
-  addToGroup
+  addToGroup,
+  getAllGroupsByUser,
+  leaveUserGroup
 
 };

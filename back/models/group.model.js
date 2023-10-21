@@ -16,7 +16,7 @@ const GroupSchema = new Schema ({
     users_admin: {
         type: Array
     },
-    usuarios_pending: {
+    users_pending: {
         type: Array
     },
     description: {
@@ -27,6 +27,9 @@ const GroupSchema = new Schema ({
         enum: validStatusValues,
         required: true,
         default: "activo"
+    },
+    rules: {
+        type: String
     }
 }, {
     timestamps: false
