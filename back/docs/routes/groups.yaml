@@ -1,0 +1,339 @@
+tags:
+  - name: Groups
+    description: API para manejar solicitudes de grupos
+
+paths:
+  /groups:
+    get:
+      summary: Consultar lista de todos los grupos activos , inactivos y eliminados
+      tags:
+        - Groups
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Lista de grupos encontrada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Group"
+    post:
+      summary: Crear un nuevo grupo
+      tags:
+        - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Amigos"
+                image:
+                  type: string
+                  example: "https://estaticos-cdn.sport.es/clip/96e3800b-93b4-4687-9dcb-470022f3f949_alta-libre-aspect-ratio_default_0.jpg"
+                idUser:
+                  type: string
+                  example: "652830c102896ad8e3bf6f5b"
+      responses:
+        "201":
+          description: Grupo creado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Grupo Amigos creado con éxito"
+                  group:
+                    $ref: "#/components/schemas/Group"
+        "400_missing_data":
+          description: Faltan datos obligatorios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Faltan datos obligatorios para crear el grupo"
+                  group:
+                    $ref: "#/components/schemas/Group"
+        # "400_invalid_data":
+        #   description: Tipos de datos incorrectos
+        #   content:
+        #     application/json:
+        #       schema:
+        #         type: object
+        #         properties:
+        #           message:
+        #             type: string
+        #             example: "Tipos de datos incorrectos"
+        #           group:
+        #             $ref: "#/components/schemas/Group"
+        # "409":
+        #   description: El email ya existe en la base de datos
+        #   content:
+        #     application/json:
+        #       schema:
+        #         type: object
+        #         properties:
+        #           message:
+        #             type: string
+        #             example: "El email ya existe en la base de datos"
+        #           user:
+        #             $ref: "#/components/schemas/Group"
+        "500":
+          description: Error al crear el grupo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error al crear el grupo"
+    put:
+      summary: Editar un grupo existente
+      tags:
+        - Groups
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Group"
+      responses:
+        "200":
+          description: Grupo editado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Grupo editado exitosamente"
+        "400_missing_data":
+          description: Faltan datos obligatorios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Faltan datos obligatorios"
+                  user:
+                    $ref: "#/components/schemas/group"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  group:
+                    $ref: "#/components/schemas/Group"
+        "500":
+          description: Error al editar el grupo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error al editar el grupo"
+  # /users/{id}:
+  #   get:
+  #     summary: Obtener un usuario habilitado por id
+  #     tags:
+  #       - Users
+  #     security:
+  #       - BearerAuth: []
+  #     parameters:
+  #       - name: id
+  #         in: path
+  #         required: true
+  #         schema:
+  #           type: string
+  #         description: id del usuario a obtener
+  #     responses:
+  #       "200":
+  #         description: Usuario obtenido exitosamente
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: "#/components/schemas/User"
+  #       "400_invalid_data":
+  #         description: Tipos de datos incorrectos
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #               properties:
+  #                 message:
+  #                   type: string
+  #                   example: "Tipos de datos incorrectos"
+  #                 user:
+  #                   $ref: "#/components/schemas/User"
+  #       "404":
+  #         description: Usuario no encontrado
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #               properties:
+  #                 message:
+  #                   type: string
+  #                   example: "Usuario no encontrado"
+  # /users/login:
+  #   post:
+  #     summary: inicio de sesión del usuario
+  #     tags:
+  #       - Users
+  #     requestBody:
+  #       required: true
+  #       content:
+  #         application/json:
+  #           schema:
+  #             type: object
+  #             properties:
+  #               email:
+  #                 type: string
+  #                 format: email
+  #                 example: "juan@example.com"
+  #               password:
+  #                 type: string
+  #                 example: "secretpassword"
+  #     responses:
+  #       "200":
+  #         description: Respuesta exitosa
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #               properties:
+  #                 accessToken:
+  #                   type: string
+  #                   description: Token de acceso para el usuario autenticado
+  #                   example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  #                 user:
+  #                   $ref: "#/components/schemas/User"
+  #       "404":
+  #         description: Usuario no encontrado
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #               properties:
+  #                 error:
+  #                   type: string
+  #                   example: "Usuario no encontrado"
+  # /users/logout/{id}:
+  #   get:
+  #     summary: Cerrar sesión de usuario
+  #     tags:
+  #       - Users
+  #     security:
+  #       - BearerAuth: []
+  #     parameters:
+  #       - name: id
+  #         in: path
+  #         required: true
+  #         schema:
+  #           type: string
+  #         description: id del usuario a obtener
+  #     responses:
+  #       "200":
+  #         description: Usuario desconectado exitosamente
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #               properties:
+  #                 message:
+  #                   type: string
+  #                   example: "Usuario desconectado exitosamente"
+  #       "404":
+  #         description: Usuario no encontrado
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: object
+  #               properties:
+  #                 error:
+  #                   type: string
+  #                   example: "Usuario no encontrado"
+  # /users/dashboard:
+  #   get:
+  #     summary: Consultar lista de usuarios conectados o habilitados
+  #     tags:
+  #       - Users
+  #     responses:
+  #       "200":
+  #         description: Lista de usuarios encontrada
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: array
+  #               items:
+  #                 type: object
+  #                 properties:
+  #                   name:
+  #                     type: string
+  #                     example: "Juan"
+  #                   lastname:
+  #                     type: string
+  #                     example: "Pérez"
+  #                   languages:
+  #                     type: array
+  #                     format: string
+  #                     example: ["español", "ingles"]
+  #                   location:
+  #                     type: string
+  #                     example: "Argentina"
+  #                   avatar:
+  #                     type: string
+  #                     example: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJJ0BV5K7y5Rz-747xO2111YBnxs60u-QdTxpjHUtsfQ&s"
+  #                   _id:
+  #                     type: string
+  #                     example: "652ebcefb2e4df899453902d"
+components:
+  schemas:
+    Group:
+      type: object
+      properties:
+      
+        id:
+          type: string
+          example: "652ebcefb2e4df899453902d"
+        image:
+          type: string
+          example: "https://estaticos-cdn.sport.es/clip/96e3800b-93b4-4687-9dcb-470022f3f949_alta-libre-aspect-ratio_default_0.jpg"
+        users_common:
+          type: array
+          example: [652ebcefb2e4df8994539033,652ebcefb2e4df899453923d]
+        users_admin:
+          type: array
+          example: [652ebcefb2e4df899453902d]
+        usuarios_pending:
+          type: array
+          example: [652ebcefb2e9989897nj9j]
+        description:
+          type: string
+          example: "Nuevo ggrupo de amigos creado por mí"
+        status:
+          type: string
+          example: "activo"
