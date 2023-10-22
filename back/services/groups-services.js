@@ -97,7 +97,8 @@ async function editGroup(
   users_admin,
   usuarios_pending,
   description,
-  status
+  status,
+  rules
 ) {
   try {
     const group = await Group.findById(id);
@@ -107,9 +108,10 @@ async function editGroup(
         if (image) group.image = image;
         if (users_common) group.users_common = users_common;
         if (users_admin) group.users_admin = users_admin;
-        if (usuarios_pending) group.usuarios_pending = usuarios_pending;
+        if (usuarios_pending) group.users_pending = usuarios_pending;
         if (description) group.description = description;
         if (status) group.status = status
+        if (rules) group.rules = rules
         const editedGroup = await group.save();
         return editedGroup;
       } catch (error) {

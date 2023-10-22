@@ -59,7 +59,8 @@ async function updateGroup(req, res) {
   users_admin,
   usuarios_pending,
   description,
-  status
+  status,
+  rules
   } = req.body;
 
   try {
@@ -67,7 +68,8 @@ async function updateGroup(req, res) {
       (name && typeof name !== "string") ||
       (image && typeof image !== "string") ||
       (description && typeof description !== "string") ||
-      (status && typeof status !== "string")
+      (status && typeof status !== "string") ||
+      (rules && typeof rules !== "string")
     ) {
       return res.status(400).json({ message: "Tipos de datos incorrectos" });
     }
@@ -79,7 +81,8 @@ async function updateGroup(req, res) {
       users_admin,
       usuarios_pending,
       description,
-      status
+      status,
+      rules
     );
     if (response == "Grupo no encontrado") {
       return res.status(404).send({ error: response });
