@@ -3,10 +3,10 @@ import EventList from '../components/EventList'
 import Noticias from '../components/Noticias'
 import SearchBar from '../../../components/SearchBar/SearchBar'
 import Sidebar from '../../../components/Sidebar/Sidebar'
+import NavBar from '../../../components/NavBar'
 
 export default function DashboardPage() {
     return (
-
         <div className='flex'>
             <div className='hidden lg:block'><Sidebar/></div>
 
@@ -15,7 +15,7 @@ export default function DashboardPage() {
                     <SearchBar/>
                     {/* <EventList/> */}
                     <div className='mt-20'><Noticias/></div>
-                </div>
+                </div>5e2bf2b48cb7acb8b0e654c6dab5cf4382c4d79d
             </div>
         </div>
 
