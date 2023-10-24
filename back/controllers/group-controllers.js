@@ -34,7 +34,7 @@ async function getById(req, res) {
   console.log(id);
   try {
     const response = await GroupsServices.getGroupById(id);
-    if (response == "Usuario no encontrado") {
+    if (response == "Grupo no encontrado") {
       return res.status(404).json({ error: response });
     } else {
       return res.status(200).send(response);
