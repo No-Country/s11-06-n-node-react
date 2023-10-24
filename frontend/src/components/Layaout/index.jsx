@@ -4,9 +4,8 @@ export default function Layout() {
     return (
         <>
             <div className='body-layout'>
-
                 <NavBar />             
-                <div className='max-w-screen overflow-x-hidden'>
+                <div className='max-w-screen overflow-x-hidden lg:mt-10'>
                     <Outlet />
                 </div>
                 {/* <Footer/> */}

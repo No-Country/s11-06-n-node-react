@@ -14,10 +14,9 @@ export default function DashboardPage() {
                 <div className='max-w-7xl mx-auto'>
                     <SearchBar/>
                     {/* <EventList/> */}
-                    <div className='mt-20'><Noticias/></div>
-                </div>5e2bf2b48cb7acb8b0e654c6dab5cf4382c4d79d
+                    <div className=''><Noticias/></div>
+                </div>
             </div>
         </div>
-
     )
 }

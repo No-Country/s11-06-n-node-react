@@ -6,7 +6,12 @@ export default {
   ],
   theme: {
     extend: {
-      
+      colors: {
+        greenPrimary: '#01363A',
+        greenSecundary: '#098D82',
+        grayPrimary: '#D9D9D9',
+        graySecundary: '#F9F4F4'
+      }
     },
   },
   plugins: [],

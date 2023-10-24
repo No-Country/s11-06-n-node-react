@@ -1,6 +1,6 @@
-import BtnAddEvent from "./BtnAddEvent";
 import { HiOutlineFilter } from 'react-icons/hi';
 import { BsSearch } from 'react-icons/bs';
+import BtnPlus from '../Buttons/BtnPlus';
 
 export default function SearchBar() {
     return (
@@ -18,7 +18,9 @@ export default function SearchBar() {
             </div>
 
 
-            <BtnAddEvent/>
+            <div className='fixed bottom-10 right-10'>
+                <BtnPlus/>
+            </div>
         </div>
     )
 }
