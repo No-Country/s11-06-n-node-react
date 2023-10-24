@@ -1,3 +1,4 @@
+const { response } = require("express");
 const Group = require("../models/group.model");
 const User = require("../models/user.model");
 const GroupsServices = require("../services/groups-services");
@@ -42,12 +43,6 @@ async function getById(req, res) {
     res.status(400).json({ error: error.message });
   }
 }
-// Obtener grupos de un usuario
-
-
-
-
-
 
 // Funcion para editar datos de un grupo
 async function updateGroup(req, res) {
@@ -92,6 +87,7 @@ async function updateGroup(req, res) {
     res.status(400).json({ error: error.message });
   }
 }
+// Borrado logico del grupo
 
 async function deleteGroupStatus(req, res) {
   const { id } = req.params;
@@ -105,6 +101,8 @@ async function deleteGroupStatus(req, res) {
     res.status(400).json({ error: error.message });
   }
 }
+
+// agregar usuario a grupo
 const addUserToGroup = async (req, res) => {
   try {
 
@@ -132,6 +130,7 @@ const addUserToGroup = async (req, res) => {
   }
 };
 
+// Obtener grupos de un usuario
 
 async function getAllByIdUser(req, res) {
   try {
@@ -144,7 +143,7 @@ async function getAllByIdUser(req, res) {
   }
 }
 
-
+// Dejar grupo
 
 async function leaveGroup(req, res) {
   try {
@@ -159,6 +158,21 @@ async function leaveGroup(req, res) {
   }
 }
 
+async function newMessage(req, res) {
+  const { groupId, userId, message } = req.body;
+  try {
+    if (!groupId || !userId ||  !message ) {
+    return res.status(400).json({ message: "Faltan datos obligatorios para crear el mensaje" });
+  }else {
+   const response = await GroupsServices.createMessage(groupId, userId, message)
+   if(response == "Grupo no encontrado"){ return res.status(404).json({ message: 'Group is not in DB' });}
+   res.status(200).json(response);
+  }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
 module.exports = {
   getAll,
   createNewGroup, 
@@ -167,6 +181,7 @@ module.exports = {
   deleteGroupStatus,
   addUserToGroup,
   getAllByIdUser,
-  leaveGroup
+  leaveGroup,
+  newMessage
  
 };
