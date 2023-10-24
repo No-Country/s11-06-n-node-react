@@ -19,6 +19,9 @@ const GroupSchema = new Schema ({
     users_pending: {
         type: Array
     },
+    messages: {
+        type: Array
+    },
     description: {
         type: String
     },

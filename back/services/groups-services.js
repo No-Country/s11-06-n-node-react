@@ -29,13 +29,18 @@ async function getAllGroupsByUser(userId) {
 
 async function createGroup(name, image, idUser, rules) {
   try {
+    const findGroup = await Group.find({ name: name });
+    if(findGroup.length){
+      return "There is already a group with that name"
+    }
+    
     const newGroup = new Group();
     newGroup.name = name;
     newGroup.image = image;
     newGroup.users_admin = [idUser];
     newGroup.rules = rules;
     await newGroup.save();
-    return `Grupo ${name} creado con éxito`;
+    return `${name} group created successfully`;
   } catch (error) {
     // console.log(error);
     throw new Error("Error al crear el grupo");
@@ -48,11 +53,11 @@ async function getGroupById(id) {
   try {
     const groupFound = await Group.findById(id);
     if (!groupFound) {
-      return "Grupo no encontrado";
+      return "Group not found";
     }
     return groupFound;
   } catch (error) {
-    throw new Error("Error al obtener el usuario");
+    throw new Error("Error getting user");
   }
 }
 
@@ -63,10 +68,10 @@ async function leaveUserGroup(groupId, userId) {
 console.log(groupFound);
 
     if (!groupFound) {
-      return "Grupo no encontrado";
+      return "Group not found";
     }
     if (!userFound) {
-      return "Usuario no encontrado";
+      return "User not found";
     }
     if (!groupFound.users_common.includes(userId) && !groupFound.users_admin.includes(userId) && !groupFound.users_pending.includes(userId)){
       return 'User is not a member of this group'
@@ -81,10 +86,10 @@ console.log(groupFound);
       await groupFound.save();
       return 'User has left the group'
     }else{
-      return 'El usuario es el único administrador del grupo'
+      return 'The user is the only administrator of the group'
     }
   } catch (error) {
-    throw new Error("Error al obtener el usuario");
+    throw new Error("Error getting user");
   }
 }
 
@@ -160,11 +165,11 @@ async function addToGroup(groupId,userId){
   try {
     const group = await Group.findById(groupId);
     const user = await User.findById(userId);
-    console.log(user);
+    // console.log(user);
     if(!user || !group){ return "No se encuentra grupo o usuario en la base de datos"}
     if(group.users_common.includes(userId)){ return "El usuario ya se encuentra en el grupo"}
     if(group.users_admin.includes(userId)){ return "El usuario ya se encuentra como administrador en el grupo"}
-    if(group.usuarios_pending.includes(userId)){ return "Tú solicitud de unión al grupo está pendiente"}
+    if(group.users_pending.includes(userId)){ return "Tú solicitud de unión al grupo está pendiente"}
     
     group.users_common.push(userId);
     await group.save();
@@ -175,6 +180,30 @@ async function addToGroup(groupId,userId){
 }
 
 
+async function createMessage(groupId, userId, message) {
+
+  try {
+    const group = await Group.findById(groupId);
+    if (!group) {
+      return "Grupo no encontrado";
+    }
+    const messageId = Date.now().toString() + Math.random().toString(36).substring(2, 8);
+    const newMessage = {
+      messageId: messageId, 
+      userId: userId,
+      message: message,
+      createdAt: new Date()
+  };
+  group.messages.push(newMessage);
+  await group.save();
+  return "Message sent succesfully"
+
+  } catch (error) {
+    // console.log(error);
+    throw new Error("Error al crear el grupo");
+  }
+}
+
 module.exports = {
   getAllGroups,
   createGroup,
@@ -183,6 +212,7 @@ module.exports = {
   deleteGroup,
   addToGroup,
   getAllGroupsByUser,
-  leaveUserGroup
+  leaveUserGroup,
+  createMessage
 
 };
