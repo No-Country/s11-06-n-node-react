@@ -28,7 +28,7 @@ export default function CardNoticia() {
 
 
                 <div className="flex justify-between items-center">
-                    <p className="border border-gray-500 px-4 py-1 rounded-2xl flex items-center"><p className='mr-1 text-xl'><CiLocationOn/></p> Punta Cana</p>
+                <p className="border border-gray-500 px-2 py-1 rounded-2xl flex items-center w-fit mt-2 md:mt-0 text-sm"><p className='mr-1 text-xl -ml-1'><CiLocationOn/></p>Punta Cana</p>
                     <button className='cursor-pointer'>Ver más...</button>
                 </div>
             </div>
