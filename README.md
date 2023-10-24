@@ -37,6 +37,13 @@
 | Estefanía Menendez Arena|
 | <a href="https://github.com/EstefaniaArena"><img src="https://img.shields.io/badge/Github-%2320232a.svg?style=for-the-badge&logo=Github&logoColor=%%2361DAFB"/></a> <a href="https://linkedin.com/in/estefan%C3%ADaarena/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> ||
 
+### 👉🏻 QA
+
+| <img src="https://avatars.githubusercontent.com/u/21957764?v=4" width=80>|
+|:-:|
+| Kevin Tea|
+| <a href="https://github.com/kevintea"><img src="https://img.shields.io/badge/Github-%2320232a.svg?style=for-the-badge&logo=Github&logoColor=%%2361DAFB"/></a> <a href="https://www.linkedin.com/in/kevintea/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> ||
+
 ### 👉🏻 Team Leader
 
 
