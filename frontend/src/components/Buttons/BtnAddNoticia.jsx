@@ -28,7 +28,7 @@ export default function BtnAddNoticia() {
                     <div className='border border-graySecundary max-w-xs sm:max-w-xl w-full p-5 shadow-2xl bg-white rounded-lg'>
                         <div className='border-b border-greenPrimary flex justify-between'>
                             <p className='text-2xl py-2'>Crear Noticia</p>
-                            <button onClick={closeModal} className='text-3xl text-greenSecundary'><AiOutlineCloseCircle/></button>
+                            <button onClick={closeModal} className='text-4xl text-greenSecundary'><AiOutlineCloseCircle/></button>
                         </div>
                         <div className='flex gap-x-3 items-center my-5'>
                             <div>
@@ -42,8 +42,8 @@ export default function BtnAddNoticia() {
 
                         <form className='flex flex-col gap-y-5'>
                             <div className='relative'>
-                                <input type="text" placeholder='Qué andas pensando?' className='h-24 border w-full p-4 rounded-md'/>
-                                <p className='text-xs text-gray-400 absolute right-2 bottom-1'>200 caracteres</p>
+                                <textarea name="" id="" cols="30" rows="10" placeholder='Qué andas pensando?' className='border w-full px-4 py-2 h-32 rounded-md'></textarea>
+                                <p className='absolute right-3 bottom-2 text-xs text-gray-400'>200 caracteres</p>
                             </div>
                             <div className='border p-2 flex justify-between items-center rounded-md'>
                                 <p className='rounded-md'>Agregar:</p>

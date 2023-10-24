@@ -6,14 +6,14 @@ import { CiLocationOn } from 'react-icons/ci';
 import user1 from '../../../../public/user1.jpeg'
 import place1 from '../../../../public/place1.jpeg'
 
-import { ImageProfileUserSmall, ImagenBg } from "../../../components/Images/ImageProfileUser";
+import { ImageProfileUserSmall, ImageBg } from "../../../components/Images/ImageProfileUser";
 
 export default function CardNoticia() {
     return (
         <div className="border border-gray-200 flex p-5 rounded-lg shadow-lg">
             {/* Images */}
             <div className='w-1/3 border bg-gray-200'>
-                <ImagenBg imagen={place1}/>
+                <ImageBg imagen={place1}/>
             </div>
 
 
