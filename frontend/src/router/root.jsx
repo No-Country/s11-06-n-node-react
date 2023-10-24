@@ -4,6 +4,7 @@ import Noticias from "../features/Noticias/pages/Noticias";
 import Layout from "../components/Layaout";
 import Login from "../features/Login/Login";
 import HomePage from "../features/Home/pages";
+import FQA from "../features/FQA/FQA";
 
 export const router = createBrowserRouter([
     {
@@ -39,8 +40,8 @@ export const router = createBrowserRouter([
         element:<></>
     },
     {
-        path:"/preguntasfrecuentes",
-        element:<></>
+        path:"/fqa",
+        element:<FQA />
     }
     ]
 }
