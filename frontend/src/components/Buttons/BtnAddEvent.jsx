@@ -4,7 +4,7 @@ Modal.setAppElement('#root');
 import { AiOutlineTags } from 'react-icons/ai';
 import { BsPostcard, BsCardImage } from 'react-icons/bs';
 import { CiLocationOn } from 'react-icons/ci';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { GrClose } from 'react-icons/gr';
 import { ImageProfileUserSmall } from '../Images/ImageProfileUser';
 import image1 from '../../../public/user1.jpeg'
 
@@ -26,10 +26,10 @@ export default function BtnAddEvent() {
             </button>
             <Modal isOpen={modal} onRequestClose={closeModal} className={'overflow-y-scroll h-full'}>
                 <div className='flex justify-center items-center h-full text-sm text-greenPrimary'>
-                    <div className='border border-graySecundary max-w-xs sm:max-w-xl w-full p-5 shadow-2xl bg-white rounded-lg'>
+                    <div className='border border-graySecundary max-w-xs sm:max-w-xl w-full p-5 sm:p-14 shadow-2xl bg-white rounded-lg relative'>
                         <div className='border-b border-greenPrimary flex justify-between'>
                             <p className='text-2xl py-2'>Crear Evento</p>
-                            <button onClick={closeModal} className='text-4xl text-greenSecundary'><AiOutlineCloseCircle/></button>
+                            <button onClick={closeModal} className='absolute top-5 right-5 text-2xl text-greenSecundary'><GrClose/></button>
                         </div>
                         <div className='flex gap-x-3 items-center my-5'>
                             <div>
