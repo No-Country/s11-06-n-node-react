@@ -3,6 +3,7 @@ import {
 } from "../Actions/NewsSlice";
 import axios from "axios";
 
+
 //GET para traer todas las noticias
 
 const getAllNews= () => {

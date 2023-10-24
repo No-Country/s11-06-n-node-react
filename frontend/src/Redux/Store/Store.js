@@ -6,7 +6,6 @@ import event from "../Actions/EventSlice"
 import activity from "../Actions/ActivitySlice"
 
 
-
 const store = configureStore({
     reducer: {
        user: user,

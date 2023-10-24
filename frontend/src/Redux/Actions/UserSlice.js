@@ -6,7 +6,6 @@ const initialState = {
     userDetail: [], //detalles del usuario
     put:[], //modificar datos del usuario
 };
-
 const Slice = createSlice({
     name: 'user',
     initialState,

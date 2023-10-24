@@ -8,7 +8,6 @@ const initialState = {
     comments: [],
 };
 
-
 const Slice = createSlice({
     name: 'news',
     initialState,

@@ -120,6 +120,7 @@ const UserProfile = () => {
           <p className="text-gray-600">Idioma: Español</p>
         </div>
       </div>
+      
 
       <div className="mt-8">
         <div className="flex">

@@ -5,8 +5,7 @@ const initialState = {
     post:[],
     eventDetail: [],
     put:[],
-};
-
+}
 
 const Slice = createSlice({
     name: 'event',

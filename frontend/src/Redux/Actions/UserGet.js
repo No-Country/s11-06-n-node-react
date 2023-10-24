@@ -3,6 +3,7 @@ import {
 } from "../Actions/UserSlice";
 import axios from "axios";
 
+
 //GET para traer todos los usuarios logueados
 const getAllUsers= () => {
 	return async (dispatch) => {

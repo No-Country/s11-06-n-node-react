@@ -3,7 +3,6 @@ import {
 } from "../Actions/ActivitySlice";
 import axios from "axios";
 
-
 //GET para mostrar todas las actividades. CAMBIAR EL ENDPOINT AL CORRECTO PORQUE NO ESTÁ AÚN
 const getAllActivities= () => {
 	return async (dispatch) => {

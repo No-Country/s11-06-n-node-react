@@ -3,6 +3,7 @@ import {
 } from "../Actions/EventSlice";
 import axios from "axios";
 
+
 //GET para mostrar todos los eventos creados. CAMBIAR A LA URL CORRECTA QUE AUN NO ESTÁ
 const getAllEvents= () => {
 	return async (dispatch) => {
