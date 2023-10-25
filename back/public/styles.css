@@ -1,0 +1,27 @@
+.msg-user-avatar {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.msg-user-avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.msg-container {
+    display: flex;
+
+}
+
+.title {
+    color: blue;
+}
+
+.chat-user {
+    cursor: pointer;
+}

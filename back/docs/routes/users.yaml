@@ -202,6 +202,33 @@ paths:
                   message:
                     type: string
                     example: "Usuario no encontrado"
+    put:
+      summary: Inhabilitar al usuario por id
+      description: Inhabilitar al usuario por id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: Id del usuario a inhabilitar
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        200:
+          description: User status updated successfully.
+          content:
+            application/json:
+              example:
+                response: "Usuario eliminado"
+        404:
+          description: User not found or an error occurred.
+          content:
+            application/json:
+              example:
+                error: "Usuario no encontrado"
+      tags:
+        - Users
   /users/login:
     post:
       summary: inicio de sesión del usuario
@@ -282,7 +309,7 @@ paths:
                     example: "Usuario no encontrado"
   /users/dashboard:
     get:
-      summary: Consultar lista de usuarios conectados o habilitados
+      summary: Consultar lista de usuarios conectados
       tags:
         - Users
       responses:

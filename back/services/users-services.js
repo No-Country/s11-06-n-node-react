@@ -3,9 +3,9 @@ const jwt = require("jsonwebtoken");
 
 async function getAll() {
   try {
-    const usuarios = await User.find({ status: { $in: ["habilitado", "conectado"]} })
+    const users = await User.find({ status: { $in: ["habilitado", "conectado"]} })
 
-    return usuarios;
+    return users;
   } catch (error) {
     console.log(error);
     throw new Error("Error al obtener los usuarios");
@@ -14,8 +14,8 @@ async function getAll() {
 
 async function getAllToDashboard() {
   try {
-    const usuarios = await User.find().select('name lastname avatar location languages');;
-    return usuarios;
+    const users = await User.find({status: "conectado"}).select('name lastname avatar location languages');;
+    return users;
   } catch (error) {
     console.log(error);
     throw new Error("Error al obtener los usuarios");
@@ -24,12 +24,12 @@ async function getAllToDashboard() {
 
 async function signUp(name, email, password) {
   try {
-    const usuario = new User();
-    usuario.name = name;
-    usuario.email = email;
-    usuario.password = password;
-    usuario.status = habilitado
-    await usuario.save();
+    const user = new User();
+    user.name = name;
+    user.email = email;
+    user.password = password;
+    user.status = habilitado
+    await user.save();
     return "Usuario creado con éxito";
   } catch (error) {
     console.log(error);
@@ -38,28 +38,28 @@ async function signUp(name, email, password) {
 }
 
 async function login(email) {
-  const usuario = await User.findOne({
+  const user = await User.findOne({
     email: email,
   });
   const token = jwt.sign(
     {
-      id: usuario._id,
+      id: user._id,
     },
     "ClaveUltraSecreta"
   );
-  usuario.status = "conectado"
-  usuario.save()
-  return { accessToken: token, usuario };
+  user.status = "conectado"
+  user.save()
+  return { accessToken: token, user };
 }
 
 async function getById(id) {
   try {
-    const usuario = await User.findById(id);
-    if (!usuario || usuario.status == "deshabilitado") {
+    const user = await User.findById(id);
+    if (!user || user.status == "deshabilitado") {
       return "Usuario no encontrado";
     }
   
-    return usuario;
+    return user;
   } catch (error) {
     throw new Error("Error al obtener el usuario");
   }
@@ -78,18 +78,18 @@ async function edit(
   phone
 ) {
   try {
-    const usuario = await User.findById(id);
-    if (usuario && usuario.status !== "deshabilitado") {
+    const user = await User.findById(id);
+    if (user && user.status !== "deshabilitado") {
       try {
-        if (name) usuario.name = name;
-        if (lastname) usuario.lastname = lastname;
-        if (email) usuario.email = email;
-        if (password) usuario.password = password;
-        if (avatar) usuario.avatar = avatar;
-        if (location) usuario.location = location;
-        if (languages) usuario.languages = languages
-        if (birthdate) usuario.birthdate = birthdate
-        if (phone) usuario.phone = phone
+        if (name) user.name = name;
+        if (lastname) user.lastname = lastname;
+        if (email) user.email = email;
+        if (password) user.password = password;
+        if (avatar) user.avatar = avatar;
+        if (location) user.location = location;
+        if (languages) user.languages = languages
+        if (birthdate) user.birthdate = birthdate
+        if (phone) user.phone = phone
         const usuarioEditado = await usuario.save();
         return usuarioEditado;
       } catch (error) {
@@ -105,10 +105,10 @@ async function edit(
 
 async function deleteUser(id) {
   try {
-    const usuario = await User.findById(id);
-    if (usuario && usuario.status !== "deshabilitado") {
-      usuario.status = "deshabilitado"
-      await usuario.save()
+    const user = await User.findById(id);
+    if (user && user.status !== "deshabilitado") {
+      user.status = "deshabilitado"
+      await user.save()
       return "Usuario eliminado";
     } else {
       return "Usuario no encontrado";
@@ -120,11 +120,10 @@ async function deleteUser(id) {
 
 async function logout(id) {
   try {
-    const usuario = await User.findById(id);
-    if (usuario && usuario.status !== "deshabilitado") {
-      usuario.status = "desconectado"
-      await usuario.save()
-      console.log(usuario)
+    const user = await User.findById(id);
+    if (user && user.status !== "deshabilitado") {
+      user.status = "desconectado"
+      await user.save()
       return "Usuario desconectado";
     } else {
       return "Usuario no encontrado";
