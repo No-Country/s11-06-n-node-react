@@ -50,7 +50,7 @@ export default function BtnAddGrupo() {
                                     <input type="text" placeholder='Selecciona' className='border border-gray-400 p-2 rounded-md'/>
                                 </div>
                             </div>
-                            <input type="submit" value="Crear" className='bg-greenSecundary w-full py-2 text-white font-bold rounded-md cursor-pointer hover:bg-greenPrimary duration-75'/>
+                            <input type="submit" value="Crear" className='bg-greenPrimary w-full py-2 text-white font-bold rounded-md cursor-pointer hover:bg-greenSecundary duration-75'/>
                         </form>
                     </div>
                 </div>
