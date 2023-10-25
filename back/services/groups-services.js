@@ -166,11 +166,10 @@ async function addToGroup(groupId,userId){
     const group = await Group.findById(groupId);
     const user = await User.findById(userId);
     // console.log(user);
-    if(!user || !group){ return "No se encuentra grupo o usuario en la base de datos"}
-    if(group.users_common.includes(userId)){ return "El usuario ya se encuentra en el grupo"}
-    if(group.users_admin.includes(userId)){ return "El usuario ya se encuentra como administrador en el grupo"}
-    if(group.users_pending.includes(userId)){ return "Tú solicitud de unión al grupo está pendiente"}
-    
+    if (!user || !group) { return "Group or user not found in the database" }
+    if (group.users_common.includes(userId)) { return "The user is already a member of the group" }
+    if (group.users_admin.includes(userId)) { return "The user is already an administrator of the group" }
+    if (group.users_pending.includes(userId)) { return "Your request to join the group is pending" }
     group.users_common.push(userId);
     await group.save();
     return group
@@ -185,7 +184,7 @@ async function createMessage(groupId, userId, message) {
   try {
     const group = await Group.findById(groupId);
     if (!group) {
-      return "Grupo no encontrado";
+      return "Group not found";
     }
     const messageId = Date.now().toString() + Math.random().toString(36).substring(2, 8);
     const newMessage = {
@@ -203,7 +202,26 @@ async function createMessage(groupId, userId, message) {
     throw new Error("Error al crear el grupo");
   }
 }
-
+async function deleteMessage(groupId, messageId) {
+  try {
+      const group = await Group.findById(groupId);
+      
+      if (!group) {
+          return "Group not found";
+      }
+      const messageIndex = group.messages.findIndex(message => message.messageId === messageId);
+      
+      if (messageIndex !== -1) {
+          group.messages.splice(messageIndex, 1);
+          await group.save();
+          return "Successfully deleted message";
+      } else {
+          return "Message not found in group";
+      }
+  } catch (error) {
+      throw new Error("Error deleting message");
+  }
+}
 module.exports = {
   getAllGroups,
   createGroup,
@@ -213,6 +231,7 @@ module.exports = {
   addToGroup,
   getAllGroupsByUser,
   leaveUserGroup,
-  createMessage
+  createMessage,
+  deleteMessage
 
 };

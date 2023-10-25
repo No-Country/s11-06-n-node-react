@@ -21,5 +21,7 @@ router.get('/user/:userId', GroupControllers.getAllByIdUser);
 router.delete('/leave/:groupId/:userId', GroupControllers.leaveGroup);
 //ruta para agregar mensajes en un grupo
 router.put('/message', GroupControllers.newMessage);
+// ruta para eliminar un mensaje del grupo
+router.delete('/message/:groupId/delete/:messageId', GroupControllers.deleteMensajeToGroup);
 
 module.exports = router;
