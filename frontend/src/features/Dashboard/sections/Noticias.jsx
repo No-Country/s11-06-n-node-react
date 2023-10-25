@@ -1,13 +1,13 @@
 import { BsChevronDown } from 'react-icons/bs';
-import CardNoticia from './CardNoticia';
 import { Link } from 'react-router-dom'
+import CardNoticia from '../../../components/Cards/CardNoticia/CardNoticia';
 
 export default function Noticias() {
     return (
         <div>
-            <h1 className="text-2xl font-bold mb-7">Noticias:</h1>
+            <h1 className="text-2xl font-bold mb-7">Últimas noticias:</h1>
 
-            <div className="grid sm:grid-cols-2 xl:grid-cols-3 place-items-center gap-10">
+            <div className="flex flex-col gap-10">
                 <CardNoticia/>
                 <CardNoticia/>
                 <CardNoticia/>

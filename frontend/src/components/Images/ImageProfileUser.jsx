@@ -1,7 +1,7 @@
 function ImageProfileUserSmall({imagen}) {
     return (
             <div 
-                className="w-12 h-12 rounded-full bg-cover bg-center"
+                className="w-12 h-12 rounded-full bg-cover bg-center border-2"
                 style={{backgroundImage: `url(${imagen})`}}
             >
             </div> 
@@ -16,10 +16,19 @@ function ImageProfileUserMedium({imagen}) {
             </div> 
     )
 }
-function ImagenBg({imagen}) {
+function ImageProfileUserLarge({imagen}) {
     return (
             <div 
-                className="h-full rounded-md bg-cover bg-center"
+                className="w-40 h-40 rounded-full bg-cover bg-center"
+                style={{backgroundImage: `url(${imagen})`}}
+            >
+            </div> 
+    )
+}
+function ImageBg({imagen}) {
+    return (
+            <div 
+                className="h-full rounded-t-lg bg-cover bg-center"
                 style={{backgroundImage: `url(${imagen})`}}
             >
             </div> 
@@ -27,7 +36,8 @@ function ImagenBg({imagen}) {
 }
 
 export {
+    ImageProfileUserLarge,
     ImageProfileUserMedium,
     ImageProfileUserSmall,
-    ImagenBg
+    ImageBg
 } 
