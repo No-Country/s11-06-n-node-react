@@ -1,17 +1,8 @@
-import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm, FormProvider, SubmitHandler } from 'react-hook-form'
-import { schema } from './schemas/login-form-schema'
-import Input from '../../../../components/Input'
-import Button from '../../../../components/Button'
-import { InputsForLogin } from '../../../../models/input-model'
-// import { useUserStore } from '../../../../store/userStore'
-import { useNavigate } from "react-router-dom";
-import { PLAN_PATH } from '../../../../routes/routesPath'
-import { Checkbox } from '@nextui-org/react'
-import Typography from '../../../../components/Typography'
-import { useUserStore } from '../../../../store/userStore'
 
-export const CustomForm = ({defaultValues, onSubmit, className}) => {
+import { useForm, FormProvider } from 'react-hook-form'
+
+
+export const CustomForm = ({defaultValues, onSubmit, className, children}) => {
 
     // const navigate = useNavigate();
 
@@ -52,6 +43,8 @@ export const CustomForm = ({defaultValues, onSubmit, className}) => {
                 
                 <FormProvider { ...formMethods} >
                     <form onSubmit={handleSubmit(onSubmit)} className={className} >
+
+                        {children}
 
                         {/* <Input name='dni'  label='DNI' required={true} type='number' />
                         

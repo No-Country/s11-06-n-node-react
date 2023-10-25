@@ -6,10 +6,11 @@ import { CiLocationOn } from 'react-icons/ci';
 import { GrClose } from 'react-icons/gr';
 import { ImageProfileUserSmall } from '../Images/ImageProfileUser';
 import image1 from '../../../public/user1.jpeg'
+import { BsPostcard } from 'react-icons/bs';
 // import ModalAddEvent from '../Modals/ModalAddEvent';
 
-export default function ModalAdd({children}) {
-    
+export default function ModalAdd({ children, title }) {
+
     const [modal, setModal] = useState(false)
     const openModal = () => {
         setModal(true)
@@ -21,29 +22,32 @@ export default function ModalAdd({children}) {
     return (
 
         <>
-        <button onClick={openModal}>######open----</button>
-        <Modal isOpen={modal} onRequestClose={closeModal} className={'overflow-y-scroll h-full'}>
-            <div className='flex justify-center items-center h-full text-sm text-greenPrimary'>
-                <div className='border border-graySecundary max-w-xs sm:max-w-xl w-full p-5 sm:p-14 shadow-2xl bg-white rounded-lg relative'>
-                    <div className='border-b border-greenPrimary flex justify-between'>
-                        <p className='text-2xl py-2'>Crear Evento</p>
-                        <button onClick={closeModal} className='absolute top-5 right-5 text-2xl text-greenSecundary'><GrClose/></button>
-                    </div>
-                    <div className='flex gap-x-3 items-center my-5'>
-                        <div>
-                            <ImageProfileUserSmall imagen={image1}/>
+            <button onClick={openModal} className='w-14 h-14 bg-greenSecundary rounded-full m-1 absolute -top-64  -right-14 text-white flex flex-col justify-center items-center'>
+                <span className='text-xl'><BsPostcard /></span>
+                <p className='text-xs'>{title}</p>
+            </button>
+            <Modal isOpen={modal} onRequestClose={closeModal} className={'overflow-y-scroll h-full'}>
+                <div className='flex justify-center items-center h-full text-sm text-greenPrimary'>
+                    <div className='border border-graySecundary max-w-xs sm:max-w-xl w-full p-5 sm:p-14 shadow-2xl bg-white rounded-lg relative'>
+                        <div className='border-b border-greenPrimary flex justify-between'>
+                            <p className='text-2xl py-2'>{title}</p>
+                            <button onClick={closeModal} className='absolute top-5 right-5 text-2xl text-greenSecundary'><GrClose /></button>
                         </div>
-                        <div>
-                            <p className='font-bold mb-1'>Henry Ramirez</p>
-                            <p className="border border-gray-500 px-2 py-1 rounded-2xl flex items-center w-fit text-xs"><p className='mr-1 text-base -ml-1'><CiLocationOn/></p>Lima</p>
+                        <div className='flex gap-x-3 items-center my-5'>
+                            <div>
+                                <ImageProfileUserSmall imagen={image1} />
+                            </div>
+                            <div>
+                                <p className='font-bold mb-1'>Henry Ramirez</p>
+                                <p className="border border-gray-500 px-2 py-1 rounded-2xl flex items-center w-fit text-xs"><p className='mr-1 text-base -ml-1'><CiLocationOn /></p>Lima</p>
+                            </div>
                         </div>
+
+                        {children}
+
                     </div>
-
-                    {children}
-
                 </div>
-            </div>
-        </Modal>
+            </Modal>
         </>
 
     )
