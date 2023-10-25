@@ -65,30 +65,7 @@ paths:
                     example: "Faltan datos obligatorios para crear el grupo"
                   group:
                     $ref: "#/components/schemas/Group"
-        # "400_invalid_data":
-        #   description: Tipos de datos incorrectos
-        #   content:
-        #     application/json:
-        #       schema:
-        #         type: object
-        #         properties:
-        #           message:
-        #             type: string
-        #             example: "Tipos de datos incorrectos"
-        #           group:
-        #             $ref: "#/components/schemas/Group"
-        # "409":
-        #   description: El email ya existe en la base de datos
-        #   content:
-        #     application/json:
-        #       schema:
-        #         type: object
-        #         properties:
-        #           message:
-        #             type: string
-        #             example: "El email ya existe en la base de datos"
-        #           user:
-        #             $ref: "#/components/schemas/Group"
+
         "500":
           description: Error al crear el grupo
           content:
@@ -156,161 +133,6 @@ paths:
                   message:
                     type: string
                     example: "Error al editar el grupo"
-  # /users/{id}:
-  #   get:
-  #     summary: Obtener un usuario habilitado por id
-  #     tags:
-  #       - Users
-  #     security:
-  #       - BearerAuth: []
-  #     parameters:
-  #       - name: id
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #         description: id del usuario a obtener
-  #     responses:
-  #       "200":
-  #         description: Usuario obtenido exitosamente
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: "#/components/schemas/User"
-  #       "400_invalid_data":
-  #         description: Tipos de datos incorrectos
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               properties:
-  #                 message:
-  #                   type: string
-  #                   example: "Tipos de datos incorrectos"
-  #                 user:
-  #                   $ref: "#/components/schemas/User"
-  #       "404":
-  #         description: Usuario no encontrado
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               properties:
-  #                 message:
-  #                   type: string
-  #                   example: "Usuario no encontrado"
-  # /users/login:
-  #   post:
-  #     summary: inicio de sesión del usuario
-  #     tags:
-  #       - Users
-  #     requestBody:
-  #       required: true
-  #       content:
-  #         application/json:
-  #           schema:
-  #             type: object
-  #             properties:
-  #               email:
-  #                 type: string
-  #                 format: email
-  #                 example: "juan@example.com"
-  #               password:
-  #                 type: string
-  #                 example: "secretpassword"
-  #     responses:
-  #       "200":
-  #         description: Respuesta exitosa
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               properties:
-  #                 accessToken:
-  #                   type: string
-  #                   description: Token de acceso para el usuario autenticado
-  #                   example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-  #                 user:
-  #                   $ref: "#/components/schemas/User"
-  #       "404":
-  #         description: Usuario no encontrado
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               properties:
-  #                 error:
-  #                   type: string
-  #                   example: "Usuario no encontrado"
-  # /users/logout/{id}:
-  #   get:
-  #     summary: Cerrar sesión de usuario
-  #     tags:
-  #       - Users
-  #     security:
-  #       - BearerAuth: []
-  #     parameters:
-  #       - name: id
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #         description: id del usuario a obtener
-  #     responses:
-  #       "200":
-  #         description: Usuario desconectado exitosamente
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               properties:
-  #                 message:
-  #                   type: string
-  #                   example: "Usuario desconectado exitosamente"
-  #       "404":
-  #         description: Usuario no encontrado
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: object
-  #               properties:
-  #                 error:
-  #                   type: string
-  #                   example: "Usuario no encontrado"
-  # /users/dashboard:
-  #   get:
-  #     summary: Consultar lista de usuarios conectados o habilitados
-  #     tags:
-  #       - Users
-  #     responses:
-  #       "200":
-  #         description: Lista de usuarios encontrada
-  #         content:
-  #           application/json:
-  #             schema:
-  #               type: array
-  #               items:
-  #                 type: object
-  #                 properties:
-  #                   name:
-  #                     type: string
-  #                     example: "Juan"
-  #                   lastname:
-  #                     type: string
-  #                     example: "Pérez"
-  #                   languages:
-  #                     type: array
-  #                     format: string
-  #                     example: ["español", "ingles"]
-  #                   location:
-  #                     type: string
-  #                     example: "Argentina"
-  #                   avatar:
-  #                     type: string
-  #                     example: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJJ0BV5K7y5Rz-747xO2111YBnxs60u-QdTxpjHUtsfQ&s"
-  #                   _id:
-  #                     type: string
-  #                     example: "652ebcefb2e4df899453902d"
   groups/{id}:
     get:
       summary: Consultar un grupo en especifico este activo, inactivo o eliminado.
@@ -397,7 +219,7 @@ paths:
                   message:
                     type: string
                     example: "Grupo no encontrado"
-  groups/add-user:
+  groups/add-user?groupId&userId:
     post:
       summary: Agregar un usuario al grupo
       tags:
@@ -477,6 +299,65 @@ paths:
                   message:
                     type: string
                     example: "Internal server error"
+groups/message/:
+  put:
+      summary: req.body agregar mensajes en un grupo
+      tags:
+        - Groups
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: "65330d0598c482ccd7202b24"
+                idUser:
+                  type: string
+                  example: "652830c102896ad8e3bf6f5b"
+                message:
+                  type: string
+                  example: "Como han estado?"
+      responses:
+        "200":
+          description: Mensaje creado con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Mensaje enviado exitosamente"
+
+        "400":
+          description: Faltan torios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Faltan datos requeridos para crear el mensaje"
+
+        "404":
+          description: Faltan torios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "grupo no encontrado"
+
+
+
 groups/user/{userId}:
     get:
       summary: Consultar todos grupos en los que se encuentra un usuario.
@@ -485,7 +366,7 @@ groups/user/{userId}:
       security:
         - BearerAuth: []
       parameters:
-        - name: id
+        - name: userId
           in: path
           required: true
           schema:
@@ -518,7 +399,10 @@ groups/user/{groupId}/{userId}:
       security:
         - BearerAuth: []
       parameters:
-        - name: id
+        - name: userId
+          in: path
+          required: true
+        - name: groupId
           in: path
           required: true
           schema:
@@ -547,7 +431,70 @@ groups/user/{groupId}/{userId}:
                   message:
                     type: string
                     example: "Error interno del servidor"
-
+groups/message/{groupId}/delete/{userId}:
+    delete:
+      summary: Eliminar un mensaje.
+      tags:
+        - Groups
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: id del grupo del que se desea salir y id del usuario.
+      responses:
+        "200":
+          description: Mensaje eliminado correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Mensaje eliminado correctamente"
+                  user:
+                    $ref: "#/components/schemas/group"
+        "404":
+          description: El mensaje no fue encontrado en el grupo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "El mensaje no fue encontrado en el grupo"
+                  user:
+                    $ref: "#/components/schemas/group"
+        "404-Alternativa":
+          description: Grupo no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Grupo no encontrado"
+                  user:
+                    $ref: "#/components/schemas/group"
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error interno del servidor"
 components:
   schemas:
     Group:
