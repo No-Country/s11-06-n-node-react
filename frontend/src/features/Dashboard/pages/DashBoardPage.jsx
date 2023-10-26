@@ -7,7 +7,10 @@ import Eventos from '../sections/Eventos'
 import Grupos from '../sections/Grupos'
 import ListCardFirends from '../../../components/ListCardFriends'
 
+
 export default function DashboardPage() {
+
+
     return (
         <div className='flex'>
             <div className='hidden lg:block'><Sidebar/></div>

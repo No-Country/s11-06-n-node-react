@@ -5,14 +5,16 @@ import { BiMessageRoundedDots } from 'react-icons/bi';
 import { MdRemoveRedEye } from 'react-icons/md';
 import { ImageBg, ImageProfileUserMedium } from '../../Images/ImageProfileUser';
 
-export default function CardNoticia() {
+export default function CardNoticia({ _id, name, title, location, imageUser, imagePlace, description, date}) {
+
+
     return (
         <div className="border border-gray-100 rounded-lg shadow-lg">
 
 
             {/* ----- Portada */}
             <div className="h-28 md:h-40">
-                <ImageBg imagen={place1}/>
+                <ImageBg imagen={imagePlace}/>
                 {/* <div className='text-xl'>
                     <div className='bg-gray-200 p-2 rounded-full'><BsShare/></div>
                     <div className='bg-gray-200 p-2 rounded-full'><MdFavoriteBorder/></div>
@@ -26,18 +28,17 @@ export default function CardNoticia() {
                 <div className='mb-8'>
                     <div className="flex justify-between items-center gap-x-5 mb-10">
                         <div>
-                            <ImageProfileUserMedium imagen={user1}/>
+                            <ImageProfileUserMedium imagen={imageUser}/>
                         </div>
                         <div className='flex flex-col w-full gap-y-2'>
-                            <p className="text-xl font-bold text-end">Henry Ramirez</p>
+                            <p className="text-xl font-bold text-end">{name}</p>
                             <div className='flex items-center justify-end gap-x-3'>
-                                <p className="">12/10/23</p>
-                                <p className="border border-gray-500 px-2 py-1 rounded-2xl flex items-center text-sm"><p className='mr-1 text-xl -ml-1'><CiLocationOn/></p>Lima</p>
+                                <p className="">{date}</p>
+                                <p className="border border-gray-500 px-2 py-1 rounded-2xl flex items-center text-sm"><p className='mr-1 text-xl -ml-1'><CiLocationOn/></p>{location}</p>
                             </div>
                         </div>
                     </div>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam sequi dolorem modi obcaecati inventore, mollitia natus, vitae sapiente autem unde sint esse. Facere, voluptas maiores?</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam sequi dolorem modi obcaecati inventore, mollitia natus, vitae sapiente autem unde sint esse. Facere, voluptas maiores?</p>
+                    <p>{description}</p>
                 </div>
 
 

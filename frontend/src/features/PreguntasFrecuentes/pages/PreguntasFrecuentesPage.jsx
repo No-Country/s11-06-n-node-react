@@ -36,12 +36,6 @@ export default function PreguntasFrecuentesPage() {
         }
     ]
 
-
-    const handleToggleText = () => {
-        setShowText(!showText);
-    };
-    const [showText, setShowText] = useState(false);
-
     
     return (
         <div className='flex'>
