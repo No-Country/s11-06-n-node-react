@@ -13,6 +13,7 @@
     "@heroicons/react": "^2.0.18",
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.5.1",
+    "js-cookie": "^3.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
@@ -27,6 +28,7 @@
 >>>>>>> 52c6ba13dab0223e1dd4fa28b9eed3a8e59cafcc
   },
   "devDependencies": {
+    "@esbuild/linux-x64": "^0.19.5",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
