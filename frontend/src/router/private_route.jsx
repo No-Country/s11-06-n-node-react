@@ -8,6 +8,7 @@ import GruposPage from "../features/Grupos/pages/GruposPage";
 import PreguntasFrecuentesPage from "../features/PreguntasFrecuentes/pages/PreguntasFrecuentesPage";
 import EventoIdPage from "../features/Events/pages/EventoIdPage";
 import UserProfile from "../features/User/pages/UserProfile";
+import MessageContainer from "../components/MessageContainer";
 
 export default function privateRoute(){
     return {
@@ -31,7 +32,7 @@ export default function privateRoute(){
             },
             {
                 path:"/mensajes",
-                element:<></>
+                element:<MessageContainer/>
             },
             {
                 path:"/noticias",
