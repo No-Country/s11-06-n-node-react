@@ -1,7 +1,7 @@
 const eventList = [
   {
     "id": 1,
-    "image": "evento1.jpg",
+    "image": "https://images.rove.me/w_1920,q_85/t12xwzzwojizcdls68ny/new-york-picnic-season-in-central-park.jpg",
     "name": "Festival de Música",
     "location": "Central Park, Nueva York",
     "date": "2023-10-15",
@@ -9,7 +9,7 @@ const eventList = [
   },
   {
     "id": 2,
-    "image": "evento2.jpg",
+    "image": "https://www.transmedia.cl/wp-content/uploads/2018/11/samsunginfinitymuesa.png",
     "name": "Conferencia de Tecnología",
     "location": "Centro de Convenciones, San Francisco",
     "date": "2023-11-05",
@@ -17,7 +17,7 @@ const eventList = [
   },
   {
     "id": 3,
-    "image": "evento3.jpg",
+    "image": "https://lh3.googleusercontent.com/ci/ALr3YSEYPAerYGC8H1VnV9-qakuGhaTMGTuTPPgbKp9aQBgWxXPVjY4PuUHLNX8tFqFkHTYJcDxVtQ=s1200",
     "name": "Exposición de Arte",
     "location": "Museo Metropolitano, Londres",
     "date": "2023-09-25",
@@ -25,7 +25,7 @@ const eventList = [
   },
   {
     "id": 4,
-    "image": "evento4.jpg",
+    "image": "https://img.remediosdigitales.com/3d8650/los-mejores-mercadillos-de-navidad-de-paris/450_1000.jpg",
     "name": "Festival de Comida",
     "location": "Plaza del Centro, París",
     "date": "2023-12-08",
