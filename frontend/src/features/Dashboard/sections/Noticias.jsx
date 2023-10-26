@@ -5,6 +5,7 @@ import user1 from '../../../../public/person1.png'
 import user4 from '../../../../public/person4.png'
 import place1 from '../../../../public/place1.jpeg'
 import place4 from '../../../../public/place4.jpeg'
+import Typography from '../../../components/Typography';
 
 export default function Noticias() {
 
@@ -33,7 +34,7 @@ export default function Noticias() {
     
     return (
         <div>
-            <h1 className="text-2xl font-bold mb-7">Últimas noticias:</h1>
+            <Typography.TitleContainer>Últimas noticias</Typography.TitleContainer>
 
             <div className="flex flex-col md:flex-row gap-10 md:gap-20">
                 {noticiasData.map(noticiaData => {

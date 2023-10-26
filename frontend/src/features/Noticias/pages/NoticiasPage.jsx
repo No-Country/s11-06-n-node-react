@@ -17,6 +17,7 @@ import place4 from '../../../../public/place4.jpeg'
 import place5 from '../../../../public/place5.jpeg'
 import place6 from '../../../../public/place6.jpeg'
 import place7 from '../../../../public/place7.jpeg'
+import Typography from '../../../components/Typography'
 
 export default function NoticiasPage() {
 
@@ -102,7 +103,7 @@ export default function NoticiasPage() {
             <div className="mb-20 ml-0 lg:ml-64 px-5 md:px-10 mx-auto w-full">
                 <div className='max-w-7xl mx-auto'>
                     <SearchBar/>
-                    <h1 className='text-2xl font-bold my-10'>Noticias:</h1>
+                    <Typography.TitleContainer>Noticias</Typography.TitleContainer>
 
                     <div className='flex flex-col gap-y-10 md:gap-y-20'>
                         {noticiasData.map(noticiaData => {

@@ -16,8 +16,8 @@ export default function DashboardPage() {
             <div className='hidden lg:block'><Sidebar/></div>
 
             <div className="mb-20 ml-0 lg:ml-64 px-5 md:px-10 mx-auto w-full">
-                <div className='max-w-7xl mx-auto'>
                     <SearchBar/>
+                <div className='max-w-7xl mx-auto flex flex-col gap-y-20'>
                     <EventList/>
                     <Noticias/>
                     <Grupos/>
