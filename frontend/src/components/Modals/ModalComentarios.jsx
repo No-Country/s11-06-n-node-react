@@ -2,7 +2,6 @@ import CardComentario from "../Cards/CardComentario/CardComentario";
 import Typography from "../Typography";
 import user1 from '../../../public/person4.png'
 import user2 from '../../../public/person6.png'
-
 import { AiOutlineClose } from 'react-icons/ai';
 
 export default function ModalComentarios({closeModal}) {
@@ -27,7 +26,6 @@ export default function ModalComentarios({closeModal}) {
             <div className="max-w-2xl bg-white w-full p-5 rounded-lg shadow-lg border border-gray-200 relative">
                 <Typography.SubtitleSmall>Comentarios:</Typography.SubtitleSmall>
                 <button onClick={closeModal} className="absolute top-3 right-3 text-xl"><AiOutlineClose/></button>
-
 
                 <div className="flex flex-col gap-y-5">
                     {comentariosData.map(comentarioData => (
