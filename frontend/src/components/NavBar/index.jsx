@@ -12,7 +12,7 @@ function NavBar () {
     const activeStyle = 'underline underline-offset-4'
 
     return (
-        <div className='hidden lg:flex  items-center top-0 justify-between fixed w-full  lg:px-2 lg:text-sm lg:font-light mb-2 bg-[#D9D9D9] h-10'>
+        <div className='hidden lg:flex  items-center top-0 justify-between fixed w-full  lg:px-2 lg:text-sm lg:font-light mb-2 bg-[#098D82] h-10'>
             <ul className='flex items-center'>
                 <li className='mx-4'>
                 <figure className='w-auto h-full px-3  flex items-center justify-center'>

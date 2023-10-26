@@ -2,7 +2,7 @@ import React from 'react'
 import EventList from '../components/EventList'
 import SearchBar from '../../../components/SearchBar/SearchBar'
 import Sidebar from '../../../components/Sidebar/Sidebar'
-import NavBar from '../../../components/NavBar'
+
 import Noticias from '../sections/Noticias'
 
 export default function DashboardPage() {
