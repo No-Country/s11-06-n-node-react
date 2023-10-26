@@ -22,8 +22,8 @@ export default function ModalAdd({ children, title }) {
     return (
 
         <>
-            <button onClick={openModal} className='w-14 h-14 bg-greenSecundary rounded-full m-1 absolute -top-64  -right-14 text-white flex flex-col justify-center items-center'>
-                <span className='text-xl'><BsPostcard /></span>
+            <button onClick={openModal} className='w-14 h-14 bg-greenSecundary rounded-full m-1 absolute -top-96  -right-14 text-white flex flex-col justify-center items-center'>
+                <span className='text-xl'><BsPostcard    /></span>
                 <p className='text-xs'>{title}</p>
             </button>
             <Modal isOpen={modal} onRequestClose={closeModal} className={'overflow-y-scroll h-full'}>

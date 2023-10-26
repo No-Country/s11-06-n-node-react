@@ -1,9 +1,9 @@
 import React from 'react'
 import CustomCard from '../../../../components/Card'
 import Typography from '../../../../components/Typography'
-// import { createEventRepository } from '../../Repository/eventRepository'
 import { formatDate } from '../../../../utils/formatDates'
 import LinkButton from '../../../../components/LinkButton'
+import createEventRepository from '../../Repository/eventRepository'
 
 const EventList = () => {
 
@@ -36,7 +36,7 @@ const EventList = () => {
                         </CustomCard.Body>
 
                         <CustomCard.Footer className="p-4">
-                            <LinkButton className=' bg-indigo-300 '>Ver más</LinkButton>
+                            <LinkButton className=' bg-greenSecundary '>Ver más</LinkButton>
                             {/* Pie de componente */}
                         </CustomCard.Footer>
 

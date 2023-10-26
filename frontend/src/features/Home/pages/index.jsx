@@ -8,7 +8,6 @@ function HomePage() {
   return (
     <div className='w-screen h-screen'>
       <ListFriends />
-      <ModalAddActivity/>
       <BtnPlus/>
       
     </div>

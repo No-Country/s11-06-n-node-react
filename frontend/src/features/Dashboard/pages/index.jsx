@@ -13,7 +13,7 @@ export default function DashboardPage() {
             <div className="mb-20 ml-0 lg:ml-64 px-5 md:px-10 mx-auto w-full">
                 <div className='max-w-7xl mx-auto'>
                     <SearchBar/>
-                    {/* <EventList/> */}
+                    <EventList/>
                     <div className=''><Noticias/></div>
                 </div>
             </div>
