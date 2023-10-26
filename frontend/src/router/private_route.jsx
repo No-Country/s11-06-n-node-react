@@ -1,11 +1,13 @@
 import { Navigate } from "react-router-dom";
-import DashboardPage from "../features/Dashboard/pages";
-import UserProfile from "../features/User/pages/UserProfile";
-import Noticias from "../features/Noticias/pages/Noticias";
 import Layout from "../components/Layaout";
-import HomePage from "../features/Home/pages";
-import FQA from "../features/FQA/FQA";
-
+import DashboardPage from "../features/Dashboard/pages/DashBoardPage";
+import NoticiasPage from "../features/Noticias/pages/NoticiasPage";
+import FavoritosPage from "../features/Favoritos.jsx/pages/FavoritosPage";
+import EventosPage from "../features/Events/pages/EventosPage";
+import GruposPage from "../features/Grupos/pages/GruposPage";
+import PreguntasFrecuentesPage from "../features/PreguntasFrecuentes/pages/PreguntasFrecuentesPage";
+import EventoIdPage from "../features/Events/pages/EventoIdPage";
+import UserProfile from "../features/User/pages/UserProfile";
 
 export default function privateRoute(){
     return {
@@ -16,27 +18,35 @@ export default function privateRoute(){
                 element: <DashboardPage/>
             },
             {
+                path: '/favoritos',
+                element: <FavoritosPage/>
+            },
+            {
+                path: '/eventos',
+                element: <EventosPage/>
+            },
+            {
+                path: '/eventos/:eventId',
+                element: <EventoIdPage/>
+            },
+            {
                 path:"/mensajes",
                 element:<></>
             },
             {
                 path:"/noticias",
-                element:<Noticias/>
-            },
-            {
-                path:"/creargrupo",
-                element:<></>
+                element:<NoticiasPage/>
             },
             {
                 path:"/grupos",
-                element:<></>
+                element:<GruposPage/>
             },
             {
-                path:"/fqa",
-                element:<FQA />
+                path:"/preguntas-frecuentes",
+                element:<PreguntasFrecuentesPage/>
             },
             {
-                path:"/user-profile",
+                path:"/perfil",
                 element:<UserProfile/>
             },
             {
@@ -45,4 +55,6 @@ export default function privateRoute(){
             },
         ]
     }
+
+    
 }

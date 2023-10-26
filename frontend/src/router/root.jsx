@@ -1,4 +1,4 @@
-import { createBrowserRouter, useNavigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Cookies from "js-cookie";
 import PublicRoute from "./public_route";
 import PrivateRoute from "./private_route";

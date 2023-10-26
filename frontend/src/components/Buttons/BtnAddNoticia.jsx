@@ -25,6 +25,7 @@ export default function BtnAddNoticia() {
             </button>
             <Modal isOpen={modal} onRequestClose={closeModal} className={'overflow-y-scroll h-full'}>
                 <div className='flex justify-center items-center h-full text-sm text-greenPrimary'>
+
                     <div className='border border-graySecundary max-w-xs sm:max-w-xl w-full p-5 sm:p-14 shadow-2xl bg-white rounded-lg relative'>
                         <div className='border-b border-greenPrimary flex justify-between'>
                             <p className='text-2xl py-2'>Crear Noticia</p>
