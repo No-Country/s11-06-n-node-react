@@ -7,6 +7,9 @@ const TitleContainer = ({ className, children }) =>
 const SubtitleContainer = ({ className, children }) => 
     <h3  className={`${className} text-greenPrimary text-xl font-bold `}> {children} </h3>
 
+const SubtitleSmall = ({ className, children }) => 
+    <h3  className={`${className} text-greenPrimary text-lg font-bold mb-7`}> {children} </h3>
+
 export const Base = ({ className, children }) => 
     <p  className={`${className} text-greenPrimary text text-lg font-normal `}> {children} </p>
 
@@ -33,6 +36,7 @@ const Typography = ({ className, children, direction = "vertical" }) => {
 Typography.TitlePage = TitlePage;
 Typography.TitleContainer = TitleContainer;
 Typography.SubtitleContainer = SubtitleContainer;
+Typography.SubtitleSmall = SubtitleSmall;
 Typography.Base = Base;
 Typography.Small = Small;
 Typography.Xs = Xs;

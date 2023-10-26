@@ -1,9 +1,9 @@
-import user1 from '../../../../public/user1.jpeg'
-import place1 from '../../../../public/place1.jpeg'
 import { CiLocationOn } from 'react-icons/ci';
 import { BiMessageRoundedDots } from 'react-icons/bi';
 import { MdRemoveRedEye } from 'react-icons/md';
 import { ImageBg, ImageProfileUserMedium } from '../../Images/ImageProfileUser';
+import { Link } from 'react-router-dom'
+import BtnViewComments from '../../Buttons/BtnViewComments';
 
 export default function CardNoticia({ _id, name, title, location, imageUser, imagePlace, description, date}) {
 
@@ -43,8 +43,8 @@ export default function CardNoticia({ _id, name, title, location, imageUser, ima
 
 
                 <div className="flex justify-between items-center">
-                    <p className='text-gray-500 text-sm flex justify-end items-center gap-x-1'>123 mates comentaron <span className='text-lg'><BiMessageRoundedDots/></span></p>
-                    <button className='cursor-pointer flex items-center gap-x-2 border border-gray-500 px-3 py-1 rounded-2xl'>Ver más <span className='text-lg'><MdRemoveRedEye/></span></button>
+                    <BtnViewComments/>
+                    <Link to={'/'} className='cursor-pointer flex items-center gap-x-2 border border-gray-500 px-3 py-1 rounded-2xl'>Ver más <span className='text-lg'><MdRemoveRedEye/></span></Link>
                 </div>
             </div>
         </div>
