@@ -5,6 +5,7 @@ import UserProfile from "../features/User/pages/UserProfile";
 import Layout from "../components/Layaout";
 import Login from "../features/Login/Login";
 import HomePage from "../features/Home/pages";
+import Mensajes from "../components/MessageContainer/index";
 import DashboardPage from "../features/Dashboard/pages/DashBoardPage";
 import NoticiasPage from "../features/Noticias/pages/NoticiasPage";
 import FavoritosPage from "../features/Favoritos.jsx/pages/FavoritosPage";
@@ -41,7 +42,7 @@ export const router = createBrowserRouter([
     },
     {
         path:"/mensajes",
-        element:<></>
+        element:<Mensajes />
     },
     {
         path:"/noticias",
