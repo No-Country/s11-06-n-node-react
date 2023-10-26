@@ -2,7 +2,7 @@ import CardNoticia from '../../../components/Cards/CardNoticia/CardNoticia'
 import SearchBar from '../../../components/SearchBar/SearchBar'
 import Sidebar from '../../../components/Sidebar/Sidebar'
 
-export default function Noticias() {
+export default function NoticiasPage() {
     return (
 
         <div className='flex'>

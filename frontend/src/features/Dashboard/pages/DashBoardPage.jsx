@@ -2,8 +2,10 @@ import React from 'react'
 import EventList from '../components/EventList'
 import SearchBar from '../../../components/SearchBar/SearchBar'
 import Sidebar from '../../../components/Sidebar/Sidebar'
-import NavBar from '../../../components/NavBar'
 import Noticias from '../sections/Noticias'
+import Eventos from '../sections/Eventos'
+import Grupos from '../sections/Grupos'
+import ListCardFirends from '../../../components/ListCardFriends'
 
 export default function DashboardPage() {
     return (
@@ -14,9 +16,12 @@ export default function DashboardPage() {
                 <div className='max-w-7xl mx-auto'>
                     <SearchBar/>
                     <EventList/>
-                    <div className=''><Noticias/></div>
+                    <Noticias/>
+                    <Grupos/>
                 </div>
             </div>
+            
+            <div className='hidden lg:block'><ListCardFirends/></div>
         </div>
     )
 }

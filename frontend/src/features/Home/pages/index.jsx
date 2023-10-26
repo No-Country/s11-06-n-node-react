@@ -6,6 +6,7 @@ import BtnPlus from '../../../components/Buttons/BtnPlus.jsx'
 function HomePage() {
   return (
     <div className='w-screen h-screen'>
+      <p>Landing Page</p>
       <ListFriends />
       
     </div>

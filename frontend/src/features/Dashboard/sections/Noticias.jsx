@@ -7,7 +7,7 @@ export default function Noticias() {
         <div>
             <h1 className="text-2xl font-bold mb-7">Últimas noticias:</h1>
 
-            <div className="flex flex-col gap-10">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
                 <CardNoticia/>
                 <CardNoticia/>
                 <CardNoticia/>
