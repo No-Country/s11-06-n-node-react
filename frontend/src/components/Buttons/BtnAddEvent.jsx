@@ -27,11 +27,6 @@ export default function BtnAddEvent() {
     }
     return(
         <>
-            <button onClick={openModal} className='w-14 h-14 bg-greenSecundary rounded-full m-1 absolute -top-32  -right-14 text-white flex flex-col justify-center items-center'>
-                <span className='text-xl'><AiOutlineTags/></span>
-                <p className='text-xs'>Evento</p>
-            </button>
-
             <Modal isOpen={modal} onRequestClose={closeModal} className={'overflow-y-scroll h-full'}>
                 <div className='flex justify-center items-center h-full text-sm text-greenPrimary'>
                     <div className='border border-graySecundary max-w-xs sm:max-w-xl w-full p-5 sm:p-14 shadow-2xl bg-white rounded-lg relative'>

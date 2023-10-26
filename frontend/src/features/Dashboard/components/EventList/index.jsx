@@ -1,9 +1,9 @@
 import React from 'react'
 import CustomCard from '../../../../components/Card'
 import Typography from '../../../../components/Typography'
-// import { createEventRepository } from '../../Repository/eventRepository'
 import { formatDate } from '../../../../utils/formatDates'
 import LinkButton from '../../../../components/LinkButton'
+import createEventRepository from '../../Repository/eventRepository'
 
 const EventList = () => {
 
@@ -16,9 +16,7 @@ const EventList = () => {
                 Eventos
             </Typography.TitleContainer>
 
-            <section className='flex flex-col md:flex-row gap-4
-                            w-full  '
-            >
+            <section className='flex flex-col md:flex-row gap-4 w-full'>
                 {events && events.map((event) => (
                     <CustomCard key={event.id} className=" "> 
 
@@ -36,7 +34,7 @@ const EventList = () => {
                         </CustomCard.Body>
 
                         <CustomCard.Footer className="p-4">
-                            <LinkButton className=' bg-indigo-300 '>Ver más</LinkButton>
+                            <LinkButton className=' bg-greenSecundary '>Ver más</LinkButton>
                             {/* Pie de componente */}
                         </CustomCard.Footer>
 

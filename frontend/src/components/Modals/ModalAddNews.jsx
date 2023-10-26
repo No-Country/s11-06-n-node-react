@@ -1,20 +1,15 @@
-import Modal from 'react-modal'
-Modal.setAppElement('#root');
+import Avatar from "../Avatar";
+import { CustomForm } from "../CustomForm";
+import TextArea from "../Input/textarea";
+import ModalAdd from "./ModalAdd"
+import { BsCardImage, BsPostcard } from 'react-icons/bs';
 
-
-import { BsCardImage } from 'react-icons/bs';
-import ModalAdd from './ModalAdd';
-import { CustomForm } from '../CustomForm';
-import TextArea from '../Input/textarea';
-import { AiOutlineTags } from 'react-icons/ai';
-import Avatar from '../Avatar';
-
-
-
-export default function ModalAddEvent() {
+export default function ModalAddNews() {
 
     const defaultValues = {
+        name: '',
         description: '',
+        rules: '',
     }
 
     const onSubmit = async (data) => {
@@ -22,17 +17,19 @@ export default function ModalAddEvent() {
     }
 
     return (
-        <ModalAdd title="Crear Evento" icon={<AiOutlineTags />}>
+        <ModalAdd title="Crear noticia" icon={<BsPostcard />}>
             <ModalAdd.Header>
-                <Avatar/>
+                <Avatar />
             </ModalAdd.Header>
             <ModalAdd.Body>
+
                 <CustomForm
                     defaultValues={defaultValues}
                     onSubmit={onSubmit}
-                    className='flex flex-col gap-y-5'>
+                    className='flex flex-col gap-y-5'
+                >
                     <div className='relative'>
-                        <TextArea name="description" id="" cols="30" rows="10" placeholder='Escribe una descripción de tu actividad' className='border w-full px-4 py-2 h-32 rounded-md' />
+                        <TextArea name="description" id="" cols="30" rows="10" placeholder='Qué andas pensando?' className='border w-full px-4 py-2 h-32 rounded-md' />
                         <p className='absolute right-3 bottom-2 text-xs text-gray-400'>200 caracteres</p>
                     </div>
                     <div className='border p-2 flex justify-between items-center rounded-md'>
@@ -42,10 +39,10 @@ export default function ModalAddEvent() {
                             <button className='text-xl'><BsCardImage /></button>
                         </div>
                     </div>
-                    <button name="boton" type="submit" value="Publicar" className='bg-greenPrimary w-full py-2 text-white font-bold rounded-md cursor-pointer hover:bg-greenSecundary duration-75'> Publicar </button>
+                    <input type="submit" value="Publicar" className='bg-greenPrimary w-full py-2 text-white font-bold rounded-md cursor-pointer hover:bg-greenSecundary duration-75' />
+
                 </CustomForm>
             </ModalAdd.Body>
         </ModalAdd>
-
     )
 }
