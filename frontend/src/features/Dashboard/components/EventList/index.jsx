@@ -41,7 +41,7 @@ const EventList = () => {
                         </CustomCard.Body>
 
                         <CustomCard.Footer className="p-4">
-                            <LinkButton className=' bg-greenSecundary '>Ver más</LinkButton>
+                            <LinkButton className=' bg-greenSecundary ' href={`/eventos/${event.id}`}>Ver más</LinkButton>
                             {/* Pie de componente */}
                         </CustomCard.Footer>
 

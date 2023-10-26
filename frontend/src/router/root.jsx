@@ -11,6 +11,7 @@ import FavoritosPage from "../features/Favoritos.jsx/pages/FavoritosPage";
 import EventosPage from "../features/Events/pages/EventosPage";
 import GruposPage from "../features/Grupos/pages/GruposPage";
 import PreguntasFrecuentesPage from "../features/PreguntasFrecuentes/pages/PreguntasFrecuentesPage";
+import EventoIdPage from "../features/Events/pages/EventoIdPage";
 
 
 export const router = createBrowserRouter([
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
     {
         path: '/eventos',
         element: <EventosPage/>
+    },
+    {
+        path: '/eventos/:eventId',
+        element: <EventoIdPage/>
     },
     {
         path:"/mensajes",
