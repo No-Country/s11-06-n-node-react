@@ -2,12 +2,7 @@ import Modal from 'react-modal'
 Modal.setAppElement('#root');
 import { useState } from 'react';
 
-import { CiLocationOn } from 'react-icons/ci';
 import { GrClose } from 'react-icons/gr';
-import { ImageProfileUserSmall } from '../Images/ImageProfileUser';
-import image1 from '../../../public/user1.jpeg'
-import { BsPostcard } from 'react-icons/bs';
-// import ModalAddEvent from '../Modals/ModalAddEvent';
 
 const ModalAdd = ({ children, title, icon }) => {
 
@@ -38,8 +33,6 @@ const ModalAdd = ({ children, title, icon }) => {
                         </div>
 
                         {/* Body */}
-                        {/*  */}
-
                         {children}
 
                     </div>

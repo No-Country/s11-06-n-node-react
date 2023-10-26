@@ -25,10 +25,10 @@ function ImageProfileUserLarge({imagen}) {
             </div> 
     )
 }
-function ImageBg({imagen}) {
+function ImageBg({imagen,className}) {
     return (
             <div 
-                className="h-full rounded-t-lg bg-cover bg-center"
+                className={`h-full rounded-t-lg bg-cover bg-center ${className}`}
                 style={{backgroundImage: `url(${imagen})`}}
             >
             </div> 
