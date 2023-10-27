@@ -19,10 +19,7 @@ app.use('/auth', authRoutes);
 app.use('/groups', groupRoutes);
 app.use('/users', userRoutes);
 app.use('/events', eventRoutes);
-<<<<<<< HEAD
 app.use('/activities', activityRoutes);
-=======
 app.use('/news', newsRoutes)
->>>>>>> back-dev
 
 module.exports = app;
