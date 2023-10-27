@@ -1,23 +1,53 @@
 const Events = require("../models/event.model");
 
 const getAllEvents = async () => {
-    return Events.find();
+    try {
+        const events = await Events.find();
+        return events;
+    } catch (error) {
+        console.error("Error en getAllEvents:", error);
+        throw new Error("Error al recuperar eventos");
+    }
 }
 
 const getEventById = async (id) => {
-    return Events.findById(id);
+    try {
+        const event = await Events.findById(id);
+        return event;
+    } catch (error) {
+        console.error("Error en getEventById:", error);
+        throw new Error("Error al recuperar el evento");
+    }
 }
 
 const createEvent = async (newEvent) => {
-    return Events.create(newEvent);
+    try {
+        const event = await Events.create(newEvent);
+        return event;
+    } catch (error) {
+        console.error("Error en createEvent:", error);
+        throw new Error("Error al crear el evento");
+    }
 }
 
 const deleteEvent = async (id) => {
-    return Events.findByIdAndDelete(id);
+    try {
+        const event = await Events.findByIdAndDelete(id);
+        return event;
+    } catch (error) {
+        console.error("Error en deleteEvent:", error);
+        throw new Error("Error al eliminar el evento");
+    }
 }
 
 const editEvent = async (id, newEventData) => {
-    return Events.findByIdAndUpdate(id, newEventData, { new: true });
+    try {
+        const updatedEvent = await Events.findByIdAndUpdate(id, newEventData, { new: true });
+        return updatedEvent;
+    } catch (error) {
+        console.error("Error en editEvent:", error);
+        throw new Error("Error al editar el evento");
+    }
 }
 
 module.exports = {

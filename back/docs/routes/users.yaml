@@ -1,13 +1,13 @@
 tags:
-  - name: Usuarios
+  - name: Users
     description: API para manejar solicitudes de usuarios
 
 paths:
-  /usuarios:
+  /users:
     get:
       summary: Consultar lista de usuarios conectados o habilitados
       tags:
-        - Usuarios
+        - Users
       security:
         - BearerAuth: []
       responses:
@@ -18,11 +18,11 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Usuario"
+                  $ref: "#/components/schemas/User"
     post:
       summary: Crear un nuevo usuario
       tags:
-        - Usuarios
+        - Users
       requestBody:
         required: true
         content:
@@ -30,10 +30,10 @@ paths:
             schema:
               type: object
               properties:
-                nombre:
+                name:
                   type: string
                   example: "Juan"
-                apellido:
+                lastname:
                   type: string
                   example: "Pérez"
                 email:
@@ -54,8 +54,8 @@ paths:
                   message:
                     type: string
                     example: "Usuario creado exitosamente"
-                  usuario:
-                    $ref: "#/components/schemas/Usuario"
+                  user:
+                    $ref: "#/components/schemas/User"
         "400_missing_data":
           description: Faltan datos obligatorios
           content:
@@ -66,8 +66,8 @@ paths:
                   message:
                     type: string
                     example: "Faltan datos obligatorios"
-                  usuario:
-                    $ref: "#/components/schemas/Usuario"
+                  user:
+                    $ref: "#/components/schemas/User"
         "400_invalid_data":
           description: Tipos de datos incorrectos
           content:
@@ -78,8 +78,8 @@ paths:
                   message:
                     type: string
                     example: "Tipos de datos incorrectos"
-                  usuario:
-                    $ref: "#/components/schemas/Usuario"
+                  user:
+                    $ref: "#/components/schemas/User"
         "409":
           description: El email ya existe en la base de datos
           content:
@@ -90,8 +90,8 @@ paths:
                   message:
                     type: string
                     example: "El email ya existe en la base de datos"
-                  usuario:
-                    $ref: "#/components/schemas/Usuario"
+                  user:
+                    $ref: "#/components/schemas/User"
         "500":
           description: Error al crear el usuario
           content:
@@ -105,7 +105,7 @@ paths:
     put:
       summary: Editar un usuario existente
       tags:
-        - Usuarios
+        - Users
       security:
         - BearerAuth: []
       requestBody:
@@ -113,7 +113,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Usuario"
+              $ref: "#/components/schemas/User"
       responses:
         "200":
           description: Usuario editado exitosamente
@@ -135,8 +135,8 @@ paths:
                   message:
                     type: string
                     example: "Faltan datos obligatorios"
-                  usuario:
-                    $ref: "#/components/schemas/Usuario"
+                  user:
+                    $ref: "#/components/schemas/User"
         "400_invalid_data":
           description: Tipos de datos incorrectos
           content:
@@ -147,8 +147,8 @@ paths:
                   message:
                     type: string
                     example: "Tipos de datos incorrectos"
-                  usuario:
-                    $ref: "#/components/schemas/Usuario"
+                  user:
+                    $ref: "#/components/schemas/User"
         "500":
           description: Error al editar el usuario
           content:
@@ -159,11 +159,11 @@ paths:
                   message:
                     type: string
                     example: "Error al editar el usuario"
-  /usuarios/{id}:
+  /users/{id}:
     get:
       summary: Obtener un usuario habilitado por id
       tags:
-        - Usuarios
+        - Users
       security:
         - BearerAuth: []
       parameters:
@@ -179,7 +179,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Usuario"
+                $ref: "#/components/schemas/User"
         "400_invalid_data":
           description: Tipos de datos incorrectos
           content:
@@ -190,8 +190,8 @@ paths:
                   message:
                     type: string
                     example: "Tipos de datos incorrectos"
-                  usuario:
-                    $ref: "#/components/schemas/Usuario"
+                  user:
+                    $ref: "#/components/schemas/User"
         "404":
           description: Usuario no encontrado
           content:
@@ -202,11 +202,11 @@ paths:
                   message:
                     type: string
                     example: "Usuario no encontrado"
-  /usuarios/login:
+  /users/login:
     post:
       summary: inicio de sesión del usuario
       tags:
-        - Usuarios
+        - Users
       requestBody:
         required: true
         content:
@@ -233,8 +233,8 @@ paths:
                     type: string
                     description: Token de acceso para el usuario autenticado
                     example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-                  usuario:
-                    $ref: "#/components/schemas/Usuario"
+                  user:
+                    $ref: "#/components/schemas/User"
         "404":
           description: Usuario no encontrado
           content:
@@ -245,11 +245,11 @@ paths:
                   error:
                     type: string
                     example: "Usuario no encontrado"
-  /usuarios/logout/{id}:
+  /users/logout/{id}:
     get:
       summary: Cerrar sesión de usuario
       tags:
-        - Usuarios
+        - Users
       security:
         - BearerAuth: []
       parameters:
@@ -280,11 +280,11 @@ paths:
                   error:
                     type: string
                     example: "Usuario no encontrado"
-  /usuarios/dashboard:
+  /users/dashboard:
     get:
       summary: Consultar lista de usuarios conectados o habilitados
       tags:
-        - Usuarios
+        - Users
       responses:
         "200":
           description: Lista de usuarios encontrada
@@ -295,17 +295,17 @@ paths:
                 items:
                   type: object
                   properties:
-                    nombre:
+                    name:
                       type: string
                       example: "Juan"
-                    apellido:
+                    lastname:
                       type: string
                       example: "Pérez"
-                    idiomas:
+                    languages:
                       type: array
                       format: string
                       example: ["español", "ingles"]
-                    pais:
+                    location:
                       type: string
                       example: "Argentina"
                     avatar:
@@ -316,16 +316,16 @@ paths:
                       example: "652ebcefb2e4df899453902d"
 components:
   schemas:
-    Usuario:
+    User:
       type: object
       properties:
         id:
           type: string
           example: "652ebcefb2e4df899453902d"
-        nombre:
+        name:
           type: string
           example: "Juan"
-        apellido:
+        lastname:
           type: string
           example: "Pérez"
         email:
@@ -335,19 +335,19 @@ components:
         password:
           type: string
           example: "secretpassword"
-        pais:
+        location:
           type: string
           example: "Argentina"
-        fecha_nacimiento:
-          type: string
+        birthdate:
+          type: Date
           example: "30/01/1995"
-        celular:
+        phone:
           type: string
           example: "123123456"
         status:
           type: string
           example: "conectado"
-        idiomas:
+        languages:
           type: array
           example: ["español", "ingles"]
         avatar:

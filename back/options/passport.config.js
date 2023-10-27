@@ -1,5 +1,5 @@
 const passport = require("passport");
-const Usuario = require("../models/Usuario");
+const User = require("../models/user.model");
 const passportJwt = require("passport-jwt");
 const { createHash, isValid } = require("../utils/hashpassword");
 const local = require("passport-local");
@@ -15,7 +15,7 @@ const initializePassport = () => {
       async (req, email, password, done) => {
         try {
           // Verificar si el usuario ya existe
-          let usuario = await Usuario.findOne({ email });
+          let usuario = await User.findOne({ email });
           if (usuario) {
             return done(null, false, { message: "Usuario ya existe" });
           }
@@ -23,12 +23,12 @@ const initializePassport = () => {
           const nuevoUsuario = {
             email,
             password: createHash(password),
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
+            name: req.body.name,
+            lastname: req.body.lastname,
             status: "habilitado"
           };
           try {
-            let result = await Usuario.create(nuevoUsuario);
+            let result = await User.create(nuevoUsuario);
             return done(null, result);
           } catch (err) {
             return done(err);
@@ -45,7 +45,7 @@ const initializePassport = () => {
   })
 
   passport.deserializeUser((id, done) => {
-    Usuario.findById(id, done)
+    User.findById(id, done)
   })
 
   // Configurar la estrategia "login" para la autenticación de usuarios
@@ -56,7 +56,7 @@ const initializePassport = () => {
       async (email, password, done) => {
         try {
           // Buscar al usuario por correo electrónico
-          let usuario = await Usuario.findOne({ email });
+          let usuario = await User.findOne({ email });
           if (!usuario) {
             return done(null, false, { message: "Usuario no encontrado" });
           }
@@ -82,7 +82,7 @@ const PassportStrategy = new StrategyJwt(
     secretOrKey: "ClaveUltraSecreta", 
   },
   async (jwtPayload, next) => {
-    const usuario = await Usuario.findById(jwtPayload.id);
+    const usuario = await User.findById(jwtPayload.id);
     if (usuario) {
       next(null, usuario);
     } else {
