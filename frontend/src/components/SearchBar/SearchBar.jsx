@@ -18,7 +18,7 @@ export default function SearchBar() {
             </div>
 
 
-            <div className='fixed bottom-10 right-10 lg:right-36'>
+            <div className='fixed bottom-10 right-10 lg:right-60'>
                 <BtnPlus/>
             </div>
         </div>

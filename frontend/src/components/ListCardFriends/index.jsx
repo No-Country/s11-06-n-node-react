@@ -4,7 +4,7 @@ import Residentes from './datosF'
 
 function ListCardFirends() {
     return(
-        <div className='hidden md:w-48 h-screen md:px-3 bg-greenPrimary md:pt-20 md:flex md:flex-col   md:items-center'>
+        <div className='hidden md:w-48 min-h-screen h-full md:px-3 bg-greenPrimary md:pt-20 md:flex md:flex-col   md:items-center'>
             <div className='flex flex-col my-2 w-full'>
             <p className='font-bold text-m text-graySecundary'>Personas Activas</p>
             <p className='p-o text-s text-graySecundary'>Cerca tuyo</p>
