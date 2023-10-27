@@ -1,20 +1,20 @@
-const Usuario = require("../models/Usuario");
+const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 
 async function signUp(usuario) {
     let user;
   try {
-    const usuarioExistente = await Usuario.findOne({email: usuario.email});
+    const usuarioExistente = await User.findOne({email: usuario.email});
     if (!usuarioExistente) {
-        user = new Usuario();
+        user = new User();
         user._id = usuario._id;
-        user.nombre = usuario.nombre;
-        user.apellido = usuario.apellido;
+        user.name = usuario.name;
+        user.lastname = usuario.lastname;
         user.email = usuario.email
     } else {
         user = usuarioExistente
-        user.nombre = usuario.nombre;
-        user.apellido = usuario.apellido;
+        user.name = usuario.name;
+        user.lastname = usuario.lastname;
     }   
     const token = jwt.sign(
       {
