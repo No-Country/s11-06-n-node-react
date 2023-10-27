@@ -18,7 +18,7 @@ const CustomCard = ({ isActive = false, onClick, children, className }) => {
     return (
         <div
             onClick={onClick}
-            className={` ${classIsActive} w-full min-w-fit bg-white rounded-3xl border-2  
+            className={` ${classIsActive} w-full min-w-fit bg-white rounded-3xl border 
             flex-col justify-start items-end inline-flex
             gap-4 ${className}`}>
 

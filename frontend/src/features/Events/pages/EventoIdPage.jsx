@@ -81,7 +81,7 @@ export default function EventoIdPage() {
 
                     <Typography>
                         <Typography.SubtitleContainer> Qué incluye </Typography.SubtitleContainer>
-                        <section className='flex flex-col md:flex-row gap-4 w-full overflow-x-auto'>
+                        <section className='flex flex-col md:flex-row gap-4 w-full '>
                             {event.includes && event.includes.map((include, index) => (
                                 <CustomCard key={index} className=" min-w-min p-4">
                                     <CustomCard.Body className="min-w-min   ">
