@@ -22,13 +22,13 @@ const getEventById = async (id) => {
 
 const getUserEvents = async (userId) => {
     try {
-        const userEvents = await Events.find({ user: userId });
-        return userEvents;
+      const userEvents = await Events.find({ user: userId });
+      return userEvents;
     } catch (error) {
-        console.error("Error en getUserEvents:", error);
-        throw new Error("Error al recuperar eventos del usuario");
+      console.error("Error en getUserEvents:", error);
+      throw new Error("Error al recuperar eventos del usuario");
     }
-}
+  }
 
 const createEvent = async (newEvent) => {
     try {
