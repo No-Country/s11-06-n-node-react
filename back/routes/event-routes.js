@@ -19,7 +19,7 @@ router.get("/", getEvents);
 router.get("/:id", getEventById);
 
 // Ruta para obtener todos los eventos de un usuario
-router.get("/:userId", getUserEvents);
+router.get("/user/:userId", getUserEvents);
 
 // Ruta para crear un Evento
 router.post("/",
