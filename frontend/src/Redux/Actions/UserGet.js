@@ -39,6 +39,7 @@ const getUserDetail = (actualUser) => {
 //POST para el register de un usuario
 const userPost = (userData) => {
   return async (dispatch) => {
+    
     try {
        const response = await axios.post('https://s11-06-n-node-react-back.onrender.com/users', userData);
        dispatch(postUser(response.data));
@@ -52,13 +53,22 @@ const userPost = (userData) => {
 
   //PUT para modificar datos del user
 
-const modifyTheUser = (id, user) => {
+const modifyTheUser = (user, token) => {
     return async (dispatch) => {
         try {
+          
             if (!user) {
                 throw new Error("New user is undefined.");
               }
-            const dbData = await axios.put(`https://s11-06-n-node-react-back.onrender.com/users`, user);
+              const config = {
+            headers: {
+              Authorization: `Bearer ${token}`,
+
+            },
+          };
+              // console.log(user);
+            const dbData = await axios.put(`https://s11-06-n-node-react-back.onrender.com/users`, user, config);
+            console.log(dbData);
             return dispatch(modifyUser(dbData.data));
         } catch (error) {
           console.error(error);

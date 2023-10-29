@@ -24,7 +24,7 @@ const Slice = createSlice({
             // console.log(state.userDetail);
         },   
         modifyUser: (state, action) => {
-            state.put = action.payload;
+            state.userDetail = action.payload;
         },
         getUserGroups: (state, action) => {
             state.userGroups = action.payload;
