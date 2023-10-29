@@ -9,7 +9,7 @@ export default function LinksMenu() {
     return (
         <div className='flex flex-col gap-y-5'>
             <Link to={'/dashboard'} className='flex items-center'><span className='text-2xl mr-2'><LuLayoutDashboard/></span>Dashboard</Link>
-            <Link to={'/perfil'} className='flex items-center'><span className='text-2xl mr-2'><BsPerson/></span>Perfil</Link>
+            <Link to={'/perfil'} className='flex items-center'><span className='text-2xl mr-2'><BsPerson/></span>Perfil del usuario</Link>
             {/* <Link to={'/favoritos'} className='flex items-center'><span className='text-2xl mr-2'><PiHandHeartThin/></span>Favoritos</Link> */}
             <Link to={'/eventos'} className='flex items-center'><span className='text-2xl mr-2'><AiOutlineTags/></span>Eventos</Link>
             <Link to={'/noticias'} className='flex items-center'><span className='text-2xl mr-2'><BsNewspaper/></span>Noticias</Link>
