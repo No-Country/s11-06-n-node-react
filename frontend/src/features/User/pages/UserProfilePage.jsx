@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 import Sidebar from '../../../components/Sidebar/Sidebar'
 import ListCardFirends from '../../../components/ListCardFriends'
 import { FcPhoneAndroid } from 'react-icons/fc';
+import ModalEditUser from "../../../components/Modals/ModalEditUser";
 
 const UserProfile = () => {
 const cookieData = Cookies.get('data');
@@ -45,8 +46,9 @@ const dispatch = useDispatch();
    <div className="flex justify-between items-center">
      <h2 className="undefined text-greenPrimary text-2xl font-bold mb-10">Perfil de Usuario</h2>
      <button className="text-gray-600 flex items-center">
-       Modificar Datos
-       <FiEdit className="ml-2" />
+     <ModalEditUser></ModalEditUser>
+       {/* Modificar Datos */}
+       {/* <FiEdit className="ml-2" /> */}
        {/* Agrega el enlace a la ruta de edición de perfil aquí */}
      </button>
    </div>
