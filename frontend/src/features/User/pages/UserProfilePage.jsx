@@ -4,7 +4,9 @@ import { FiEdit } from "react-icons/fi";
 import { getGroupsUser, getUserDetail } from "../../../Redux/Actions/UserGet";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from 'js-cookie';
-
+import Sidebar from '../../../components/Sidebar/Sidebar'
+import ListCardFirends from '../../../components/ListCardFriends'
+import { FcPhoneAndroid } from 'react-icons/fc';
 
 const UserProfile = () => {
 const cookieData = Cookies.get('data');
@@ -36,10 +38,12 @@ const dispatch = useDispatch();
 
 
   return (
-    userDetail ? 
-   (  <div className="w-3/4 mx-auto mt-8 bg-white border border-gray-300 rounded-lg p-4 relative shadow-lg">
+    <div className='flex'>
+            <div className='hidden lg:block'><Sidebar/></div>
+    {userDetail ? 
+   (  <div className="mb-20 ml-0 lg:ml-64 px-5 md:px-10 mx-auto w-full flex flex-col justify-evenly">
    <div className="flex justify-between items-center">
-     <h2 className="text-2xl font-semibold">Perfil de Usuario</h2>
+     <h2 className="undefined text-greenPrimary text-2xl font-bold mb-10">Perfil de Usuario</h2>
      <button className="text-gray-600 flex items-center">
        Modificar Datos
        <FiEdit className="ml-2" />
@@ -55,13 +59,13 @@ const dispatch = useDispatch();
          className="rounded-full w-32 h-32 border border-gray-300 mx-auto"
        />
      </div>
-     <div className="w-3/4 pl-4">
+     <div className="w-3/4 pl-4 flex flex-col">
        <p className="text-2xl font-bold">
          {userDetail.name} {userDetail.lastname}
        </p>
-       <p className="text-gray-600">{userDetail.email}</p>
-       <p className="text-gray-600">{userDetail.phone}</p>
-       <p className="text-gray-600">Fecha de Nacimiento: {userDetail.birthdate}</p>
+       <p className="text-gray-600 mt-2.5">{userDetail.email}</p>
+       <div className="text-gray-600 flex items-center"><FcPhoneAndroid></FcPhoneAndroid> {userDetail.phone}</div>
+       <p className="text-gray-600">Fecha de Nacimiento: {userDetail.birthdate?userDetail.birthdate: 'no hay datos'}</p>
        <p className="text-gray-600">País: {userDetail.location}</p>
        <div>
          <p className="text-gray-600">
@@ -69,7 +73,6 @@ const dispatch = useDispatch();
        </p>
        <img src="" alt="" />
        </div>
-      
      </div>
    </div>
 
@@ -106,7 +109,7 @@ const dispatch = useDispatch();
           {userGroups?.length > 0 ? (
             <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
               {userGroups?.map((group) => (
-                <li key={group.id} className="flex items-center">
+                <li key={group.id} className="flex items-center mt-2.5">
                   <div className="w-16 h-16 mr-2">
                     <img
                       src={group.image} // Reemplaza con la URL de la imagen del grupo
@@ -127,7 +130,9 @@ const dispatch = useDispatch();
   ):(
     // Puedes mostrar un indicador de carga aquí si lo deseas
     <div>Cargando...</div>
-  )
+  )}
+  <div className='hidden lg:block'><ListCardFirends/></div>
+  </div>
   );
   //   userDetail &&
   //  ( <div className="w-3/6 mx-auto mt-8 border border-gray-300 rounded-lg p-4 relative">

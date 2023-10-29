@@ -7,7 +7,7 @@ import EventosPage from "../features/Events/pages/EventosPage";
 import GruposPage from "../features/Grupos/pages/GruposPage";
 import PreguntasFrecuentesPage from "../features/PreguntasFrecuentes/pages/PreguntasFrecuentesPage";
 import EventoIdPage from "../features/Events/pages/EventoIdPage";
-import UserProfile from "../features/User/pages/UserProfile";
+import UserProfilePage from "../features/User/pages/UserProfilePage";
 import MessageContainer from "../components/MessageContainer";
 
 export default function privateRoute(){
@@ -48,7 +48,7 @@ export default function privateRoute(){
             },
             {
                 path:"/perfil",
-                element:<UserProfile/>
+                element:<UserProfilePage/>
             },
             {
                 path: "*",

@@ -1,7 +1,7 @@
 import React from 'react'
 import CustomCard from '../../../../components/Card'
 import Typography from '../../../../components/Typography'
-import { createEventRepository } from '../../Repository/eventRepository'
+import createEventRepository from '../../Repository/eventRepository'
 import { formatDate } from '../../../../utils/formatDates'
 import LinkButton from '../../../../components/LinkButton'
 
