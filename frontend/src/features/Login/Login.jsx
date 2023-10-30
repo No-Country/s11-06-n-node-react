@@ -1,6 +1,6 @@
 import {useForm} from 'react-hook-form';
 import axios from "axios"
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import logo from '../../../src/components/img/logo.png'
@@ -95,7 +95,6 @@ const Login = () =>{
                         
         //                 {errors.email && <span>{errors.email.message}</span>}
         //             </div>
-
         //             <div className='flex flex-col items-center gap-3'>
         //                 <label htmlFor="" className='mt-2'>Password: </label> 
         //                 <input className='border-2 border-black rounded-md' type="text" {...register("password",
@@ -115,6 +114,7 @@ const Login = () =>{
         // </div>
         // </>
     // )
+
 }
 
 export default Login
