@@ -39,7 +39,7 @@ router.put("/", isAuthenticated, [
     body('password').optional().isString(),
     body('location').optional().isString(),
     body('avatar').optional().isString(),
-    body('birthdate').optional().isISO8601().toDate(),
+    body('birthdate').optional().isString(),
     body('language').optional().isArray(),
     body('phone').optional().isString(),
 ], validateErrors, UserControllers.editUser);

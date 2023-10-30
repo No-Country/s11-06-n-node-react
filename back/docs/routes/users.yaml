@@ -113,7 +113,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/User"
+              $ref: "#/components/schemas/EditUser"
       responses:
         "200":
           description: Usuario editado exitosamente
@@ -366,8 +366,41 @@ components:
           type: string
           example: "Argentina"
         birthdate:
-          type: Date
-          example: "30/01/1995"
+          type: String
+          example: "1995-01-30"
+        phone:
+          type: string
+          example: "123123456"
+        status:
+          type: string
+          example: "conectado"
+        languages:
+          type: array
+          example: ["español", "ingles"]
+        avatar:
+          type: string
+          example: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJJ0BV5K7y5Rz-747xO2111YBnxs60u-QdTxpjHUtsfQ&s"
+    EditUser:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "652ebcefb2e4df899453902d"
+        name:
+          type: string
+          example: "Juan"
+        lastname:
+          type: string
+          example: "Pérez"
+        password:
+          type: string
+          example: "secretpassword"
+        location:
+          type: string
+          example: "Argentina"
+        birthdate:
+          type: String
+          example: "1995-01-30"
         phone:
           type: string
           example: "123123456"
