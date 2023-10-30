@@ -1,5 +1,5 @@
 import {
-    getUsers, postUser, getDetailUser,  modifyUser
+    getUsers, postUser, getDetailUser,  modifyUser, getUserGroups, getUserEvents
 } from "../Actions/UserSlice";
 import axios from "axios";
 
@@ -8,35 +8,44 @@ import axios from "axios";
 const getAllUsers= () => {
 	return async (dispatch) => {
 		try {
-			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/documentation/#/Users/get_users`)).data;			
-			return dispatch(getUsers(dbData));
+			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/users`));			
+			dispatch(getUsers(dbData).data);
 		} catch (error) {
-			alert({error: error.message});
+			console.error(error);
 		}
 	};
 };
 
  //GET para mostrar los datos del Usuario
-const getUserDetail = (id) => {
+const getUserDetail = (actualUser) => {
 	return async (dispatch) => {
 		try {
-			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/documentation/#/Users/get_users__id_/${id}`)).data;
-			dispatch(getDetailUser(dbData));
+      const config = {
+        headers: {
+          Authorization: `Bearer ${actualUser.accessToken}`,
+        },
+      };
+      // console.log(actualUser.accessToken);
+      // console.log(actualUser.usuario._id);
+			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/users/${actualUser.usuario._id}`, config));
+      // console.log(dbData.data);
+			dispatch(getDetailUser(dbData.data));
 		} catch (error) {
-			alert({error: error.message});
+			console.error(error);
 		}
 	};
 };
 
-//POST para el loguin de un usuario nuevo
-const userPost = (eventData) => {
+//POST para el register de un usuario
+const userPost = (userData) => {
   return async (dispatch) => {
+    
     try {
-       const response = await axios.post('https://s11-06-n-node-react-back.onrender.com/documentation/#/Users/post_users_login', eventData);
+       const response = await axios.post('https://s11-06-n-node-react-back.onrender.com/users', userData);
        dispatch(postUser(response.data));
     } catch (error) {
       console.error(error);
-      alert({ error: error.message });
+      
     }
   };
 };
@@ -44,23 +53,66 @@ const userPost = (eventData) => {
 
   //PUT para modificar datos del user
 
-const modifyTheUser = (id, user) => {
+const modifyTheUser = (user, token) => {
     return async (dispatch) => {
         try {
+          
             if (!user) {
                 throw new Error("New user is undefined.");
               }
-            const dbData = await axios.put(`https://s11-06-n-node-react-back.onrender.com/documentation/#/Users/put_users/${id}`, user);
-            return dispatch(modifyUser(dbData));
+              const config = {
+            headers: {
+              Authorization: `Bearer ${token}`,
+
+            },
+          };
+              // console.log(user);
+            const dbData = await axios.put(`https://s11-06-n-node-react-back.onrender.com/users`, user, config);
+            console.log(dbData);
+            return dispatch(modifyUser(dbData.data));
         } catch (error) {
-            alert({error: error.message});
+          console.error(error);
         }
     };
 };
+
+const getGroupsUser = (actualUser) => {
+	return async (dispatch) => {
+		try {
+      // console.log(actualUser.accessToken);
+      // console.log(actualUser.usuario._id);
+			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/groups/user/${actualUser.usuario._id}`));
+      console.log(dbData.data);
+			dispatch(getUserGroups(dbData.data));
+		} catch (error) {
+			console.error(error);
+		}
+	};
+};
+// const getEventsUser = (actualUser) => {
+// 	return async (dispatch) => {
+// 		try {
+//       const config = {
+//         headers: {
+//           Authorization: `Bearer ${actualUser.accessToken}`,
+//         },
+//       };
+//       // console.log(actualUser.accessToken);
+//       // console.log(actualUser.usuario._id);
+// 			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/users/${actualUser.usuario._id}`, config));
+//       // console.log(dbData.data);
+// 			dispatch(getDetailUser(dbData.data));
+// 		} catch (error) {
+// 			console.error(error);
+// 		}
+// 	};
+// };
+
 
 export{
     getAllUsers,
     getUserDetail,
     userPost,
-    modifyTheUser
+    modifyTheUser,
+    getGroupsUser
 }

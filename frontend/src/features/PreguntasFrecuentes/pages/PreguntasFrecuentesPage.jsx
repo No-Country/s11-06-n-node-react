@@ -4,6 +4,7 @@ import ListCardFirends from '../../../components/ListCardFriends'
 import { useState } from "react";
 import { MdRemove } from "react-icons/md";
 import BtnQuestion from '../../../components/Buttons/BtnQuestion';
+import Typography from '../../../components/Typography';
 
 export default function PreguntasFrecuentesPage() {
     
@@ -36,12 +37,6 @@ export default function PreguntasFrecuentesPage() {
         }
     ]
 
-
-    const handleToggleText = () => {
-        setShowText(!showText);
-    };
-    const [showText, setShowText] = useState(false);
-
     
     return (
         <div className='flex'>
@@ -51,7 +46,7 @@ export default function PreguntasFrecuentesPage() {
                 <div className='max-w-7xl mx-auto text-greenPrimary'>
                     <SearchBar/>
 
-                    <p className='text-2xl font-bold mb-10'>Preguntas Frecuentes:</p>
+                    <Typography.TitleContainer>Preguntas Frecuentes</Typography.TitleContainer>
 
                     {questions.map((question, index) => {
 

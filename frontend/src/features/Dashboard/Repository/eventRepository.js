@@ -242,7 +242,7 @@ const eventList = [
   },
 ]
 
-const  createEventRepository = () =>{
+const  createEventRepository  = () =>{
   const events = eventList;
 
   function addEvent(event) {
@@ -284,4 +284,4 @@ const  createEventRepository = () =>{
   };
 }
 
-export default createEventRepository;
+export default createEventRepository ;

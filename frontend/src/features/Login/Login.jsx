@@ -1,23 +1,16 @@
 import {useForm} from 'react-hook-form';
 import axios from "axios"
-import { useNavigate } from 'react-router-dom';
 import logo from '../../components/img/logo-1.png'
 import logoGoogle from '../../components/img/Google-Sign-In.png'
 import passwordIcon from '../../components/img/Vpn key.png'
-
+import Cookies from 'js-cookie';
 
 const Login = () =>{
-    
-    const {handleSubmit,register,formState: {errors}} = useForm()
-    const navigate = useNavigate();
-
-    console.log("error",errors)
-
+    const {handleSubmit,register,formState: {errors}} = useForm()    
     const onSubmit = (data) =>{
-        console.log(data)
         axios.post("https://s11-06-n-node-react-back.onrender.com/users/login",data).then(resp => {
-            let url = resp.data.usuario._id
-            navigate(`/dashboard/${url}`);
+            Cookies.set('data', JSON.stringify(resp.data), { expires: 3 });
+            location.href = "/"
         })
     }
 
