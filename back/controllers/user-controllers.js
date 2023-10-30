@@ -87,7 +87,7 @@ async function editUser(req, res) {
       (lastname && typeof lastname !== "string") ||
       (email && typeof email !== "string") ||
       (password && typeof password !== "string") || 
-      (birthdate && typeof birthdate !== "date") || 
+      (birthdate && typeof birthdate !== "string") || 
       (phone && typeof phone !== "string") || 
       (location && typeof location !== "string") 
     ) {
@@ -97,7 +97,6 @@ async function editUser(req, res) {
       id,
       name,
       lastname,
-      email,
       password,
       avatar,
       location,
