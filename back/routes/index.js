@@ -8,10 +8,9 @@ const eventRoutes = require('./event-routes');
 const activityRoutes = require('./activity-routes');
 const authRoutes = require('./auth-routes');
 const groupRoutes = require('./group-routes');
-//const localidadRoutes = require('./localidad-routes')
+const chatRoutes = require('./chat-routes')
 
 const newsRoutes = require('./news-routes')
-//const postRoutes = require('./post-routes')
 
 
 // use
@@ -21,5 +20,5 @@ app.use('/users', userRoutes);
 app.use('/events', eventRoutes);
 app.use('/activities', activityRoutes);
 app.use('/news', newsRoutes)
-
+app.use('/chat', chatRoutes)
 module.exports = app;

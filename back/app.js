@@ -1,4 +1,5 @@
 require('dotenv').config();
+const setupWebSocket = require('./options/websocket');
 const express = require('express');
 const session = require('express-session');
 const mongoose = require('mongoose')
@@ -10,7 +11,6 @@ const swaggerUI = require('swagger-ui-express')
 const swaggerJSDoc = require('swagger-jsdoc')
 const passportUtils = require('./utils/passportUtils')
 const apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:8080';
-
 const swaggerSpec = {
   definition: {
     openapi: '3.0.0',
@@ -68,7 +68,15 @@ app.use(passport.initialize())
 app.use(passport.session())
 passport.use(googleStrategy)
 app.use(express.json());
+app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}));
 app.use('/documentation', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+app.get('/chats', (req, res) => {
+  res.sendFile('public/chat.html', { root: __dirname });
+});
 app.use('/', routes);
-module.exports = app;
+
+setupWebSocket(server);
+
+
+module.exports = {app, server};

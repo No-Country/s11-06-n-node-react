@@ -16,7 +16,7 @@ const schema = new Schema ({
         type: String,   
     },
     birthdate: {
-        type: Date
+        type: String
     },
     phone: {
         type: String
