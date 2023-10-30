@@ -1,10 +1,10 @@
-const mongoose = require('mongoose')
-const User = require('./user.model')
+const mongoose = require('mongoose');
+const User = require('./user.model');
 
 const { Schema, model } = require("mongoose");
 
 const eventSchema = new Schema({
-    name:{
+    name: {
         type: String,
         required: true,
     },
@@ -12,15 +12,7 @@ const eventSchema = new Schema({
         type: Date,
         required: true,
     },
-    category: {
-        type: String,
-        required: true,
-    },
-    locationLat: {
-        type: String,
-        required: true,
-    },
-    locationLong: {
+    location: {
         type: String,
         required: true,
     },
@@ -28,11 +20,31 @@ const eventSchema = new Schema({
         type: String,
         required: false,
     },
-    user:{
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         required: false,
-        ref: User
-    }
+        ref: User,
+    },
+    topics: [String],
+    description: String,
+    reasons: [
+        {
+            title: String,
+            description: String,
+        }
+    ],
+    includes: [
+        {
+            title: String,
+            description: [String],
+        }
+    ],
+    youMustKnow: [
+        {
+            title: String,
+            description: [String],
+        }
+    ],
 });
 
 const Event = model("Event", eventSchema);
