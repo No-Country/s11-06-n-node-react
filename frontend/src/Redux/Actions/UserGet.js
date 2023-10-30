@@ -26,8 +26,8 @@ const getUserDetail = (actualUser) => {
         },
       };
       // console.log(actualUser.accessToken);
-      // console.log(actualUser.usuario._id);
-			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/users/${actualUser.usuario._id}`, config));
+      console.log(actualUser);
+			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/users/${actualUser.user._id}`, config));
       // console.log(dbData.data);
 			dispatch(getDetailUser(dbData.data));
 		} catch (error) {
@@ -81,7 +81,7 @@ const getGroupsUser = (actualUser) => {
 		try {
       // console.log(actualUser.accessToken);
       // console.log(actualUser.usuario._id);
-			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/groups/user/${actualUser.usuario._id}`));
+			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/groups/user/${actualUser.user._id}`));
       // console.log(dbData.data);
 			dispatch(getUserGroups(dbData.data));
 		} catch (error) {

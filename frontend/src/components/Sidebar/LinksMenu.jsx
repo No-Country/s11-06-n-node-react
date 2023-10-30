@@ -10,7 +10,7 @@ import { FiLogIn } from 'react-icons/fi';
 
 export default function LinksMenu(user) {
   console.log(Object.keys(user.user).length);
-
+console.log(user);
     const handleLogout = () => {
         if (Cookies.get('data')) {
             Cookies.remove('data', { path: '/auth' });
