@@ -2,6 +2,8 @@ import {useForm} from 'react-hook-form';
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import Sidebar from '../../components/Sidebar/Sidebar';
+
 
 const Login = () =>{
     const {handleSubmit,register,formState: {errors}} = useForm()    
@@ -14,6 +16,7 @@ const Login = () =>{
 
     return (
         <>
+        <div className='hidden lg:block'><Sidebar/></div>
         <div className='flex justify-center bg-blue-400 h-[100vh]'>
             <form onSubmit={handleSubmit(onSubmit)} id='form' className='border-2 border-pink-400 w-[90%] '>
                 <div className='flex flex-col'>
