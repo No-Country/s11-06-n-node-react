@@ -19,6 +19,7 @@ const swaggerSpec = {
       version: '1.0.0'
     },
     servers: [
+      {url: "https://s11-06-n-node-react-back.onrender.com/"},
       {url: apiBaseUrl}
     ]
   },
@@ -61,7 +62,6 @@ const sess = {
 };
 
 initializePassport();
-
 app.use(cors())
 app.use(session(sess));
 app.use(passport.initialize())

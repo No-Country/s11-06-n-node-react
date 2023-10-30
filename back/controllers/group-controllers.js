@@ -1,3 +1,4 @@
+const { response } = require("express");
 const Group = require("../models/group.model");
 const User = require("../models/user.model");
 const GroupsServices = require("../services/groups-services");
@@ -33,7 +34,7 @@ async function getById(req, res) {
   console.log(id);
   try {
     const response = await GroupsServices.getGroupById(id);
-    if (response == "Usuario no encontrado") {
+    if (response == "Grupo no encontrado") {
       return res.status(404).json({ error: response });
     } else {
       return res.status(200).send(response);
@@ -42,12 +43,6 @@ async function getById(req, res) {
     res.status(400).json({ error: error.message });
   }
 }
-// Obtener grupos de un usuario
-
-
-
-
-
 
 // Funcion para editar datos de un grupo
 async function updateGroup(req, res) {
@@ -92,6 +87,7 @@ async function updateGroup(req, res) {
     res.status(400).json({ error: error.message });
   }
 }
+// Borrado logico del grupo
 
 async function deleteGroupStatus(req, res) {
   const { id } = req.params;
@@ -105,6 +101,8 @@ async function deleteGroupStatus(req, res) {
     res.status(400).json({ error: error.message });
   }
 }
+
+// agregar usuario a grupo
 const addUserToGroup = async (req, res) => {
   try {
 
@@ -112,16 +110,16 @@ const addUserToGroup = async (req, res) => {
     const userId = req.query.userId;
     const response = await GroupsServices.addToGroup(groupId,userId);
     // verificar que existan
-    if (response == "No se encuentra grupo o usuario en la base de datos") {
+    if (response == "Group or user not found in the database") {
       return res.status(404).json({ message: 'Group or user not found' });
     }
-    if (response == "El usuario ya se encuentra en el grupo") {
+    if (response == "The user is already a member of the group") {
       return res.status(400).json({ message: 'User is already in the group' });
     }
-    if (response == "El usuario ya se encuentra como administrador en el grupo") {
+    if (response == "The user is already an administrator of the group") {
       return res.status(400).json({ message: 'The user is an administrator of the group' });
     }
-    if (response == "Tú solicitud de unión al grupo está pendiente") {
+    if (response == "Your request to join the group is pending") {
       return res.status(400).json({ message: 'Your request is pending' });
     }
   
@@ -132,6 +130,7 @@ const addUserToGroup = async (req, res) => {
   }
 };
 
+// Obtener grupos de un usuario
 
 async function getAllByIdUser(req, res) {
   try {
@@ -144,7 +143,7 @@ async function getAllByIdUser(req, res) {
   }
 }
 
-
+// Dejar grupo
 
 async function leaveGroup(req, res) {
   try {
@@ -159,6 +158,40 @@ async function leaveGroup(req, res) {
   }
 }
 
+async function newMessage(req, res) {
+  const { groupId, userId, message } = req.body;
+  try {
+    if (!groupId || !userId ||  !message ) {
+    return res.status(400).json({ message: "Required data is missing to create the message" });
+  }else {
+   const response = await GroupsServices.createMessage(groupId, userId, message)
+   if(response == "Group not found"){ return res.status(404).json({ message: 'Group is not in DB' });}
+   res.status(200).json(response);
+  }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
+async function deleteMensajeToGroup(req, res) {
+  const groupId = req.params.groupId;
+  const messageId = req.params.messageId;
+
+  try {
+      const resultado = await GroupsServices.deleteMessage(groupId, messageId);
+
+      if (resultado === "Group not found") {
+          return res.status(404).json({ message: "Group not found" });
+      } else if (resultado === "Successfully deleted message") {
+          return res.status(200).json({ message: "Successfully deleted message" });
+      } else {
+          return res.status(404).json({ message: "the message is not found in the group" });
+      }
+  } catch (error) {
+      return res.status(500).json({ message: "Error deleting message" });
+  }
+}
+
 module.exports = {
   getAll,
   createNewGroup, 
@@ -167,6 +200,8 @@ module.exports = {
   deleteGroupStatus,
   addUserToGroup,
   getAllByIdUser,
-  leaveGroup
+  leaveGroup,
+  newMessage,
+  deleteMensajeToGroup
  
 };

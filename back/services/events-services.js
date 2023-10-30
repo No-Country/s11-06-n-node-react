@@ -20,6 +20,16 @@ const getEventById = async (id) => {
     }
 }
 
+const getUserEvents = async (userId) => {
+    try {
+      const userEvents = await Events.find({ user: userId });
+      return userEvents;
+    } catch (error) {
+      console.error("Error en getUserEvents:", error);
+      throw new Error("Error al recuperar eventos del usuario");
+    }
+  }
+
 const createEvent = async (newEvent) => {
     try {
         const event = await Events.create(newEvent);
@@ -53,6 +63,7 @@ const editEvent = async (id, newEventData) => {
 module.exports = {
     getAllEvents,
     getEventById,
+    getUserEvents,
     createEvent,
     deleteEvent,
     editEvent

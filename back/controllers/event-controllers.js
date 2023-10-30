@@ -25,6 +25,17 @@ const getEventById = async (req, res) => {
     }
 }
 
+const getUserEvents = async (req, res) => {
+    try {
+      const userId = req.params.userId;
+      const userEvents = await EventService.getUserEvents(userId);
+      res.status(200).send(userEvents);
+    } catch (error) {
+      console.error("Error en getUserEvents:", error);
+      res.status(500).send({ error: "Error interno del servidor" });
+    }
+  }
+
 const createEvent = async (req, res) => {
     try {
         const newEvent = req.body;
@@ -68,6 +79,7 @@ const editEvent = async (req, res) => {
 module.exports = {
     getEvents,
     getEventById,
+    getUserEvents,
     createEvent,
     deleteEvent,
     editEvent
