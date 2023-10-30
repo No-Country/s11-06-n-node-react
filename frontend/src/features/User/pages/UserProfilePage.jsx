@@ -16,9 +16,12 @@ const userDetail = useSelector((state) => state.user.userDetail);
 const userGroups = useSelector((state) => state.user.userGroups);
 const dispatch = useDispatch();
 
+
+
   useEffect(() => {
  if (cookieData && !actualUser) {
   const userData = JSON.parse(cookieData);
+
   if(userData){
     setactualUser(userData)
    
@@ -36,7 +39,7 @@ const dispatch = useDispatch();
       }
     }, [actualUser, dispatch]);
 
-
+console.log(userDetail);
 
   return (
     <div className='flex'>
@@ -66,12 +69,21 @@ const dispatch = useDispatch();
        <div className="text-gray-600 flex items-center"><FcPhoneAndroid></FcPhoneAndroid> {userDetail.phone}</div>
        <p className="text-gray-600">Fecha de Nacimiento: {userDetail.birthdate?userDetail.birthdate: 'no hay datos'}</p>
        <p className="text-gray-600">País: {userDetail.location}</p>
-       <div>
-         <p className="text-gray-600">
-         Idiomas: {userDetail.languages?.join(', ')}
-       </p>
-       <img src="" alt="" />
-       </div>
+       <div className="flex flex-row">
+          <p className="text-gray-600">Idiomas:</p>
+          {userDetail.languages ? (
+            userDetail.languages.map((language) => (
+              <div className="ml-3" key={language.value}>
+                <img src={language.flag} alt={language.label} title={language.label} className="w-6 h-6 object-cover" />
+              </div>
+            ))
+          ) : (
+            <div>
+              Idiomas:
+              <p>Que idiomas manejas?</p>
+            </div>
+          )}
+        </div>
      </div>
    </div>
 
@@ -111,7 +123,7 @@ const dispatch = useDispatch();
                 <li key={group.id} className="flex items-center mt-2.5">
                   <div className="w-16 h-16 mr-2">
                     <img
-                      src={group.image} // Reemplaza con la URL de la imagen del grupo
+                      src={group.image}
                       alt={`${group.name} logo`}
                       className="w-full h-full rounded-full"
                     />
@@ -127,7 +139,6 @@ const dispatch = useDispatch();
       </div>
  </div>
   ):(
-    // Puedes mostrar un indicador de carga aquí si lo deseas
     <div>Cargando...</div>
   )}
   <div className='hidden lg:block'><ListCardFirends/></div>

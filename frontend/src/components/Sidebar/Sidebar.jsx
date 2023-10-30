@@ -37,7 +37,7 @@ export default function Sidebar() {
           }
         }, [actualUser, dispatch]);
 
-console.log(userDetail);
+// console.log(userDetail);
     return (
         <div className="w-56 bg-greenPrimary text-white h-screen fixed px-4">
             <div className="flex items-center gap-x-3 py-10">

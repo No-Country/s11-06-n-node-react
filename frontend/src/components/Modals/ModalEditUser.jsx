@@ -11,9 +11,10 @@ import TextArea from '../Input/textarea';
 import { LiaUserEditSolid } from 'react-icons/lia';
 import { RiImageEditLine } from 'react-icons/ri';
 import Avatar from '../Avatar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { modifyTheUser } from '../../Redux/Actions/UserGet';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
 export default function ModalEditUser({user, token}) {
 
@@ -23,29 +24,29 @@ const [loading, setLoading] = useState(false);
 const [loadingImage, setLoadingImage] = useState(false);
 const dispatch = useDispatch();
 // console.log(user, token);
+
     const [editedUser, setEditedUser] = useState({
         id: user._id,
         name: user.name,
         lastname: user.lastname,
-        // email: "",
         location: user.location,
         birthdate: user.birthdate,
         phone: user.phone,
         languages: user.languages,
         avatar: user.avatar
       });
-      const languagesList = [
-        { value: 'zh', label: 'Chino (Mandarín)' },
-        { value: 'es', label: 'Español' },
-        { value: 'en', label: 'Inglés' },
-        { value: 'hi', label: 'Hindi' },
-        { value: 'ar', label: 'Árabe' },
-        { value: 'bn', label: 'Bengalí' },
-        { value: 'pt', label: 'Portugués' },
-        { value: 'ru', label: 'Ruso' },
-        { value: 'ja', label: 'Japonés' },
-        { value: 'pa', label: 'Panyabí' },
-      ];
+      const [languagesList, setLanguagesList] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://demo1063061.mockable.io/idiomas_banderas')
+      .then((response) => {
+        setLanguagesList(response.data);
+      })
+      .catch((error) => {
+        console.error('Error al obtener la lista de idiomas:', error);
+      });
+  }, []);
+// console.log(languagesList);
 // console.log(editedUser);
   const handleFieldChange = (field, value) => {
     setEditedUser({
@@ -104,14 +105,15 @@ const dispatch = useDispatch();
     //   closeModal();
   };
   
-  const handleLanguageSelection = (language) => {
-    // Verifica si el idioma ya está seleccionado.
-    if (!editedUser.languages.includes(language)) {
-      // Agrega el idioma al estado editedUser.
-      setEditedUser((prevUser) => ({
-        ...prevUser,
-        languages: [...prevUser.languages, language],
-      }));
+  const handleLanguageSelection = async (language) => {
+    const selectedLanguage = await languagesList.find((lang) => lang.label === language);
+    if (selectedLanguage) {
+      if (!editedUser.languages.find((lang) => lang.value === selectedLanguage.value)) {
+        setEditedUser((prevUser) => ({
+          ...prevUser,
+          languages: [...prevUser.languages, selectedLanguage],
+        }));
+      }
     }
   };
   const handleRemoveLanguage = (language) => {
@@ -222,16 +224,18 @@ const dispatch = useDispatch();
         <div>
   <p className='mt-4'>Idiomas Seleccionados:</p>
   <ul className='flex'>
-    
     {editedUser.languages && editedUser.languages.map((language) => (
       <li className='flex items-center text-base mr-4'>
-        {language}
-        <button
-          onClick={() => handleRemoveLanguage(language)}
-          className="rounded-full p-4 text-red hover:text-red-600 transition duration-300 font-bold text-md"
-        >
-          X
-        </button>
+        <div className='relative'>
+          <img src={language.flag} alt={language.label} className="w-16 h-16 object-cover" />
+      <button
+        onClick={() => handleRemoveLanguage(language)}
+        className="absolute right-0 bottom-0 p-2 bg-red text-white rounded-full hover:bg-red-600 transition duration-300 font-bold"
+      >
+        X
+      </button>
+        </div>
+        
       </li>
     ))}
   </ul>
