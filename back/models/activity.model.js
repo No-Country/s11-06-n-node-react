@@ -12,18 +12,6 @@ const activitySchema = new Schema({
         type: Date,
         required: true,
     },
-    category: {
-        type: String,
-        required: true,
-    },
-    locationLat: {
-        type: String,
-        required: true,
-    },
-    locationLong: {
-        type: String,
-        required: true,
-    },
     image: {
         type: String,
         required: false,
