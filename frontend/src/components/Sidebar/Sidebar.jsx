@@ -1,12 +1,14 @@
 import user1 from '../../../public/user1.jpeg'
 import { BsChevronDown } from 'react-icons/bs';
-import { ImageProfileUserSmall } from '../Images/ImageProfileUser';
+import { ImageProfileUserLarge, ImageProfileUserMedium, ImageProfileUserSmall } from '../Images/ImageProfileUser';
 import LinksMenu from './LinksMenu';
 import user4 from '../../../public/person4.png'
 import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { getUserDetail } from '../../Redux/Actions/UserGet';
+import { Link } from 'react-router-dom';
+import { GrLogin } from 'react-icons/gr';
 
    
 
@@ -15,7 +17,6 @@ export default function Sidebar() {
  const cookieData = Cookies.get('data');
     const [actualUser, setactualUser] = useState();
     const userDetail = useSelector((state) => state.user.userDetail);
-    const userGroups = useSelector((state) => state.user.userGroups);
     const dispatch = useDispatch();
     
       useEffect(() => {
@@ -26,7 +27,7 @@ export default function Sidebar() {
         // console.log(userData);
       }
     } else {
-      console.log(userDetail);
+      console.log("Usuario cargado");
     }
         }, [cookieData, actualUser, dispatch]);
       
@@ -36,16 +37,30 @@ export default function Sidebar() {
           }
         }, [actualUser, dispatch]);
 
-
+console.log(userDetail);
     return (
         <div className="w-56 bg-greenPrimary text-white h-screen fixed px-4">
             <div className="flex items-center gap-x-3 py-10">
-                <ImageProfileUserSmall imagen = {userDetail.avatar}/>
+              {Object.keys(userDetail).length ?(
+              <><ImageProfileUserSmall imagen = {userDetail.avatar} />
                 <p className='font-bold'>{`${userDetail.name}`}</p>
+              </>
+              ):(
+                  <div className="flex items-center gap-x-3 py-10">
+                   <Link to={'/login'} className='flex items-center'> 
+                   <ImageProfileUserSmall imagen = {"https://res.cloudinary.com/dbwmesg3e/image/upload/v1698627185/GlobalMate/png-transparent-computer-icons-user-profile-user-avatar-blue-heroes-electric-blue-thumbnail_nm1glh.png"}/>
+                   <p className='font-bold ml-2'>{`usuario`}</p>
+                    </Link>
+
+                  </div>
+                )
+
+              }
+                
                 {/* <BsChevronDown/> */}
             </div>
             
-            <LinksMenu/>
+            <LinksMenu user={userDetail}/>
         </div>
     )
 }

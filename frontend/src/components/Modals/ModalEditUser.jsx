@@ -46,7 +46,7 @@ const dispatch = useDispatch();
         { value: 'ja', label: 'Japonés' },
         { value: 'pa', label: 'Panyabí' },
       ];
-console.log(editedUser);
+// console.log(editedUser);
   const handleFieldChange = (field, value) => {
     setEditedUser({
       ...editedUser,
@@ -95,9 +95,9 @@ console.log(editedUser);
     event.preventDefault();
     console.log('user en submit', editedUser)
     setLoading(true);
-    console.log(token);
+    // console.log(token);
     const result = dispatch(modifyTheUser(editedUser, token));
-      console.log(result);
+    //   console.log(result);
     //   const newCookieData = { token: token, user: formToSend }
     //   Cookies.set("userData", JSON.stringify(newCookieData));
       setLoading(false);
@@ -224,7 +224,7 @@ console.log(editedUser);
   <ul className='flex'>
     
     {editedUser.languages && editedUser.languages.map((language) => (
-      <li key={language} className='flex items-center text-base mr-4'>
+      <li className='flex items-center text-base mr-4'>
         {language}
         <button
           onClick={() => handleRemoveLanguage(language)}

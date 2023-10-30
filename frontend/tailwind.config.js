@@ -10,7 +10,9 @@ export default {
         greenPrimary: '#01363A',
         greenSecundary: '#098D82',
         grayPrimary: '#D9D9D9',
-        graySecundary: '#F9F4F4'
+        graySecundary: '#F9F4F4',
+        custombg: '#96cac5',
+        customhover: '#098d82'
       }
     },
   },

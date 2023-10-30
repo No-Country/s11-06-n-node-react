@@ -1,5 +1,5 @@
 import {
-    getUsers, postUser, getDetailUser,  modifyUser, getUserGroups, getUserEvents
+    getUsers, postUser, getDetailUser,  modifyUser, getUserGroups, getUserEvents, logOut
 } from "../Actions/UserSlice";
 import axios from "axios";
 
@@ -68,7 +68,7 @@ const modifyTheUser = (user, token) => {
           };
               // console.log(user);
             const dbData = await axios.put(`https://s11-06-n-node-react-back.onrender.com/users`, user, config);
-            console.log(dbData);
+            // console.log(dbData);
             return dispatch(modifyUser(dbData.data));
         } catch (error) {
           console.error(error);
@@ -82,7 +82,7 @@ const getGroupsUser = (actualUser) => {
       // console.log(actualUser.accessToken);
       // console.log(actualUser.usuario._id);
 			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/groups/user/${actualUser.usuario._id}`));
-      console.log(dbData.data);
+      // console.log(dbData.data);
 			dispatch(getUserGroups(dbData.data));
 		} catch (error) {
 			console.error(error);
@@ -109,10 +109,21 @@ const getGroupsUser = (actualUser) => {
 // };
 
 
+const logOutUser= () => {
+	return async (dispatch) => {
+		try {		
+			dispatch(logOut());
+		} catch (error) {
+			console.error(error);
+		}
+	};
+};
+
 export{
     getAllUsers,
     getUserDetail,
     userPost,
     modifyTheUser,
-    getGroupsUser
+    getGroupsUser,
+    logOutUser
 }

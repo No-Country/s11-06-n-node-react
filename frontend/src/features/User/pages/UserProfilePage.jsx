@@ -25,7 +25,7 @@ const dispatch = useDispatch();
     // console.log(userData.token);
   }
 } else {
-  console.log(userDetail);
+  console.log("Usuario cargado");
 }
     }, [cookieData, actualUser, dispatch]);
   
