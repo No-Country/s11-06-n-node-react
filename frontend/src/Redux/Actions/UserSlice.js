@@ -32,9 +32,14 @@ const Slice = createSlice({
         getUserEvents: (state, action) => {
             state.userEvents = action.payload;
         },
+        logOut: (state, action) => {
+            state.userDetail = {};
+            state.userGroups= [];
+            state.userEvents= [];
+        },
     }
 });
 
 
-export const { getUsers, postUser,  getDetailUser, modifyUser,getUserGroups, getUserEvents } = Slice.actions;
+export const { getUsers, postUser,  getDetailUser, modifyUser,getUserGroups, getUserEvents, logOut } = Slice.actions;
 export default Slice.reducer;

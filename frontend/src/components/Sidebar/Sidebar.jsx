@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { getUserDetail } from '../../Redux/Actions/UserGet';
+import { Link } from 'react-router-dom';
 
    
 
@@ -26,7 +27,7 @@ export default function Sidebar() {
         // console.log(userData);
       }
     } else {
-      console.log(userDetail);
+      console.log("Usuario cargado");
     }
         }, [cookieData, actualUser, dispatch]);
       
@@ -40,8 +41,20 @@ export default function Sidebar() {
     return (
         <div className="w-56 bg-greenPrimary text-white h-screen fixed px-4">
             <div className="flex items-center gap-x-3 py-10">
-                <ImageProfileUserSmall imagen = {userDetail.avatar}/>
+              {userDetail?(
+              <><ImageProfileUserSmall imagen = {userDetail.avatar}/>
                 <p className='font-bold'>{`${userDetail.name}`}</p>
+              </>
+              ):(
+                  <div>
+                    <ImageProfileUserSmall imagen = {"https://res.cloudinary.com/dbwmesg3e/image/upload/v1698627185/GlobalMate/png-transparent-computer-icons-user-profile-user-avatar-blue-heroes-electric-blue-thumbnail_nm1glh.png"}/>
+                    <Link to={'/login'} className='flex items-center'><span className='text-2xl mr-2'><AiOutlineTags/></span>Login</Link>
+
+                  </div>
+                )
+
+              }
+                
                 {/* <BsChevronDown/> */}
             </div>
             
