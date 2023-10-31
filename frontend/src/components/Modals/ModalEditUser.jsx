@@ -47,7 +47,7 @@ const dispatch = useDispatch();
       });
   }, []);
 // console.log(languagesList);
-// console.log(editedUser);
+console.log(editedUser);
   const handleFieldChange = (field, value) => {
     setEditedUser({
       ...editedUser,
@@ -97,11 +97,12 @@ const dispatch = useDispatch();
     console.log('user en submit', editedUser)
     setLoading(true);
     // console.log(token);
-    const result = dispatch(modifyTheUser(editedUser, token));
+    const result = await dispatch(modifyTheUser(editedUser, token));
     //   console.log(result);
     //   const newCookieData = { token: token, user: formToSend }
     //   Cookies.set("userData", JSON.stringify(newCookieData));
       setLoading(false);
+      window.location.reload();
     //   closeModal();
   };
   

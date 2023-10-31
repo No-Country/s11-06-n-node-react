@@ -104,6 +104,8 @@ const getEventsUser = (actualUser) => {
 	};
 };
 
+//Traer todas las noticias del usuario
+// https://s11-06-n-node-react-back.onrender.com/documentation/new/user/:id
 
 const logOutUser= () => {
 	return async (dispatch) => {
