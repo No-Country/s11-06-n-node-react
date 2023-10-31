@@ -13,7 +13,7 @@ export default function DashboardPage() {
 
             <SearchBar/>
             <div className=' flex flex-col gap-y-20'>
-                {/* <EventList/> */}
+                <EventList/>
                 <Noticias/>
                 <Grupos/>
             </div>            

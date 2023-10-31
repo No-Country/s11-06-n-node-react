@@ -16,9 +16,7 @@ const EventList = () => {
                 Eventos
             </Typography.TitleContainer>
 
-            <section className='flex flex-col md:flex-row gap-4
-                            w-full  '
-            >
+            <section className='flex flex-col md:flex-row gap-4 w-full'>
                 {events && events.map((event) => (
                     <CustomCard key={event.id} className=" "> 
 
