@@ -40,6 +40,7 @@ export default function Noticias() {
                 {noticiasData.map(noticiaData => {
                     return(  
                         <CardNoticia
+                        key={noticiaData._id}
                             _id={noticiaData._id}
                             name={noticiaData.name}
                             title={noticiaData.title}
