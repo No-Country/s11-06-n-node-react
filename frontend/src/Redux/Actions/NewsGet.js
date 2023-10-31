@@ -9,7 +9,7 @@ import axios from "axios";
 const getAllNews= () => {
 	return async (dispatch) => {
 		try {
-			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/news`)).data;			
+			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/news`)).data;			
 			return dispatch(getNews(dbData));
 		} catch (error) {
 			alert({error: error.message});
@@ -21,7 +21,7 @@ const getAllNews= () => {
 const getDetailNew = (id) => {
 	return async (dispatch) => {
 		try {
-			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/news/${id}`)).data;
+			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/news/${id}`)).data;
 			dispatch(getDetailNews(dbData));
 		} catch (error) {
 			alert({error: error.message});
@@ -34,7 +34,7 @@ const getDetailNew = (id) => {
 const newsPost = (newData) => {
   return async (dispatch) => {
     try {
-       const response = await axios.post('https://s11-06-n-node-react-back.onrender.com/news', newData);
+       const response = await axios.post(`${import.meta.env.VITE_API_URL}/news`, newData);
        dispatch(postNews(response.data));
     } catch (error) {
       console.error(error);
@@ -51,7 +51,7 @@ const modifyTheNew = (id, news) => {
             if (!news) {
                 throw new Error("New new is undefined.");
               }
-            const dbData = await axios.put(`https://s11-06-n-node-react-back.onrender.com/news/${id}`, news);
+            const dbData = await axios.put(`${import.meta.env.VITE_API_URL}/news/${id}`, news);
             return dispatch(modifyNews(dbData));
         } catch (error) {
             alert({error: error.message});
@@ -64,7 +64,7 @@ const modifyTheNew = (id, news) => {
 const addCommentToNewsOnServer = (newsId, comment) => {
     return async (dispatch) => {
         try {
-            const response = await axios.put(`https://s11-06-n-node-react-back.onrender.com/documentation/#/News/put_news__id__comment/${newsId}`, { comment });
+            const response = await axios.put(`${import.meta.env.VITE_API_URL}/documentation/#/News/put_news__id__comment/${newsId}`, { comment });
             dispatch(addCommentToNews({ newsId, comment: response.data }));
         } catch (error) {
             console.error(error);
