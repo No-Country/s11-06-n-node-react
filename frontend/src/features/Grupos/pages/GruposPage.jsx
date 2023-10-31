@@ -4,19 +4,12 @@ import ListCardFirends from '../../../components/ListCardFriends'
 
 export default function GruposPage() {
     return (
-        <div className='flex'>
-            <div className='hidden lg:block'><Sidebar/></div>
+        <div>
+            <SearchBar/>
 
-            <div className="mb-20 ml-0 lg:ml-64 px-5 md:px-10 mx-auto w-full">
-                <div className='max-w-7xl mx-auto'>
-                    <SearchBar/>
-
-                    <p>Grupos</p>
-                    <hr />
-                </div>
-            </div>
-
-            <div className='hidden lg:block'><ListCardFirends/></div>
+            <p>Grupos</p>
+            <hr />
+            
         </div>
     )
 }

@@ -23,7 +23,7 @@ export default function NavBarUser() {
     return (
         <div className="bg-white h-16 fixed top-0 w-full flex justify-between items-center z-10 px-3 md:px-10 shadow-md opacity-90">
             <span className='w-40'><Link to={'/dashboard'}><img src={Logo}/></Link></span>
-            <button onClick={toggleMenu} className='text-3xl cursor-pointer md:hidden'><FiMenu/></button>
+            <button onClick={toggleMenu} className='text-3xl cursor-pointer lg:hidden'><FiMenu/></button>
 
             {isOpen && (
                 <div className='bg-white fixed top-0 left-0 w-full h-screen p-3 pt-4 opacity'>
@@ -47,7 +47,7 @@ export default function NavBarUser() {
                             </button> */}
                         </div>
 
-                        <Link to={'/preguntas-frecuentes'} className='flex items-center'><span className='text-2xl mr-2'><AiOutlineQuestionCircle/></span>Preguntas frecuentes</Link>
+                        <Link to={'/preguntas-frecuentes'} className='flex items-center' onClick={toggleMenu}><span className='text-2xl mr-2'><AiOutlineQuestionCircle/></span>Preguntas frecuentes</Link>
                     </div>
 
 

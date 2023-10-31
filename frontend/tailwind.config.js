@@ -13,6 +13,9 @@ export default {
         graySecundary: '#F9F4F4',
         custombg: '#96cac5',
         customhover: '#098d82'
+      },
+      maxWidth: {
+        rem90: '90rem'
       }
     },
   },
