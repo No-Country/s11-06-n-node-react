@@ -54,7 +54,6 @@ console.log(userDetail);
 
   return (
     <div className='flex'>
-            <div className='hidden lg:block'><Sidebar/></div>
     {userDetail ? 
    (  <div className="mb-20 ml-0 lg:ml-64 px-5 md:px-10 mx-auto w-full flex flex-col justify-evenly">
    <div className="flex justify-between items-center">
@@ -182,7 +181,6 @@ console.log(userDetail);
   ):(
     <div>Cargando...</div>
   )}
-  <div className='hidden lg:block'><ListCardFirends/></div>
   </div>
   );
 };

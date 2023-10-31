@@ -8,6 +8,16 @@ function ImageProfileUserSmall({imagen}) {
             <div>Cargando...</div>
     )
 }
+function ImageProfileUserSmall2({imagen}) {
+    return (imagen?
+            <div 
+                className="w-16 h-16 rounded-full bg-cover bg-center border-2"
+                style={{backgroundImage: `url(${imagen})`}}
+            >
+            </div> : 
+            <div>Cargando...</div>
+    )
+}
 function ImageProfileUserMedium({imagen}) {
     return (
         imagen?
@@ -44,5 +54,6 @@ export {
     ImageProfileUserLarge,
     ImageProfileUserMedium,
     ImageProfileUserSmall,
+    ImageProfileUserSmall2,
     ImageBg
 } 

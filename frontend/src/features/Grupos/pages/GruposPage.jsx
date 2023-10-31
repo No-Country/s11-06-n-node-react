@@ -4,6 +4,7 @@ import ListCardFirends from "../../../components/ListCardFriends";
 import CardGrupoPage from "../components/CardGrupoPage";
 
 export default function GruposPage() {
+
     const gruposData = [
         {
           _id: 1,
@@ -80,17 +81,13 @@ export default function GruposPage() {
       ];
 
   return (
-    <div className="flex">
-      <div className="hidden lg:block">
-        <Sidebar />
-      </div>
-
-      <div className="mb-20 ml-0 lg:ml-64 px-5 md:px-10 mx-auto w-full">
-        <div className="max-w-7xl mx-auto">
+    <div>
           <SearchBar />
 
           <p>Grupo</p>
           <hr />
+    
+    
           {gruposData.map((grupoData) => {
              return (
               <CardGrupoPage
@@ -105,13 +102,8 @@ export default function GruposPage() {
               />
             ); 
           })}
-        </div>
-        
-      </div>
+          
 
-      <div className="hidden lg:block">
-        <ListCardFirends />
-      </div>
     </div>
   );
 }

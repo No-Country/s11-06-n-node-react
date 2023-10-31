@@ -23,7 +23,7 @@ export default function BtnPlus() {
         <div className=''>
             <button
                 onClick={toggleBtnAdd}
-                className={`bg-greenPrimary p-2 rounded-full text-4xl text-white flex justify-center items-center duration-75 ${rotated && 'rotate-45'}`}
+                className={`bg-greenPrimary p-2 rounded-full text-4xl text-white flex justify-center items-center duration-75 lg:mr-10 ${rotated && 'rotate-45'}`}
             >
                 <span className=''><BiPlus/></span>
             </button>

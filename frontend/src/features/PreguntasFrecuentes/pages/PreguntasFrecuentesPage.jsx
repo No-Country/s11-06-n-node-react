@@ -39,71 +39,21 @@ export default function PreguntasFrecuentesPage() {
 
     
     return (
-        <div className='flex'>
-            <div className='hidden lg:block'><Sidebar/></div>
+        <div className='text-greenPrimary'>
+            <SearchBar/>
 
-            <div className="mb-20 ml-0 lg:ml-64 px-5 md:px-10 mx-auto w-full">
-                <div className='max-w-7xl mx-auto text-greenPrimary'>
-                    <SearchBar/>
+            <Typography.TitleContainer>Preguntas Frecuentes</Typography.TitleContainer>
 
-                    <Typography.TitleContainer>Preguntas Frecuentes</Typography.TitleContainer>
+            {questions.map((question, index) => {
 
-                    {questions.map((question, index) => {
-
-                        return(
-                            <BtnQuestion
-                                key={index}
-                                question={question.question}
-                                answer={question.answer}
-                            />
-                        )
-                    })}
-
-                    <div>
-
-
-
-
-
-
-
-
-
-                        {/* <div className="grid grid-cols-2 gap-x-10">
-                            {questions.map((question) => (
-                                <p question={question.question}
-                                answer={question.answer}>
-                                        <div className="mb-10">
-                                        <button
-                                            
-                                            onClick={handleToggleText}
-                                        >
-                                            {question}
-                                            <span className="text-xl font-bold">
-                                            {showText ? <MdRemove /> : <GoPlus />}
-                                            </span>
-                                        </button>
-                                        {showText && (
-                                            <div className="bg-secundaryGreyLight2 p-4 rounded-b-md">
-                                            <p>{answer}</p>
-                                            </div>
-                                        )}
-                                        </div>                             
-                                </p>
-                            ))}
-                        </div> */}
-
-
-
-
-
-
-
-                    </div>
-                </div>
-            </div>
-
-            <div className='hidden lg:block'><ListCardFirends/></div>
+                return(
+                    <BtnQuestion
+                        key={index}
+                        question={question.question}
+                        answer={question.answer}
+                    />
+                )
+            })}
         </div>
     )
 }
