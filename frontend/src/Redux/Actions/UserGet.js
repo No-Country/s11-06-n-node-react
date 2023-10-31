@@ -89,24 +89,20 @@ const getGroupsUser = (actualUser) => {
 		}
 	};
 };
-// const getEventsUser = (actualUser) => {
-// 	return async (dispatch) => {
-// 		try {
-//       const config = {
-//         headers: {
-//           Authorization: `Bearer ${actualUser.accessToken}`,
-//         },
-//       };
-//       // console.log(actualUser.accessToken);
-//       // console.log(actualUser.usuario._id);
-// 			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/users/${actualUser.usuario._id}`, config));
-//       // console.log(dbData.data);
-// 			dispatch(getDetailUser(dbData.data));
-// 		} catch (error) {
-// 			console.error(error);
-// 		}
-// 	};
-// };
+const getEventsUser = (actualUser) => {
+	return async (dispatch) => {
+		try {
+      
+      // console.log(actualUser.accessToken);
+      // console.log(actualUser.usuario._id);
+			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/events/user/${actualUser.user._id}`));
+      console.log(dbData.data);
+			dispatch(getUserEvents(dbData.data));
+		} catch (error) {
+			console.error(error);
+		}
+	};
+};
 
 
 const logOutUser= () => {
@@ -125,5 +121,6 @@ export{
     userPost,
     modifyTheUser,
     getGroupsUser,
-    logOutUser
+    logOutUser,
+    getEventsUser
 }
