@@ -45,5 +45,6 @@ router.put("/", isAuthenticated, [
 ], validateErrors, UserControllers.editUser);
 router.get("/:id", isAuthenticated, UserControllers.getUserById);
 router.put("/:id", isAuthenticated, UserControllers.deleteUser);
+router.delete("/eliminar-imagen/:publicId", UserControllers.deleteImageUser);
 
 module.exports = router;
