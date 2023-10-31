@@ -48,10 +48,8 @@ export function GrupoDetail() {
   ];
   return (
     <div className="flex w-full">
-      <div className="hidden xl:block">
-        <Sidebar />
-      </div>
-      <div className="mb-20 ml-0 xl:ml-56  mx-auto w-full">
+   
+      <div className="mb-20 mx-auto w-full">
         <div className="h-28 md:h-40">
           <ImageBg imagen={grupoData.image} />
         </div>
@@ -84,7 +82,6 @@ export function GrupoDetail() {
           </TabsBody>
         </Tabs>
       </div>
-      <div className='hidden lg:block'><ListCardFirends/></div>
     </div>
   );
 }
