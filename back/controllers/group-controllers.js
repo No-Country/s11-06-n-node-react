@@ -16,12 +16,12 @@ async function getAll(req, res) {
 
 //crear un nuevo grupo
 async function createNewGroup(req, res) {
-  const { name, image, idUser, rules } = req.body;
+  const { name, image, idUser, rules, description } = req.body;
   try {
     if (!name || !image ||  !idUser ) {
     return res.status(400).json({ message: "Faltan datos obligatorios para crear el grupo" });
   }else{
-   const response = await GroupsServices.createGroup(name, image, idUser, rules)
+   const response = await GroupsServices.createGroup(name, image, idUser, rules, description)
    return res.status(200).json(response);
   }
   } catch (error) {

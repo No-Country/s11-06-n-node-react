@@ -27,7 +27,7 @@ async function getAllGroupsByUser(userId) {
   }
 }
 
-async function createGroup(name, image, idUser, rules) {
+async function createGroup(name, image, idUser, rules,description) {
   try {
     const findGroup = await Group.find({ name: name });
     if(findGroup.length){
@@ -39,6 +39,7 @@ async function createGroup(name, image, idUser, rules) {
     newGroup.image = image;
     newGroup.users_admin = [idUser];
     newGroup.rules = rules;
+    newGroup.description = description
     await newGroup.save();
     return `${name} group created successfully`;
   } catch (error) {
