@@ -3,7 +3,7 @@ import axios from "axios"
 const Register = () =>{
     const {handleSubmit,register, watch, formState: {errors}} = useForm()    
     const onSubmit = (data) =>{
-        axios.post("https://s11-06-n-node-react-back.onrender.com/users",data).then(resp => {
+        axios.post(`${import.meta.env.VITE_API_URL}/users`,data).then(resp => {
             if(resp.status == 201){
                 location.href = "/login"
             }else{

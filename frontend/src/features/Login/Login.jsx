@@ -9,7 +9,7 @@ import Cookies from 'js-cookie';
 const Login = () =>{
     const {handleSubmit,register,formState: {errors}} = useForm()    
     const onSubmit = (data) =>{
-        axios.post("https://s11-06-n-node-react-back.onrender.com/users/login",data).then(resp => {
+        axios.post(`${import.meta.env.VITE_API_URL}/users/login`,data).then(resp => {
             Cookies.set('data', JSON.stringify(resp.data), { expires: 3 });
             location.href = "/"
         })
@@ -87,7 +87,7 @@ const Login = () =>{
 
                         <div className='flex flex-col justify-center gap-3'>
                             
-                            <input type="text" className='border-2 border-[#E5E7EB] rounded-md h-12'
+                            <input type="password" className='border-2 border-[#E5E7EB] rounded-md h-12'
                             placeholder='Contraseña'
                             {...register("password",
                             {
@@ -99,7 +99,7 @@ const Login = () =>{
                                 )}/>
                             {errors.password && <span>{errors.password.message}</span>}
                         <button className='flex justify-start'>¿Olvidaste tu contraseña?</button>
-                        <button type='submit' className='bg-[#098D82] border-2 border-[#098D82] rounded-md h-12 text-white'>Continuar</button>
+                        <button type='submit' className={(errors.password) ? 'bg-[#97CAC5] border-2 border-[#098D82] rounded-md h-12 text-white' : 'bg-[#098D82] border-2 border-[#098D82] rounded-md h-12 text-white'}>Continuar</button>
                         <Link to="/register" className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>Crear Cuenta</Link>
                         </div>
                     </div>

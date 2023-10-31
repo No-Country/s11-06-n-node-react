@@ -8,7 +8,7 @@ import axios from "axios";
 const getAllGroups= () => {
 	return async (dispatch) => {
 		try {
-			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/groups`)).data;			
+			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/groups`)).data;			
 			return dispatch(getGroups(dbData));
 		} catch (error) {
 			alert({error: error.message});
@@ -23,7 +23,7 @@ const getAllGroups= () => {
 const getGroupDetail = (id) => {
 	return async (dispatch) => {
 		try {
-			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/groups/${id}`)).data;
+			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/groups/${id}`)).data;
 			dispatch(getDetailGroup(dbData));
 		} catch (error) {
 			alert({error: error.message});
@@ -35,7 +35,7 @@ const getGroupDetail = (id) => {
 const groupPost = (eventData) => {
   return async (dispatch) => {
     try {
-       const response = await axios.post('https://s11-06-n-node-react-back.onrender.com/groups', eventData);
+       const response = await axios.post(`${import.meta.env.VITE_API_URL}/groups`, eventData);
        dispatch(postGroup(response.data));
     } catch (error) {
       console.error(error);
@@ -53,7 +53,7 @@ const modifyTheGroup = ( group) => {
             if (!group) {
                 throw new Error("Group is undefined.");
               }
-            const dbData = await axios.put(`https://s11-06-n-node-react-back.onrender.com/groups`, group);
+            const dbData = await axios.put(`${import.meta.env.VITE_API_URL}/groups`, group);
             return dispatch(modifyGroup(dbData));
         } catch (error) {
             alert({error: error.message});

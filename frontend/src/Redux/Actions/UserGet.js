@@ -8,7 +8,7 @@ import axios from "axios";
 const getAllUsers= () => {
 	return async (dispatch) => {
 		try {
-			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/users`));			
+			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/users`));			
 			dispatch(getUsers(dbData).data);
 		} catch (error) {
 			console.error(error);
@@ -27,7 +27,7 @@ const getUserDetail = (actualUser) => {
       };
       // console.log(actualUser.accessToken);
       console.log(actualUser);
-			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/users/${actualUser.user._id}`, config));
+			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/users/${actualUser.user._id}`, config));
       // console.log(dbData.data);
 			dispatch(getDetailUser(dbData.data));
 		} catch (error) {
@@ -41,7 +41,7 @@ const userPost = (userData) => {
   return async (dispatch) => {
     
     try {
-       const response = await axios.post('https://s11-06-n-node-react-back.onrender.com/users', userData);
+       const response = await axios.post(`${import.meta.env.VITE_API_URL}/users`, userData);
        dispatch(postUser(response.data));
     } catch (error) {
       console.error(error);
@@ -67,7 +67,7 @@ const modifyTheUser = (user, token) => {
             },
           };
               // console.log(user);
-            const dbData = await axios.put(`https://s11-06-n-node-react-back.onrender.com/users`, user, config);
+            const dbData = await axios.put(`${import.meta.env.VITE_API_URL}/users`, user, config);
             // console.log(dbData);
             return dispatch(modifyUser(dbData.data));
         } catch (error) {
@@ -81,7 +81,7 @@ const getGroupsUser = (actualUser) => {
 		try {
       // console.log(actualUser.accessToken);
       // console.log(actualUser.usuario._id);
-			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/groups/user/${actualUser.user._id}`));
+			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/groups/user/${actualUser.user._id}`));
       // console.log(dbData.data);
 			dispatch(getUserGroups(dbData.data));
 		} catch (error) {

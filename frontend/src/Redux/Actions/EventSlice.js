@@ -12,8 +12,8 @@ const Slice = createSlice({
     initialState,
     reducers: {
         getEvents: (state, action) => {
+            console.log(action.payload);
             state.events = action.payload;
-            
         },
         postEvent:(state, action) => {
             state.post = action.payload;
