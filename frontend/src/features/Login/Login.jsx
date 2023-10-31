@@ -9,7 +9,7 @@ import Cookies from 'js-cookie';
 const Login = () =>{
     const {handleSubmit,register,formState: {errors}} = useForm()    
     const onSubmit = (data) =>{
-        axios.post("https://s11-06-n-node-react-back.onrender.com/users/login",data).then(resp => {
+        axios.post(`${import.meta.env.VITE_API_URL}/users/login`,data).then(resp => {
             Cookies.set('data', JSON.stringify(resp.data), { expires: 3 });
             location.href = "/"
         })

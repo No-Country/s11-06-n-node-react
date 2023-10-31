@@ -7,11 +7,17 @@ import createEventRepository from '../../Dashboard/Repository/eventRepository'
 import { formatDate } from '../../../utils/formatDates'
 import LinkButton from '../../../components/LinkButton'
 import { ImageBg } from '../../../components/Images/ImageProfileUser'
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { getAllEvents } from '../../../Redux/Actions/EventGet'
 
 export default function EventosPage() {
-
-    const { getAllEvents } = createEventRepository()
-    const events = getAllEvents();
+    const dispatch = useDispatch()
+    const events = useSelector((state) => state.event.events)
+    
+    useEffect(() => {
+        dispatch(getAllEvents())
+    },[dispatch])
 
 
     return (
