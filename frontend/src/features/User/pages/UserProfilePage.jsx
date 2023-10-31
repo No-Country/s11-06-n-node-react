@@ -1,22 +1,32 @@
 
 import React, { useState, useEffect } from "react";
 import { FiEdit } from "react-icons/fi";
-import { getGroupsUser, getUserDetail } from "../../../Redux/Actions/UserGet";
+import { getEventsUser, getGroupsUser, getUserDetail } from "../../../Redux/Actions/UserGet";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from 'js-cookie';
 import Sidebar from '../../../components/Sidebar/Sidebar'
 import ListCardFirends from '../../../components/ListCardFriends'
 import { FcPhoneAndroid } from 'react-icons/fc';
 import ModalEditUser from "../../../components/Modals/ModalEditUser";
+import { IoIosArrowForward } from 'react-icons/io';
+
 
 const UserProfile = () => {
 const cookieData = Cookies.get('data');
 const [actualUser, setactualUser] = useState();
 const userDetail = useSelector((state) => state.user.userDetail);
 const userGroups = useSelector((state) => state.user.userGroups);
+const userEvents = useSelector((state) => state.user.userEvents);
 const dispatch = useDispatch();
 
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
 
+  return `${day}-${month}-${year}`;
+};
 
   useEffect(() => {
  if (cookieData && !actualUser) {
@@ -36,6 +46,7 @@ const dispatch = useDispatch();
       if (actualUser) {
         dispatch(getUserDetail(actualUser));
         dispatch(getGroupsUser(actualUser));
+        dispatch(getEventsUser(actualUser));
       }
     }, [actualUser, dispatch]);
 
@@ -89,11 +100,41 @@ console.log(userDetail);
 
    <div className="mt-8">
      <div className="flex">
-       <div className="w-1/2 pr-3">
-         <div className="border p-4">
-           <h3 className="text-xl font-semibold">Eventos Creados</h3>
-           {/* Muestra eventos creados aquí */}
-         </div>
+       <div className="w-2/3 pr-3">
+       <div className="border p-4">
+        <h3 className="text-xl font-semibold">Eventos Creados</h3>
+        <hr className="mb-2"/>
+        {userEvents?.length > 0 ? (
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+            {userEvents.slice(0, 2).map((event) => (
+              <li key={event.id} className="border rounded p-2 flex flex-col justify-end items-center">
+                <div className="w-300 h-auto mr-300">
+                    <img
+                      src={event.image}
+                      alt={`${event.name} logo`}
+                      className="w-full h-full "
+                    />
+                  </div>
+                  <p className="font-semibold">{event.name}</p>
+                  <p className="text-sm">{event.location}</p>
+                  <p className="text-sm">{formatDate(event.date)}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Aún no has creado ningún evento.</p>
+        )}
+        <div className="w-full flex flex-row justify-end items-center">
+          <button
+          className="bg-greenPrimary text-white py-2 px-4 rounded-full  cursor-pointer hover:bg-greenSecundary duration-75 mt-4"
+          onClick={() => history.push("/todos-los-eventos")}
+        >
+         <IoIosArrowForward></IoIosArrowForward>
+        </button>
+        </div>
+        
+      </div>
+      {/* <UserEvents userEvents={userEvents} /> Crear componente */}
        </div>
        <div className="w-1/2 pl-3">
          <div className="border p-4">
@@ -118,10 +159,10 @@ console.log(userDetail);
           <h3 className="text-xl font-semibold mb-4">Grupos a los que perteneces</h3>
           <hr />
           {userGroups?.length > 0 ? (
-            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+            <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
               {userGroups?.map((group) => (
                 <li key={group.id} className="flex items-center mt-2.5">
-                  <div className="w-16 h-16 mr-2">
+                  <div className="w-10 h-10 mr-2">
                     <img
                       src={group.image}
                       alt={`${group.name} logo`}
