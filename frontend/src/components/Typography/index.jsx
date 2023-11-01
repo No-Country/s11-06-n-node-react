@@ -10,6 +10,9 @@ const SubtitleContainer = ({ className, children }) =>
 const SubtitleSmall = ({ className, children }) => 
     <h3  className={`${className} text-greenPrimary text-lg font-bold mb-7`}> {children} </h3>
 
+const SubtitleSmall2 = ({ className, children }) => 
+    <h3  className={`${className} text-greenPrimary text-base font-bold mb-2`}> {children} </h3>
+
 export const Base = ({ className, children }) => 
     <p  className={`${className} text-greenPrimary text text-lg font-normal `}> {children} </p>
 
@@ -37,6 +40,7 @@ Typography.TitlePage = TitlePage;
 Typography.TitleContainer = TitleContainer;
 Typography.SubtitleContainer = SubtitleContainer;
 Typography.SubtitleSmall = SubtitleSmall;
+Typography.SubtitleSmall2 = SubtitleSmall2;
 Typography.Base = Base;
 Typography.Small = Small;
 Typography.Xs = Xs;
