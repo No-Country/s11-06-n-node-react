@@ -44,7 +44,7 @@ export default function CardNoticia({ _id, name, title, location, imageUser, ima
 
                 <div className="flex justify-between items-center">
                     <BtnViewComments/>
-                    <Link to={'/'} className='cursor-pointer flex items-center gap-x-2 border border-gray-500 px-3 py-1 rounded-2xl'>Ver más <span className='text-lg'><MdRemoveRedEye/></span></Link>
+                    <Link to={`/noticias/${_id}`} className='cursor-pointer flex items-center gap-x-2 border border-gray-500 px-3 py-1 rounded-2xl'>Ver más <span className='text-lg'><MdRemoveRedEye/></span></Link>
                 </div>
             </div>
         </div>

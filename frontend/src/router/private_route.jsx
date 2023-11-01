@@ -12,6 +12,7 @@ import AllEvents from "../features/User/sections/EventosyNoticias/AllEvents";
 import AllNews from "../features/User/sections/EventosyNoticias/AllNews";
 import MessageContainer from "../components/MessageContainer";
 import { GrupoDetail } from "../features/Grupos/components/GrupoDetail";
+import NoticiasPageID from "../features/Noticias/pages/NoticiasPageID";
 
 export default function privateRoute(){
     return {
@@ -40,6 +41,10 @@ export default function privateRoute(){
             {
                 path:"/noticias",
                 element:<NoticiasPage/>
+            },
+            {
+                path:"/noticias/:id",
+                element:<NoticiasPageID/>
             },
             {
                 path:"/grupos",

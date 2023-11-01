@@ -22,19 +22,19 @@ export default function Grupos() {
 
     return (
         <div className="h-96">
-            <Typography.TitleContainer>Grupos</Typography.TitleContainer>
-            <div className="flex flex-col md:flex-row gap-10 md:gap-20">
-          {gruposData.map((grupoData) => {
-             return (
-              <CardGrupo
-                key={grupoData._id}
-                _id={grupoData._id}
-                image={grupoData.image}
-                description={grupoData.description}
-              />
-            ); 
-          })}
-        </div>
+          <Typography.TitleContainer>Grupos</Typography.TitleContainer>
+          <div className="flex flex-col md:flex-row gap-10 md:gap-20">
+            {gruposData.map((grupoData) => {
+              return (
+                <CardGrupo
+                  key={grupoData._id}
+                  _id={grupoData._id}
+                  image={grupoData.image}
+                  description={grupoData.description}
+                />
+              ); 
+            })}
+          </div>
         </div>
     )
 }

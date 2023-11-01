@@ -39,8 +39,8 @@ export default function Sidebar() {
 
 // console.log(userDetail);
     return (
-        <div className="w-56  text-white z-10">
-          <div className='fixed bg-greenPrimary  h-screen w-56   '>
+        <div className="w-60 text-white z-10">
+          <div className='fixed bg-greenPrimary h-screen w-60 px-4'>
             <div className="flex items-center gap-x-3 py-10">
               {Object.keys(userDetail).length ?(
               <><ImageProfileUserSmall imagen = {userDetail.avatar} />
@@ -57,8 +57,6 @@ export default function Sidebar() {
                 )
 
               }
-                
-                {/* <BsChevronDown/> */}
             </div>
             
             <LinksMenu user={userDetail}/>
