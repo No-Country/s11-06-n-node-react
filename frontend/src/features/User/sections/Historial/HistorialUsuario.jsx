@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import LinkButton from '../../../../components/LinkButton';
 
 
 export default function HistorialUsuario({userEvents, formatDate, userGroups, userNews}) {
     console.log(userEvents);
+
+
+
     const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
     const [currentEventIndex, setCurrentEventIndex] = useState(0);
 
@@ -60,13 +64,19 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
                     <p className="text-sm">{userEvents[currentEventIndex].location}</p>
                     <p className="text-sm">{formatDate(userEvents[currentEventIndex].date)}</p>
                     </div>
-                                    <button
+                                    {/* <button
                                     title="Ver todos"
                                         className="bg-greenPrimary text-white py-2 px-4 rounded-full cursor-pointer hover:bg-greenSecundary duration-75 absolute bottom-4 right-4"
                                         onClick={() => history.push("/todos-los-eventos")}
                                     >
                                         <IoIosArrowForward />
-                                    </button>
+                                    </button> */}
+                    <Link to="/events/user"  >  <button
+                      title="Ver todas"
+                      className="bg-greenPrimary text-white py-2 px-4 rounded-full cursor-pointer hover:bg-greenSecundary duration-75 absolute bottom-4 right-4">
+                      <IoIosArrowForward />
+                    </button> </Link>
+
                   </div>
                 ) : (
                   <p>Aún no has creado ningún evento.</p>
@@ -106,16 +116,15 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
                       <p className="text-sm">{userNews[currentNewsIndex].location}</p>
                       </div>
                       
-                      <button
-                      title="Ver todas"
-  className="bg-greenPrimary text-white py-2 px-4 rounded-full cursor-pointer hover:bg-greenSecundary duration-75 absolute bottom-4 right-4"
-  onClick={() => history.push("/todos-las-noticias" )}
->
-  <IoIosArrowForward />
-</button>
+                      <Link to="/news/user"  >  <button
+                        title="Ver todas"
+                        className="bg-greenPrimary text-white py-2 px-4 rounded-full cursor-pointer hover:bg-greenSecundary duration-75 absolute bottom-4 right-4">
+                        <IoIosArrowForward />
+                      </button> </Link>
+
                     </div>
                   ) : (
-                    <p>Aún no has creado ningún evento.</p>
+                    <p>Aún no has publicado noticias.</p>
                   )}
                 </div>
               ) : (

@@ -19,13 +19,12 @@ const userGroups = useSelector((state) => state.user.userGroups);
 const userEvents = useSelector((state) => state.user.userEvents);
 const userNews = useSelector((state) => state.user.userNews);
 const dispatch = useDispatch();
-console.log(userEvents);
+// console.log(userEvents);
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   const day = date.getDate().toString().padStart(2, '0');
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   const year = date.getFullYear();
-
   return `${day}-${month}-${year}`;
 };
 
