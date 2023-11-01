@@ -15,7 +15,36 @@ export default function GruposPage() {
       
   }, []);
 console.log(AllGroups);
-    // const gruposData = [
+ 
+
+  return (
+    <div>
+          <SearchBar />
+
+          <p>Grupo</p>
+          <hr />
+          {AllGroups.map((grupoData) => {
+             return (
+              <CardGrupoPage
+                key={grupoData._id}
+                _id={grupoData._id}
+                imagePlace={grupoData.image}
+                imageUser={grupoData.users_admin[0]?grupoData.users_admin[0].avatar : ""}
+                name={grupoData.users_admin[0].name? grupoData.users_admin[0]?.name : ""}
+                description={grupoData.description}
+                date={grupoData.date}
+                location={grupoData.users_admin[0]?grupoData.users_admin[0].location : ""}
+                title={grupoData.name?grupoData.name : ""}
+              />
+              
+            ); 
+          })}
+          
+
+    </div>
+  );
+}
+   // const gruposData = [
     //     {
     //       _id: 1,
     //       description: "Argentinos en Punta Cana",
@@ -89,29 +118,3 @@ console.log(AllGroups);
     //         date: "12/10/2023",
     //       },
     //   ];
-
-  return (
-    <div>
-          <SearchBar />
-
-          <p>Grupo</p>
-          <hr />
-          {AllGroups.map((grupoData) => {
-             return (
-              <CardGrupoPage
-                key={grupoData._id}
-                _id={grupoData._id}
-                imagePlace={grupoData.image}
-                imageUser={grupoData.users_admin[0].imageUser}
-                name={grupoData.users_admin[0].name}
-                description={grupoData.description}
-                date={grupoData.date}
-                location={grupoData.users_admin[0].location}
-              />
-            ); 
-          })}
-          
-
-    </div>
-  );
-}

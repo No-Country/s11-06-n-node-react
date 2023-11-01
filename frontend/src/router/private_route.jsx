@@ -71,6 +71,11 @@ export default function privateRoute(){
                 element:<AllEvents/>
             },
             {
+                path:"/grupo/:GroupId",
+                element:<GrupoDetail/>
+            },
+            
+            {
                 path: "*",
                 element: <Navigate to="/dashboard" replace /> 
             },
