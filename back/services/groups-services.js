@@ -5,12 +5,39 @@ const User = require("../models/user.model");
 async function getAllGroups() {
   try {
     const groups = await Group.find();
-    // console.log(groups)
-    return groups;
+
+    const formattedGroups = await Promise.all(groups.map(async (group) => {
+      const users_common = await User.find({ _id: { $in: group.users_common } },
+        'name avatar _id location' );
+      const users_admin = await User.find(
+        { _id: { $in: group.users_admin } },
+        'name avatar _id location' );
+      const users_pending = await User.find({ _id: { $in: group.users_pending } },
+        'name avatar _id location' );
+
+      return {
+        ...group.toObject(),
+        users_common,
+        users_admin,
+        users_pending,
+      };
+    }));
+
+    return formattedGroups;
   } catch (error) {
-    // console.log(error);
     throw new Error("Error al obtener los grupos");
   }
+}
+
+// Función para formatear los usuarios en el formato deseado
+function formatUsers(users) {
+  if (!users) return [];
+  return users.map(user => ({
+    // await User.findById(user._id);
+    id: user._id,
+    name: user.name,
+    image: user.image,
+  }));
 }
 
 async function getAllGroupsByUser(userId) {
