@@ -23,13 +23,13 @@ export default function BtnPlus() {
         <div className=''>
             <button
                 onClick={toggleBtnAdd}
-                className={`bg-greenPrimary p-2 rounded-full text-4xl text-white flex justify-center items-center duration-75 lg:mr-10 ${rotated && 'rotate-45'}`}
+                className={`bg-greenPrimary p-3 rounded-full text-4xl text-white flex justify-center items-center duration-75 lg:mr-10 ${rotated && 'rotate-45'}`}
             >
                 <span className=''><BiPlus/></span>
             </button>
 
             {displayIcons && (
-                <div className='absolute duration-200  -top-64 right-0 w-16 h-64 flex flex-col gap-4 '>
+                <div className='absolute duration-200 -top-64 right-10 flex flex-col gap-4'>
                     <ModalAddEvent />
                     <ModalAddGroup />
                     <ModalAddNews />
