@@ -20,7 +20,7 @@ export default function BtnViewComments() {
                 onClick={openModal}
                 className='text-gray-500 text-sm flex justify-end items-center gap-x-1'>
 
-                123 mates comentaron <span className='text-lg'><BiMessageRoundedDots/></span>
+                123 mates comentaron<span className='text-lg'><BiMessageRoundedDots/></span>
             </button>
             <Modal isOpen={modal} onRequestClose={closeModal} className={'overflow-y-scroll h-full'}>
 		        <ModalComentarios closeModal={closeModal} />

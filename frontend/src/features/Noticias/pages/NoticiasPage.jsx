@@ -19,8 +19,8 @@ import place6 from '../../../../public/place6.jpeg'
 import place7 from '../../../../public/place7.jpeg'
 import Typography from '../../../components/Typography'
 
-export default function NoticiasPage() {
 
+export default function NoticiasPage() {
     const noticiasData = [
         {
             _id: 1,
@@ -96,6 +96,8 @@ export default function NoticiasPage() {
 
     return (
         <div>
+
+
             <SearchBar/>
             <Typography.TitleContainer>Noticias</Typography.TitleContainer>
 

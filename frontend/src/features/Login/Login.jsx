@@ -5,15 +5,46 @@ import logoGoogle from '../../components/img/Google-Sign-In.png'
 // import passwordIcon from '../../components/img/Vpn key.png'
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import Swal from "sweetalert2";
 
-const Login = () =>{
-    const {handleSubmit,register,formState: {errors}} = useForm()    
-    const onSubmit = (data) =>{
-        axios.post(`${import.meta.env.VITE_API_URL}/users/login`,data).then(resp => {
-            Cookies.set('data', JSON.stringify(resp.data), { expires: 3 });
-            location.href = "/"
-        })
+const Login = () => {
+  const { handleSubmit, register, formState: { errors } } = useForm();
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'center',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
+  })
+
+  const onSubmit = (data) => {
+    axios.post(`${import.meta.env.VITE_API_URL}/users/login`, data)
+      .then(resp => {
+        Cookies.set('data', JSON.stringify(resp.data), { expires: 3 });
+    console.log(resp);
+        Toast.fire({
+            icon: 'success',
+            title: `Bienvenido ${resp.data.user.name}`
+          }).then(() => {
+          location.href = "/";
+        });
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: `Usuario o contraseña incorrectos`,
+          width: "20rem",
+          padding: "0.5rem"
+        }).then(() => {
+          location.href = "/login";
+        });
+      });
+  }
 
     return (
         <>

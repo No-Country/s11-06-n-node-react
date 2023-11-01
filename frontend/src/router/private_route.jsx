@@ -2,14 +2,16 @@ import { Navigate } from "react-router-dom";
 import Layout from "../components/Layaout";
 import DashboardPage from "../features/Dashboard/pages/DashBoardPage";
 import NoticiasPage from "../features/Noticias/pages/NoticiasPage";
-import FavoritosPage from "../features/Favoritos.jsx/pages/FavoritosPage";
 import EventosPage from "../features/Events/pages/EventosPage";
 import GruposPage from "../features/Grupos/pages/GruposPage";
 import PreguntasFrecuentesPage from "../features/PreguntasFrecuentes/pages/PreguntasFrecuentesPage";
 import EventoIdPage from "../features/Events/pages/EventoIdPage";
 import UserProfilePage from "../features/User/pages/UserProfilePage";
+import AllEvents from "../features/User/sections/EventosyNoticias/AllEvents";
+import AllNews from "../features/User/sections/EventosyNoticias/AllNews";
 import MessageContainer from "../components/MessageContainer";
 import { GrupoDetail } from "../features/Grupos/components/GrupoDetail";
+import NoticiasPageID from "../features/Noticias/pages/NoticiasPageID";
 
 export default function privateRoute(){
     return {
@@ -18,10 +20,6 @@ export default function privateRoute(){
             {
                 path:"/dashboard",
                 element: <DashboardPage/>
-            },
-            {
-                path: '/favoritos',
-                element: <FavoritosPage/>
             },
             {
                 path: '/eventos',
@@ -40,6 +38,10 @@ export default function privateRoute(){
                 element:<NoticiasPage/>
             },
             {
+                path:"/noticias/:id",
+                element:<NoticiasPageID/>
+            },
+            {
                 path:"/grupos",
                 element:<GruposPage/>
             },
@@ -54,6 +56,14 @@ export default function privateRoute(){
             {
                 path:"/perfil",
                 element:<UserProfilePage/>
+            },
+            {
+                path:"/news/user",
+                element:<AllNews/>
+            },
+            {
+                path:"/events/user",
+                element:<AllEvents/>
             },
             {
                 path: "*",

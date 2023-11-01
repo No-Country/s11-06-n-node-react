@@ -3,28 +3,24 @@ import ListCardFirends from '../../../components/ListCardFriends'
 import Sidebar from '../../../components/Sidebar/Sidebar'
 import Typography from '../../../components/Typography'
 import CustomCard from '../../../components/Card'
-import createEventRepository from '../../Dashboard/Repository/eventRepository'
-import { formatDate } from '../../../utils/formatDates'
-import LinkButton from '../../../components/LinkButton'
 import { ImageBg } from '../../../components/Images/ImageProfileUser'
 import { useParams } from 'react-router-dom'
 import EventList from '../../Dashboard/components/EventList'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { getEventDetail } from '../../../Redux/Actions/EventGet'
 
 export default function EventoIdPage() {
-
-
-
     let { eventId } = useParams()
-    const { getEventById } = createEventRepository()
-    const event = getEventById(eventId);
-    console.log(eventId, event);
-
-
+    const dispatch = useDispatch()
+    const event = useSelector((state) => state.event.eventDetail)
+    useEffect(() => {
+        dispatch(getEventDetail(eventId))
+    },[dispatch])
+    
     return (
         <div className='flex'>
-            <div className='hidden lg:block'><Sidebar /></div>
-
-            <div className="mb-20 ml-0 lg:ml-64 px-5 md:px-10 mx-auto w-full">
+            <section className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3   gap-4 w-full mt-8 overflow-x-auto '>
                 <div className='max-w-7xl mx-auto  flex flex-col gap-8'>
                     <SearchBar />
 
@@ -35,9 +31,6 @@ export default function EventoIdPage() {
                         <Typography.Base> {event.location} </Typography.Base>
                         <hr />
                     </Typography>
-
-
-
                     <div className="w-full h-96 grid grid-cols-4 gap-2">
                         <ImageBg imagen={event.image} className="rounded-t-none h-96" />
                         <ImageBg imagen={event.image} className="rounded-t-none h-96" />
@@ -124,10 +117,7 @@ export default function EventoIdPage() {
                     <EventList />
 
                 </div>
-            </div>
-
-
-            <div className='hidden lg:block'><ListCardFirends /></div>
+            </section>
         </div>
     )
 }
