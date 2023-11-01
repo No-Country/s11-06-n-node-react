@@ -8,6 +8,8 @@ import GruposPage from "../features/Grupos/pages/GruposPage";
 import PreguntasFrecuentesPage from "../features/PreguntasFrecuentes/pages/PreguntasFrecuentesPage";
 import EventoIdPage from "../features/Events/pages/EventoIdPage";
 import UserProfilePage from "../features/User/pages/UserProfilePage";
+import AllEvents from "../features/User/sections/EventosyNoticias/AllEvents";
+import AllNews from "../features/User/sections/EventosyNoticias/AllNews";
 import MessageContainer from "../components/MessageContainer";
 import { GrupoDetail } from "../features/Grupos/components/GrupoDetail";
 
@@ -54,6 +56,14 @@ export default function privateRoute(){
             {
                 path:"/perfil",
                 element:<UserProfilePage/>
+            },
+            {
+                path:"/news/user",
+                element:<AllNews/>
+            },
+            {
+                path:"/events/user",
+                element:<AllEvents/>
             },
             {
                 path: "*",

@@ -35,9 +35,6 @@ export default function EventoIdPage() {
                         <Typography.Base> {event.location} </Typography.Base>
                         <hr />
                     </Typography>
-
-
-
                     <div className="w-full h-96 grid grid-cols-4 gap-2">
                         <ImageBg imagen={event.image} className="rounded-t-none h-96" />
                         <ImageBg imagen={event.image} className="rounded-t-none h-96" />
