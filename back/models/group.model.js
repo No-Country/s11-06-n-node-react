@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const {Schema, model} = require('mongoose');
 const validStatusValues = ["activo", "inactivo", "eliminado"];
 
@@ -10,15 +11,19 @@ const GroupSchema = new Schema ({
     image: {
         type: String
     },
-    users_common: {
-        type: Array,   
-    },
-    users_admin: {
-        type: Array
-    },
-    users_pending: {
-        type: Array
-    },
+    users_common: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User' // 'User' debe coincidir con el nombre del modelo de usuario
+      }],
+      users_admin: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: false
+      }],
+      users_pending: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      }],
     messages: {
         type: Array
     },
