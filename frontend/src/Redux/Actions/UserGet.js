@@ -97,15 +97,8 @@ const getNewsUser = (actualUser) => {
 		try {
       if (!actualUser) {
         throw new Error("New user is undefined.");
-      }
-      console.log(actualUser.accessToken);
-      const config = {
-    headers: {
-      Authorization: `Bearer ${actualUser.accessToken}`,
-
-    },
   };
-			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/new/user/${actualUser.user._id}`,config));
+			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/news/user/${actualUser.user._id}`));
       console.log("news user",dbData.data);
 			dispatch(getUserNews(dbData.data));
 		} catch (error) {

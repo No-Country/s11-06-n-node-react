@@ -48,7 +48,7 @@ const formatDate = (dateString) => {
         dispatch(getUserDetail(actualUser));
         dispatch(getGroupsUser(actualUser));
         dispatch(getEventsUser(actualUser));
-        // dispatch(getNewsUser(actualUser));
+        dispatch(getNewsUser(actualUser));
       }
     }, [actualUser, dispatch]);
 
