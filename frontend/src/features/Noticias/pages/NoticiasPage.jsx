@@ -19,7 +19,6 @@ import place6 from '../../../../public/place6.jpeg'
 import place7 from '../../../../public/place7.jpeg'
 import Typography from '../../../components/Typography'
 
-import userData from '../../../utils/data.json'
 
 export default function NoticiasPage() {
     const noticiasData = [
@@ -97,10 +96,7 @@ export default function NoticiasPage() {
 
     return (
         <div>
-            {userData.users.map(user => (
-                <p>{user.name}</p>
-                // <img src={user.imageUser}/>
-            ))}
+
 
             <SearchBar/>
             <Typography.TitleContainer>Noticias</Typography.TitleContainer>
