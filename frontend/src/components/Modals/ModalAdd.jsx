@@ -2,12 +2,7 @@ import Modal from 'react-modal'
 Modal.setAppElement('#root');
 import { useState } from 'react';
 
-import { CiLocationOn } from 'react-icons/ci';
 import { GrClose } from 'react-icons/gr';
-import { ImageProfileUserSmall } from '../Images/ImageProfileUser';
-import image1 from '../../../public/user1.jpeg'
-import { BsPostcard } from 'react-icons/bs';
-// import ModalAddEvent from '../Modals/ModalAddEvent';
 
 const ModalAdd = ({ children, title, icon }) => {
 
@@ -36,10 +31,7 @@ const ModalAdd = ({ children, title, icon }) => {
                             <p className='text-2xl py-2'>{title}</p>
                             <button onClick={closeModal} className='absolute top-5 right-5 text-2xl text-greenSecundary'><GrClose /></button>
                         </div>
-
                         {/* Body */}
-                        {/*  */}
-
                         {children}
 
                     </div>

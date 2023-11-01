@@ -7,7 +7,7 @@ import axios from "axios";
 const getAllActivities= () => {
 	return async (dispatch) => {
 		try {
-			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/documentation/#/`)).data;			
+			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/documentation/#/`)).data;			
 			return dispatch(getActivities(dbData));
 		} catch (error) {
 			alert({error: error.message});
@@ -19,7 +19,7 @@ const getAllActivities= () => {
 const getActivityDetail = (id) => {
 	return async (dispatch) => {
 		try {
-			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/documentation/#/${id}`)).data;
+			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/documentation/#/${id}`)).data;
 			dispatch(getDetailActivity(dbData));
 		} catch (error) {
 			alert({error: error.message});
@@ -31,7 +31,7 @@ const getActivityDetail = (id) => {
 const activityPost = (eventData) => {
   return async (dispatch) => {
     try {
-       const response = await axios.post('https://s11-06-n-node-react-back.onrender.com/documentation/#/', eventData);
+       const response = await axios.post(`${import.meta.env.VITE_API_URL}/documentation/#/`, eventData);
        dispatch(postActivity(response.data));
     } catch (error) {
       console.error(error);
@@ -48,7 +48,7 @@ const modifyTheActivity = (id, activity) => {
             if (!activity) {
                 throw new Error("Activity is undefined.");
               }
-            const dbData = await axios.put(`https://s11-06-n-node-react-back.onrender.com/documentation/#/${id}`, activity);
+            const dbData = await axios.put(`${import.meta.env.VITE_API_URL}/documentation/#/${id}`, activity);
             return dispatch(modifyActivity(dbData));
         } catch (error) {
             alert({error: error.message});

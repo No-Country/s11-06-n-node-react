@@ -3,8 +3,7 @@ import { MapPinIcon } from '@heroicons/react/24/solid'
 import { BellIcon } from '@heroicons/react/24/solid'
 
 import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/solid'
-
-
+import { Link } from 'react-router-dom'
 
 function NavBar () {
     
@@ -12,14 +11,16 @@ function NavBar () {
     const activeStyle = 'underline underline-offset-4'
 
     return (
-        <div className='hidden lg:flex  items-center top-0 justify-between fixed w-full  lg:px-2 lg:text-sm lg:font-light mb-2 bg-[#D9D9D9] h-10'>
+        <div className='hidden lg:flex  items-center top-0 justify-between fixed w-full  lg:px-2 lg:text-sm lg:font-light mb-2 bg-[#098D82] h-10'>
             <ul className='flex items-center'>
                 <li className='mx-4'>
-                <figure className='w-auto h-full px-3  flex items-center justify-center'>
-                   <span>
-                         <img src={Logo} className='w-67 h-40 object-cover' alt='logo de aplicacion' />
-                    </span>
-                </figure>
+                    <Link to="/">
+                        <figure className='w-auto h-full px-3  flex items-center justify-center'>
+                            <span>
+                                <img src={Logo} className='w-67 h-40 object-cover' alt='logo de aplicacion' />
+                            </span>
+                        </figure>
+                    </Link>
                 </li>
                 <li>
                     <MapPinIcon className='w-5 h-5' />
