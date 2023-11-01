@@ -13,18 +13,18 @@ import { RiImageEditLine } from 'react-icons/ri';
 import Avatar from '../Avatar';
 import { useEffect, useState } from 'react';
 import { modifyTheUser } from '../../Redux/Actions/UserGet';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-
-export default function ModalEditUser({user, token, isModalOpen, setIsModalOpen}) {
+import Swal from "sweetalert2";
+export default function ModalEditUser({user, token}) {
 
 const cloudinaryApiKey = import.meta.env.VITE_CLOUDINARY_API_KEY;
 const url = import.meta.env.VITE_API_URL;
-// console.log(cloudinaryApiKey)
+// const user = useSelector((state) => state.user.userDetail);
 const [loading, setLoading] = useState(false);
 const [loadingImage, setLoadingImage] = useState(false);
 const dispatch = useDispatch();
-const [userImage, setuserImage] = useState('');
+
 const [modal, setModal] = useState(false);
 const openModal = () => {
   setModal(true)
@@ -32,10 +32,11 @@ const openModal = () => {
 const closeModal = () => {
   setModal(false)
 }
-
+// console.log(user);
     const [editedUser, setEditedUser] = useState({
         id: user._id,
         name: user.name,
+        email: user.email,
         lastname: user.lastname,
         location: user.location,
         birthdate: user.birthdate,
@@ -116,6 +117,13 @@ console.log(editedUser);
     setLoading(true);
     const result = await dispatch(modifyTheUser(editedUser, token));
       console.log(result);
+      if (result.payload) {
+        Swal.fire({
+          icon: "success",
+          title: "Edición Exitosa",
+          text: `¡Usuario ${editedUser.email} editado correctamente!`,
+        })
+      }
     //   const newCookieData = { token: token, user: editedUser }
     //   Cookies.set("userData", JSON.stringify(newCookieData));
       setLoading(false);
