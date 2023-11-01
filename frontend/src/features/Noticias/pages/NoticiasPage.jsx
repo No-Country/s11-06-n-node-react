@@ -86,7 +86,7 @@ export default function NoticiasPage() {
             _id: 7,
             name: 'Alexander Briones',
             title: 'Title',
-            location: 'Trujillo, Pe',
+            location: 'Trujillo',
             imageUser: user7,
             imagePlace: place7,
             description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam sequi dolorem modi obcaecati inventore, mollitia natus, vitae sapiente autem unde sint esse. Facere, voluptas maiores? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam sequi dolorem modi obcaecati inventore, mollitia natus, vitae sapiente autem unde sint esse. Facere, voluptas maiores?',
@@ -95,36 +95,27 @@ export default function NoticiasPage() {
     ]
 
     return (
+        <div>
+            <SearchBar/>
+            <Typography.TitleContainer>Noticias</Typography.TitleContainer>
 
-        <div className='flex'>
-            <div className='hidden md:block'><Sidebar/></div>
-
-
-            <div className="mb-20 ml-0 lg:ml-64 px-5 md:px-10 mx-auto w-full">
-                <div className='max-w-7xl mx-auto'>
-                    <SearchBar/>
-                    <Typography.TitleContainer>Noticias</Typography.TitleContainer>
-
-                    <div className='flex flex-col gap-y-10 md:gap-y-20'>
-                        {noticiasData.map(noticiaData => {
-                            return(
-                                <CardNoticia
-                                    _id={noticiaData._id}
-                                    name={noticiaData.name}
-                                    title={noticiaData.title}
-                                    location={noticiaData.location}
-                                    imageUser={noticiaData.imageUser}
-                                    imagePlace={noticiaData.imagePlace}
-                                    description={noticiaData.description}
-                                    date={noticiaData.date}
-                                />
-                            )
-                        })}
-                    </div>
-                </div>
+            <div className='flex flex-col gap-y-10 md:gap-y-20'>
+                {noticiasData.map(noticiaData => {
+                    return(
+                        <CardNoticia
+                            _id={noticiaData._id}
+                            name={noticiaData.name}
+                            title={noticiaData.title}
+                            location={noticiaData.location}
+                            imageUser={noticiaData.imageUser}
+                            imagePlace={noticiaData.imagePlace}
+                            description={noticiaData.description}
+                            date={noticiaData.date}
+                        />
+                    )
+                })}
             </div>
-
-            <div className='hidden lg:block'><ListCardFirends/></div>
         </div>
+    
     )
 }

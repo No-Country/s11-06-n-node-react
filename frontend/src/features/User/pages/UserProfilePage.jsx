@@ -56,7 +56,6 @@ console.log(userDetail);
 
   return (
     <div className='flex'>
-            <div className='hidden lg:block'><Sidebar/></div>
     {userDetail ? 
    (  <div className="mb-20 ml-0 lg:ml-64 px-5 md:px-10 mx-auto w-full flex flex-col justify-evenly">
    <div className="flex justify-between items-center">
@@ -161,4 +160,4 @@ export default UserProfile;
             <p>Aún no te has unido a ningún grupo.</p>
           )}
         </div>
-      </div> */}
+

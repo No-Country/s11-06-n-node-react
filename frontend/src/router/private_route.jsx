@@ -9,6 +9,7 @@ import PreguntasFrecuentesPage from "../features/PreguntasFrecuentes/pages/Pregu
 import EventoIdPage from "../features/Events/pages/EventoIdPage";
 import UserProfilePage from "../features/User/pages/UserProfilePage";
 import MessageContainer from "../components/MessageContainer";
+import { GrupoDetail } from "../features/Grupos/components/GrupoDetail";
 
 export default function privateRoute(){
     return {
@@ -41,6 +42,10 @@ export default function privateRoute(){
             {
                 path:"/grupos",
                 element:<GruposPage/>
+            },
+            {
+                path:"/grupos/:id",
+                element:<GrupoDetail/>
             },
             {
                 path:"/preguntas-frecuentes",
