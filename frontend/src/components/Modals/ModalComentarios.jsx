@@ -23,8 +23,8 @@ export default function ModalComentarios({closeModal}) {
 
     return (
         <div className="flex justify-center items-center h-full px-5">
-            <div className="max-w-2xl bg-white w-full p-5 md:p-6 pb-10 rounded-lg shadow-lg border border-gray-200 relative">
-                <Typography.SubtitleSmall>Comentarios:</Typography.SubtitleSmall>
+            <div className="max-w-2xl bg-white w-full p-5 md:p-6  rounded-lg shadow-lg border border-gray-200 relative">
+                <div className="border-b border-greenPrimary text-lg font-bold mb-10 mt-1 pb-2">Comentarios:</div>
                 <button onClick={closeModal} className="absolute top-3 right-3 text-xl"><AiOutlineClose/></button>
 
                 <div className="flex flex-col gap-y-5">

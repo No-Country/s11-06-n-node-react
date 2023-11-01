@@ -4,7 +4,6 @@ import SearchBar from '../../../components/SearchBar/SearchBar'
 import Noticias from '../sections/Noticias'
 import Grupos from '../sections/Grupos'
 
-
 export default function DashboardPage() {
 
 

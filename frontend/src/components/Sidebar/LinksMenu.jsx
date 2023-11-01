@@ -23,7 +23,7 @@ export default function LinksMenu(user) {
 
       };
     return (
-    <div className='flex h-4/5 flex-col justify-between;'>
+    <div className='flex h-4/5 flex-col justify-between pb-10'>
       {Object.keys(user.user).length ?(
 <div className='flex flex-col gap-y-5 h-full'>
             <Link to={'/dashboard'} className='flex items-center'><span className='text-2xl mr-2'><LuLayoutDashboard/></span>Dashboard</Link>

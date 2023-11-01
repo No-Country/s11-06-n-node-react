@@ -2,7 +2,7 @@ import { ImageProfileUserSmall } from "../../Images/ImageProfileUser";
 
 export default function CardComentario({ imageUser, name, comment, date}) {
     return (
-        <div className="flex gap-x-5">
+        <div className="flex gap-x-2">
 
             <div>
                 <ImageProfileUserSmall imagen={imageUser}/>
