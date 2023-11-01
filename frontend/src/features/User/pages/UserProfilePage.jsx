@@ -57,7 +57,7 @@ console.log(userDetail);
   return (
     <div className='flex'>
     {userDetail ? 
-   (  <div className="mt-20 lg px-5 md:px-10 mx-auto w-full flex flex-col justify-evenly">
+   (  <div className="mt-10 lg px-5 md:px-10 mx-auto w-full flex flex-col justify-evenly">
    <div className="flex justify-between items-center">
      <h2 className="undefined text-greenPrimary text-2xl font-bold mb-10">Perfil de Usuario</h2>
      <button className="text-gray-600 flex items-center">

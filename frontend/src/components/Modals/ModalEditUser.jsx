@@ -24,7 +24,7 @@ const url = import.meta.env.VITE_API_URL;
 const [loading, setLoading] = useState(false);
 const [loadingImage, setLoadingImage] = useState(false);
 const dispatch = useDispatch();
-// console.log(user, token);
+const [userImage, setuserImage] = useState('');
 const [modal, setModal] = useState(false);
 const openModal = () => {
   setModal(true)
@@ -33,7 +33,6 @@ const closeModal = () => {
   setModal(false)
 }
 
-console.log(modal);
     const [editedUser, setEditedUser] = useState({
         id: user._id,
         name: user.name,
@@ -54,6 +53,7 @@ console.log(modal);
       .catch((error) => {
         console.error('Error al obtener la lista de idiomas:', error);
       });
+      // setuserImage(editedUser.avatar)
   }, []);
 // console.log(languagesList);
 console.log(editedUser);
@@ -68,37 +68,47 @@ console.log(editedUser);
   const handleAvatarChange = async (e) => {
     e.preventDefault();
     //Para eliminar la imagen anterior
-    const array = userImage.split("/")
+    const array = editedUser.avatar.split("/")
     const [publicID, etc] = array[array.length - 1].split(".")
-    // console.log(publicID)
+    console.log(publicID)
     setLoadingImage(true)
     //borrar la imagen anterior ------------------------------------------------
-    const del = await fetchFunctions.DELETE(
-      `${VITE_API_URL}/users/eliminar-imagen/${publicID}`
-    );
-    console.log(cloudinaryApiKey);
-    //-------------------------------------------------------------------------------
-    const file = e.target.files[0]
-    // console.log(file)
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', 'GlobalMateApp')
-    formData.append('api_key', cloudinaryApiKey);
-    formData.append('public_id', `${publicID}`);
-    const res = await fetch('https://api.cloudinary.com/v1_1/GlobalMate/image/upload',
-      {
-        method: "POST",
-        body: formData
-      })
-    // console.log('soy respuesta:',res);
-    const cloudinaryData = await res.json();
-    const uploadedUrl = cloudinaryData.secure_url
-    // console.log('soy la url nueva',uploadedUrl)
-    setLoadingImage(false)
-    setEditedUser((prevEditedUser) => ({
-      ...prevEditedUser,
-      avatar: uploadedUrl,
-    }));
+    try {
+      const delResponse = await axios.delete(
+        `${url}/users/eliminar-imagen/${publicID}`
+      );
+      console.log(delResponse);
+  
+      // Subir la nueva imagen
+      const file = e.target.files[0];
+      console.log(file);
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'GlobalMateApp');
+      formData.append('api_key', cloudinaryApiKey);
+      formData.append('public_id', publicID);
+  
+      const uploadResponse = await axios.post(
+        'https://api.cloudinary.com/v1_1/GlobalMate/image/upload',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+  
+      const cloudinaryData = uploadResponse.data;
+      const uploadedUrl = cloudinaryData.secure_url;
+  
+      setLoadingImage(false);
+      setEditedUser((prevEditedUser) => ({
+        ...prevEditedUser,
+        avatar: uploadedUrl,
+      }));
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   const handleSave = async () => {
@@ -142,7 +152,7 @@ console.log(editedUser);
     return (
         
           <div className="mt-10">
-          <button onClick={openModal} className='w-16 h-16 p-2 bg-greenSecundary rounded-full text-white flex flex-col justify-center items-center border-solid shadow-2xl border-greenPrimary hover:bg-greenPrimary'>
+          <button onClick={openModal} className='w-16 h-16 p-2 bg-greenPrimary rounded-full text-white flex flex-col justify-center items-center border-solid shadow-2xl border-greenPrimary hover:bg-greenSecundary'>
                 <span className='text-xl'> {<LiaUserEditSolid />}</span>
                 <p className='text-xs'>Editar</p>
             </button>

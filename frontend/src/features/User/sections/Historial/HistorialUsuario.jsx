@@ -28,7 +28,7 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
         <div>
         <div className="mt-8 ">
           <div className="flex">
-            <div className="w-1/2 pr-3">
+            <div className="w-1/2 pr-3 ">
               <div className="border p-4 border p-4 shadow-lg">
                 <h3 className="text-xl font-semibold">Eventos Creados</h3>
                 <hr className="mb-2" />
@@ -55,12 +55,11 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
                         />
                       </div>
                     </div>
-                    <div className="w-4/5 flex flex-col items-center">
+                    <div className="w-4/5 flex flex-col items-center mt-2">
                         <p className="font-semibold">{userEvents[currentEventIndex].name}</p>
                     <p className="text-sm">{userEvents[currentEventIndex].location}</p>
                     <p className="text-sm">{formatDate(userEvents[currentEventIndex].date)}</p>
                     </div>
-                    
                                     <button
                                     title="Ver todos"
                                         className="bg-greenPrimary text-white py-2 px-4 rounded-full cursor-pointer hover:bg-greenSecundary duration-75 absolute bottom-4 right-4"
@@ -102,7 +101,7 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
                           />
                         </div>
                       </div >
-                      <div className="w-4/5 flex flex-col items-center">
+                      <div className="w-4/5 flex flex-col items-center mt-2">
                         <p className="font-semibold">{userNews[currentNewsIndex].title}</p>
                       <p className="text-sm">{userNews[currentNewsIndex].location}</p>
                       </div>
