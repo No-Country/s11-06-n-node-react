@@ -142,7 +142,7 @@ console.log(editedUser);
     return (
         
           <div className="mt-10">
-          <button onClick={openModal} className='w-16 h-16 p-2 bg-greenSecundary rounded-full text-white flex flex-col justify-center items-center border-solid shadow-2xl border-greenPrimary hover:bg-greenPrimary'>
+          <button onClick={openModal} className='w-16 h-16 p-2 bg-greenPrimary rounded-full text-white flex flex-col justify-center items-center border-solid shadow-2xl border-greenPrimary hover:bg-greenSecundary'>
                 <span className='text-xl'> {<LiaUserEditSolid />}</span>
                 <p className='text-xs'>Editar</p>
             </button>
