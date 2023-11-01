@@ -31,7 +31,6 @@ const ModalAdd = ({ children, title, icon }) => {
                             <p className='text-2xl py-2'>{title}</p>
                             <button onClick={closeModal} className='absolute top-5 right-5 text-2xl text-greenSecundary'><GrClose /></button>
                         </div>
-
                         {/* Body */}
                         {children}
 

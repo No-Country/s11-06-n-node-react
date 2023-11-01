@@ -1,5 +1,5 @@
 import {
-    getUsers, postUser, getDetailUser,  modifyUser, getUserGroups, getUserEvents, logOut
+    getUsers, postUser, getDetailUser,  modifyUser, getUserGroups, getUserEvents, logOut, getUserNews
 } from "../Actions/UserSlice";
 import axios from "axios";
 
@@ -8,7 +8,7 @@ import axios from "axios";
 const getAllUsers= () => {
 	return async (dispatch) => {
 		try {
-			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/users`));			
+			const dbData = await axios.get(`${import.meta.env.VITE_API_URL}/users`);			
 			dispatch(getUsers(dbData).data);
 		} catch (error) {
 			console.error(error);
@@ -25,10 +25,7 @@ const getUserDetail = (actualUser) => {
           Authorization: `Bearer ${actualUser.accessToken}`,
         },
       };
-      // console.log(actualUser.accessToken);
-      console.log(actualUser);
-			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/users/${actualUser.user._id}`, config));
-      // console.log(dbData.data);
+			const dbData = await axios.get(`${import.meta.env.VITE_API_URL}/users/${actualUser.user._id}`, config);
 			dispatch(getDetailUser(dbData.data));
 		} catch (error) {
 			console.error(error);
@@ -63,12 +60,9 @@ const modifyTheUser = (user, token) => {
               const config = {
             headers: {
               Authorization: `Bearer ${token}`,
-
             },
           };
-              // console.log(user);
             const dbData = await axios.put(`${import.meta.env.VITE_API_URL}/users`, user, config);
-            // console.log(dbData);
             return dispatch(modifyUser(dbData.data));
         } catch (error) {
           console.error(error);
@@ -79,10 +73,7 @@ const modifyTheUser = (user, token) => {
 const getGroupsUser = (actualUser) => {
 	return async (dispatch) => {
 		try {
-      // console.log(actualUser.accessToken);
-      // console.log(actualUser.usuario._id);
-			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/groups/user/${actualUser.user._id}`));
-      // console.log(dbData.data);
+			const dbData = await axios.get(`${import.meta.env.VITE_API_URL}/groups/user/${actualUser.user._id}`);
 			dispatch(getUserGroups(dbData.data));
 		} catch (error) {
 			console.error(error);
@@ -92,9 +83,6 @@ const getGroupsUser = (actualUser) => {
 const getEventsUser = (actualUser) => {
 	return async (dispatch) => {
 		try {
-      
-      // console.log(actualUser.accessToken);
-      // console.log(actualUser.usuario._id);
 			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/events/user/${actualUser.user._id}`));
       console.log(dbData.data);
 			dispatch(getUserEvents(dbData.data));
@@ -104,6 +92,24 @@ const getEventsUser = (actualUser) => {
 	};
 };
 
+const getNewsUser = (actualUser) => {
+	return async (dispatch) => {
+		try {
+      if (!actualUser) {
+        throw new Error("New user is undefined.");
+  };
+			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/news/user/${actualUser.user._id}`));
+      console.log("news user",dbData.data);
+			dispatch(getUserNews(dbData.data));
+		} catch (error) {
+			console.error(error);
+		}
+	};
+};
+
+//https://s11-06-n-node-react-back.onrender.com/new/user/:id
+//Traer todas las noticias del usuario
+// https://s11-06-n-node-react-back.onrender.com/documentation/new/user/:id
 
 const logOutUser= () => {
 	return async (dispatch) => {
@@ -115,6 +121,7 @@ const logOutUser= () => {
 	};
 };
 
+
 export{
     getAllUsers,
     getUserDetail,
@@ -122,5 +129,6 @@ export{
     modifyTheUser,
     getGroupsUser,
     logOutUser,
-    getEventsUser
+    getEventsUser,
+    getNewsUser
 }

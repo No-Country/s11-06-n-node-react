@@ -6,7 +6,8 @@ const initialState = {
     userDetail: {}, //detalles del usuario
     put:[], //modificar datos del usuario
     userGroups: [],
-    userEvents: []
+    userEvents: [],
+    userNews: []
 };
 const Slice = createSlice({
     name: 'user',
@@ -32,6 +33,9 @@ const Slice = createSlice({
         getUserEvents: (state, action) => {
             state.userEvents = action.payload;
         },
+        getUserNews: (state, action) => {
+            state.userNews = action.payload;
+        },
         logOut: (state, action) => {
             state.userDetail = {};
             state.userGroups= [];
@@ -41,5 +45,5 @@ const Slice = createSlice({
 });
 
 
-export const { getUsers, postUser,  getDetailUser, modifyUser,getUserGroups, getUserEvents, logOut } = Slice.actions;
+export const { getUsers, postUser,  getDetailUser, modifyUser,getUserGroups, getUserEvents, logOut, getUserNews } = Slice.actions;
 export default Slice.reducer;
