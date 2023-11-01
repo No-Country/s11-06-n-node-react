@@ -10,6 +10,7 @@ import EventoIdPage from "../features/Events/pages/EventoIdPage";
 import UserProfilePage from "../features/User/pages/UserProfilePage";
 import MessageContainer from "../components/MessageContainer";
 import { GrupoDetail } from "../features/Grupos/components/GrupoDetail";
+import NoticiasPageID from "../features/Noticias/pages/NoticiasPageID";
 
 export default function privateRoute(){
     return {
@@ -38,6 +39,10 @@ export default function privateRoute(){
             {
                 path:"/noticias",
                 element:<NoticiasPage/>
+            },
+            {
+                path:"/noticias/:id",
+                element:<NoticiasPageID/>
             },
             {
                 path:"/grupos",
