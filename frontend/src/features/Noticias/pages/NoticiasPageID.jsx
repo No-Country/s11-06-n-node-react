@@ -21,9 +21,9 @@ export default function NoticiasPageID() {
     return (
         <div className="flex flex-col gap-y-10 py-5">
             <div>
-                <div className="border-b border-gray-400 shadow-md">
+                <div className="border-b shadow-md">
                     <div className="h-40"><ImageBg imagen={place1}/></div>
-                    <div className="flex gap-x-5 py-2">
+                    <div className="flex gap-x-5 py-2 px-3 md:px-5">
                         <div><ImageProfileUserMedium imagen={person1}/></div>
                         <div className="w-full">
                             <Typography.SubtitleContainer>{item.name}</Typography.SubtitleContainer>

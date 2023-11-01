@@ -42,8 +42,14 @@ export default function NavBarUser() {
                 <div className='bg-white fixed top-0 left-0 w-full h-screen p-3 pt-4 opacity'>
                     <div className='flex justify-between'>
                         <span className='w-40'><Link to={'/dashboard'}><img src={Logo}/></Link></span>
+                        <div className='flex gap-x-10'>
+                            <div className='flex lg:hidden items-center gap-x-5 text-2xl'>
+                                <span className='flex'><BtnMessages/></span>
+                                <span className='flex'><BtnNotifications/></span>
+                            </div>
+                            <button onClick={toggleMenu} className='text-2xl mr-1'><GrClose/></button>
+                        </div>
 
-                        <button onClick={toggleMenu} className='text-2xl mr-1'><GrClose/></button>
                     </div>
                     
 
@@ -62,10 +68,6 @@ export default function NavBarUser() {
                         
                         <div className='flex justify-between'>
                             <Link to={'/preguntas-frecuentes'} className='flex items-center' onClick={toggleMenu}><span className='text-2xl mr-2'><AiOutlineQuestionCircle/></span>Preguntas frecuentes</Link>
-                            <div className='flex lg:hidden items-center gap-x-5 text-2xl'>
-                                <span className='flex'><BtnMessages/></span>
-                                <span className='flex'><BtnNotifications/></span>
-                            </div>
                         </div>
                     </div>
                 </div>
