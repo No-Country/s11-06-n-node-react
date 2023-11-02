@@ -14,12 +14,11 @@ export default function CardGrupoPage({
   location,
   imageUser,
   imagePlace,
-  description,
+  title,
   date,
   title
 }) {
   const [join, setJoin] = useState(false);
-
   const handlerJoin = () => {
    console.log("boton unirse"); 
     setJoin(!join);
@@ -27,11 +26,13 @@ export default function CardGrupoPage({
 
   return (
     <div className="border border-gray-100 rounded-lg shadow-lg my-4">
+
       <div className="flex">
         <div className="w-1/4 relative"> {/* Agrega posición relativa para el contenedor */}
           <Link to={`/grupo/${_id}`}> {/* Enlace para la descripción */}
             <div className="h-full">
               <ImageBg imagen={imagePlace} />
+
             </div>
           </Link>
         </div>

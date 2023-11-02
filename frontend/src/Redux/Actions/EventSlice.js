@@ -24,6 +24,7 @@ const Slice = createSlice({
         },   
       
         modifyEvent: (state, action) => {
+            console.log(action.payload);
             state.eventDetail = action.payload;
         },
     }

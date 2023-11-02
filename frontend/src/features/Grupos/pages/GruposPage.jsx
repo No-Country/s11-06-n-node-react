@@ -3,6 +3,7 @@ import Sidebar from "../../../components/Sidebar/Sidebar";
 import ListCardFirends from "../../../components/ListCardFriends";
 import CardGrupoPage from "../components/CardGrupoPage";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getAllGroups } from "../../../Redux/Actions/GroupGet";
 import { useEffect } from "react";
 
@@ -23,12 +24,15 @@ console.log(AllGroups);
 
           <p>Grupo</p>
           <hr />
+
           {AllGroups.map((grupoData) => {
+
              return (
               <CardGrupoPage
                 key={grupoData._id}
                 _id={grupoData._id}
                 imagePlace={grupoData.image}
+
                 imageUser={grupoData.users_admin[0]?grupoData.users_admin[0].avatar : ""}
                 name={grupoData.users_admin[0].name? grupoData.users_admin[0]?.name : ""}
                 description={grupoData.description}
