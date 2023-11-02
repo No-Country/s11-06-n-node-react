@@ -22,9 +22,10 @@ const getAuth = () => {
         if(cookies !== undefined){
             if(JSON.parse(cookies).accessToken){
                 const actualUser = JSON.parse(cookies);
+                console.log(actualUser);
                 return  {
                     headers: {
-                        Authorization: `Bearer ${actualUser.data.accessToken}`,
+                        Authorization: `Bearer ${actualUser.accessToken}`,
                     },
                 };
             }
