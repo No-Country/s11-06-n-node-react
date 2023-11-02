@@ -24,15 +24,14 @@ export function GrupoDetail() {
   const userAdmin = useSelector((state) => state.user.userDetail);
   const [miembros, setMiembros] = useState(1);
   const [joined, setJoined] = useState(false); // Estado para controlar si el usuario se ha unido al grupo
-
+  console.log(group)
   useEffect(() => {
     if (GroupId) {
       dispatch(getGroupDetail(GroupId));
     }
   }, [dispatch, GroupId]);
-
   useEffect(() => {
-    if (group) {
+    if (group.length>0) {
       dispatch(getUserDetail(group.users_admin[0]));
       setMiembros(group.users_admin && group.users_common ? group.users_admin.length + group.users_common?.length : 1);
     }
