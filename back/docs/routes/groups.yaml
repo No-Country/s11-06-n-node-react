@@ -1,0 +1,524 @@
+tags:
+  - name: Groups
+    description: API para manejar solicitudes de grupos
+
+paths:
+  /groups:
+    get:
+      summary: Consultar lista de todos los grupos activos , inactivos y eliminados
+      tags:
+        - Groups
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Lista de grupos encontrada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Group"
+
+    post:
+      summary: Crear un nuevo grupo
+      tags:
+        - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Amigos"
+                image:
+                  type: string
+                  example: "https://estaticos-cdn.sport.es/clip/96e3800b-93b4-4687-9dcb-470022f3f949_alta-libre-aspect-ratio_default_0.jpg"
+                idUser:
+                  type: string
+                  example: "652830c102896ad8e3bf6f5b"
+      responses:
+        "201":
+          description: Grupo creado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Grupo Amigos creado con éxito"
+                  group:
+                    $ref: "#/components/schemas/Group"
+        "400_missing_data":
+          description: Faltan datos obligatorios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Faltan datos obligatorios para crear el grupo"
+                  group:
+                    $ref: "#/components/schemas/Group"
+
+        "500":
+          description: Error al crear el grupo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error al crear el grupo"
+    put:
+      summary: Editar un grupo existente
+      tags:
+        - Groups
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Group"
+      responses:
+        "200":
+          description: Grupo editado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Grupo editado exitosamente"
+        "400_missing_data":
+          description: Faltan datos obligatorios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Faltan datos obligatorios"
+                  user:
+                    $ref: "#/components/schemas/group"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  group:
+                    $ref: "#/components/schemas/Group"
+        "500":
+          description: Error al editar el grupo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error al editar el grupo"
+  groups/{id}:
+    get:
+      summary: Consultar un grupo en especifico este activo, inactivo o eliminado.
+      tags:
+        - Groups
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: id del grupo a obtener
+      responses:
+        "200":
+          description: Lista de grupos encontrada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Group"
+        "400":
+          description: Solicitud incorrecta
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Solicitud incorrecta"
+        "404":
+          description: Grupo no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Grupo no encontrado"
+
+    delete:
+      summary: Eliminar un grupo.
+      tags:
+        - Groups
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: id del grupo a eliminar
+      responses:
+        "200":
+          description: Lista de grupo Eliminada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Group"
+        "400":
+          description: Solicitud incorrecta
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Solicitud incorrecta"
+        "404":
+          description: Grupo no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Grupo no encontrado"
+  groups/add-user?groupId&userId:
+    post:
+      summary: Agregar un usuario al grupo
+      tags:
+        - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: "65330d0598c482ccd7202b24"
+                idUser:
+                  type: string
+                  example: "652830c102896ad8e3bf6f5b"
+      responses:
+        "200":
+          description: Usuario agregado al grupo correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Usuario agregado al grupo correctamente"
+                  
+        "400":
+          description: El usuario ya esta en el grupo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "El usuario ya esta en el grupo"
+        '400_alternativa':
+          description: El usuario ya se encuentra como administrador en el grupo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "El usuario ya se encuentra como administrador en el grupo"
+        '400_alternativa_dos':
+          description: Tú solicitud de unión al grupo está pendiente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tu solicitud de union al grupo está pendiente"
+        "404":
+          description: No se encuentra grupo o usuario en la base de datos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "No se encuentra grupo o usuario en la base de datos"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal server error"
+groups/message/:
+  put:
+      summary: req.body agregar mensajes en un grupo
+      tags:
+        - Groups
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: "65330d0598c482ccd7202b24"
+                idUser:
+                  type: string
+                  example: "652830c102896ad8e3bf6f5b"
+                message:
+                  type: string
+                  example: "Como han estado?"
+      responses:
+        "200":
+          description: Mensaje creado con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Mensaje enviado exitosamente"
+
+        "400":
+          description: Faltan torios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Faltan datos requeridos para crear el mensaje"
+
+        "404":
+          description: Faltan torios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "grupo no encontrado"
+
+
+
+groups/user/{userId}:
+    get:
+      summary: Consultar todos grupos en los que se encuentra un usuario.
+      tags:
+        - Groups
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: id del usuario para obtener grupos
+      responses:
+        "200":
+          description: Lista de grupos encontrada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Group"
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error interno del servidor"
+groups/user/{groupId}/{userId}:
+    delete:
+      summary: Salir de un grupo.
+      tags:
+        - Groups
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: id del grupo del que se desea salir y id del usuario.
+      responses:
+        "200":
+          description: el usuario ha salido del grupo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "el usuario ha salido del grupo"
+                  user:
+                    $ref: "#/components/schemas/group"
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error interno del servidor"
+groups/message/{groupId}/delete/{userId}:
+    delete:
+      summary: Eliminar un mensaje.
+      tags:
+        - Groups
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: id del grupo del que se desea salir y id del usuario.
+      responses:
+        "200":
+          description: Mensaje eliminado correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Mensaje eliminado correctamente"
+                  user:
+                    $ref: "#/components/schemas/group"
+        "404":
+          description: El mensaje no fue encontrado en el grupo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "El mensaje no fue encontrado en el grupo"
+                  user:
+                    $ref: "#/components/schemas/group"
+        "404-Alternativa":
+          description: Grupo no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Grupo no encontrado"
+                  user:
+                    $ref: "#/components/schemas/group"
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error interno del servidor"
+components:
+  schemas:
+    Group:
+      type: object
+      properties:
+      
+        id:
+          type: string
+          example: "652ebcefb2e4df899453902d"
+        image:
+          type: string
+          example: "https://estaticos-cdn.sport.es/clip/96e3800b-93b4-4687-9dcb-470022f3f949_alta-libre-aspect-ratio_default_0.jpg"
+        users_common:
+          type: array
+          example: [652ebcefb2e4df8994539033,652ebcefb2e4df899453923d]
+        users_admin:
+          type: array
+          example: [652ebcefb2e4df899453902d]
+        usuarios_pending:
+          type: array
+          example: [652ebcefb2e9989897nj9j]
+        description:
+          type: string
+          example: "Nuevo ggrupo de amigos creado por mí"
+        status:
+          type: string
+          example: "activo"

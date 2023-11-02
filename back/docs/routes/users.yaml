@@ -1,0 +1,420 @@
+tags:
+  - name: Users
+    description: API para manejar solicitudes de usuarios
+
+paths:
+  /users:
+    get:
+      summary: Consultar lista de usuarios conectados o habilitados
+      tags:
+        - Users
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: Lista de usuarios encontrada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+    post:
+      summary: Crear un nuevo usuario
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Juan"
+                lastname:
+                  type: string
+                  example: "Pérez"
+                email:
+                  type: string
+                  format: email
+                  example: "juan@example.com"
+                password:
+                  type: string
+                  example: "secretpassword"
+      responses:
+        "201":
+          description: Usuario creado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Usuario creado exitosamente"
+                  user:
+                    $ref: "#/components/schemas/User"
+        "400_missing_data":
+          description: Faltan datos obligatorios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Faltan datos obligatorios"
+                  user:
+                    $ref: "#/components/schemas/User"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  user:
+                    $ref: "#/components/schemas/User"
+        "409":
+          description: El email ya existe en la base de datos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "El email ya existe en la base de datos"
+                  user:
+                    $ref: "#/components/schemas/User"
+        "500":
+          description: Error al crear el usuario
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error al crear el usuario"
+    put:
+      summary: Editar un usuario existente
+      tags:
+        - Users
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EditUser"
+      responses:
+        "200":
+          description: Usuario editado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Usuario editado exitosamente"
+        "400_missing_data":
+          description: Faltan datos obligatorios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Faltan datos obligatorios"
+                  user:
+                    $ref: "#/components/schemas/User"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  user:
+                    $ref: "#/components/schemas/User"
+        "500":
+          description: Error al editar el usuario
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Error al editar el usuario"
+  /users/{id}:
+    get:
+      summary: Obtener un usuario habilitado por id
+      tags:
+        - Users
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: id del usuario a obtener
+      responses:
+        "200":
+          description: Usuario obtenido exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400_invalid_data":
+          description: Tipos de datos incorrectos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Tipos de datos incorrectos"
+                  user:
+                    $ref: "#/components/schemas/User"
+        "404":
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Usuario no encontrado"
+    put:
+      summary: Inhabilitar al usuario por id
+      description: Inhabilitar al usuario por id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: Id del usuario a inhabilitar
+          schema:
+            type: string
+      security:
+        - BearerAuth: []
+      responses:
+        200:
+          description: User status updated successfully.
+          content:
+            application/json:
+              example:
+                response: "Usuario eliminado"
+        404:
+          description: User not found or an error occurred.
+          content:
+            application/json:
+              example:
+                error: "Usuario no encontrado"
+      tags:
+        - Users
+  /users/login:
+    post:
+      summary: inicio de sesión del usuario
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: "juan@example.com"
+                password:
+                  type: string
+                  example: "secretpassword"
+      responses:
+        "200":
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                    description: Token de acceso para el usuario autenticado
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                  user:
+                    $ref: "#/components/schemas/User"
+        "404":
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Usuario no encontrado"
+  /users/logout/{id}:
+    get:
+      summary: Cerrar sesión de usuario
+      tags:
+        - Users
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: id del usuario a obtener
+      responses:
+        "200":
+          description: Usuario desconectado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Usuario desconectado exitosamente"
+        "404":
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Usuario no encontrado"
+  /users/dashboard:
+    get:
+      summary: Consultar lista de usuarios conectados
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Lista de usuarios encontrada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: "Juan"
+                    lastname:
+                      type: string
+                      example: "Pérez"
+                    languages:
+                      type: array
+                      format: string
+                      example: ["español", "ingles"]
+                    location:
+                      type: string
+                      example: "Argentina"
+                    avatar:
+                      type: string
+                      example: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJJ0BV5K7y5Rz-747xO2111YBnxs60u-QdTxpjHUtsfQ&s"
+                    _id:
+                      type: string
+                      example: "652ebcefb2e4df899453902d"
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "652ebcefb2e4df899453902d"
+        name:
+          type: string
+          example: "Juan"
+        lastname:
+          type: string
+          example: "Pérez"
+        email:
+          type: string
+          format: email
+          example: "juan@example.com"
+        password:
+          type: string
+          example: "secretpassword"
+        location:
+          type: string
+          example: "Argentina"
+        birthdate:
+          type: String
+          example: "1995-01-30"
+        phone:
+          type: string
+          example: "123123456"
+        status:
+          type: string
+          example: "conectado"
+        languages:
+          type: array
+          example: ["español", "ingles"]
+        avatar:
+          type: string
+          example: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJJ0BV5K7y5Rz-747xO2111YBnxs60u-QdTxpjHUtsfQ&s"
+    EditUser:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "652ebcefb2e4df899453902d"
+        name:
+          type: string
+          example: "Juan"
+        lastname:
+          type: string
+          example: "Pérez"
+        password:
+          type: string
+          example: "secretpassword"
+        location:
+          type: string
+          example: "Argentina"
+        birthdate:
+          type: String
+          example: "1995-01-30"
+        phone:
+          type: string
+          example: "123123456"
+        status:
+          type: string
+          example: "conectado"
+        languages:
+          type: array
+          example: ["español", "ingles"]
+        avatar:
+          type: string
+          example: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJJ0BV5K7y5Rz-747xO2111YBnxs60u-QdTxpjHUtsfQ&s"
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
