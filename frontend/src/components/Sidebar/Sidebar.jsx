@@ -44,7 +44,7 @@ export default function Sidebar() {
             <div className="flex items-center gap-x-3 py-10">
               {Object.keys(userDetail).length ?(
               <><ImageProfileUserSmall imagen = {userDetail.avatar} />
-                <p className='font-bold'>{`${userDetail.name}`}</p>
+                <p className='font-bold'>{`${userDetail.name} ${userDetail.lastname}`}</p>
               </>
               ):(
                   <div className="flex items-center gap-x-3 py-10">
