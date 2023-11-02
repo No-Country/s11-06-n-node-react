@@ -16,7 +16,7 @@ export default function CardGrupoPage({
   imagePlace,
   title,
   date,
-  title
+  description
 }) {
   const [join, setJoin] = useState(false);
   const handlerJoin = () => {
@@ -26,7 +26,6 @@ export default function CardGrupoPage({
 
   return (
     <div className="border border-gray-100 rounded-lg shadow-lg my-4">
-
       <div className="flex">
         <div className="w-1/4 relative"> {/* Agrega posición relativa para el contenedor */}
           <Link to={`/grupo/${_id}`}> {/* Enlace para la descripción */}
