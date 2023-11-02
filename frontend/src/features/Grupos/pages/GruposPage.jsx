@@ -15,8 +15,9 @@ export default function GruposPage() {
       dispatch(getAllGroups());
       
   }, []);
- 
-
+  const activeGroups = AllGroups.filter((grupoData) => grupoData.status === "activo");
+  // console.log(AllGroups);
+  // console.log(activeGroups);
   return (
     <div>
           <SearchBar />
@@ -24,7 +25,7 @@ export default function GruposPage() {
           <p>Grupo</p>
           <hr />
 
-          {AllGroups.map((grupoData) => {
+          {activeGroups.map((grupoData) => {
 
              return (
               <CardGrupoPage

@@ -5,7 +5,7 @@ import { ImageBg, ImageProfileUserMedium } from '../../Images/ImageProfileUser';
 import { Link } from 'react-router-dom'
 import BtnViewComments from '../../Buttons/BtnViewComments';
 
-export default function CardGrupo({ _id, image, description }) {
+export default function CardGrupo({ _id, image, name }) {
 
 
     return (
@@ -23,7 +23,7 @@ export default function CardGrupo({ _id, image, description }) {
             <div className="px-7 py-5 flex flex-col max-w-4xl mx-auto">
                 <div className='mb-8'>
                     
-                    <p>{description}</p>
+                    <p className='text-xl'>{name}</p>
                 </div>
 
 

@@ -58,7 +58,9 @@ const closeModal = () => {
       // setuserImage(editedUser.avatar)
   }, []);
 // console.log(languagesList);
-console.log(editedUser);
+console.log("edituser",editedUser);
+
+
   const handleFieldChange = (field, value) => {
     setEditedUser({
       ...editedUser,
@@ -70,16 +72,19 @@ console.log(editedUser);
   const handleAvatarChange = async (e) => {
     e.preventDefault();
     let array
+    console.log("editedUser.avatar",editedUser.avatar);
     if(editedUser.avatar){
        array = editedUser.avatar.split("/")
+      console.log("array", array);
     const [publicID, etc] = array[array.length - 1].split(".")
+    
   console.log(publicID)
 setLoadingImage(true)
 try {
       const delResponse = await axios.delete(
         `${url}/users/eliminar-imagen/${publicID}`
       );
-      // console.log(delResponse);
+      console.log(delResponse);
   
       const file = e.target.files[0];
       console.log(file);

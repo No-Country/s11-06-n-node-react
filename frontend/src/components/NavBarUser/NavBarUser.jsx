@@ -54,7 +54,7 @@ export default function NavBarUser() {
 
 
     return (
-        <div className="bg-white h-16 fixed top-0 w-full flex justify-between items-center z-20 px-3 md:px-10 shadow-md opacity-90">
+        <div className="bg-white h-16 fixed top-0 w-full flex justify-between items-center z-20 px-3 md:px-10 shadow-md">
             <div className='flex items-center gap-x-4 sm:gap-x-10'>
                 <div className='w-40'><Link to={'/dashboard'}><img src={Logo}/></Link></div>
                 <p className="border border-gray-500 px-2 py-1 rounded-2xl flex items-center text-sm"><p className='mr-1 text-xl -ml-1'><CiLocationOn/></p>{userDetail.location }</p>

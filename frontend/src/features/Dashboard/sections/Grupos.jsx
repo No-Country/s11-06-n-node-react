@@ -30,7 +30,7 @@ export default function Grupos() {
               ); 
             })}
           </div>
-          <div className="my-10 border-b-2 border-gray-300 pb-2">
+          <div className="my-10 border-b-2 border-gray-300 pb-2 ">
                 <Link to={'/grupos'} className="w-full flex justify-end items-center cursor-pointer">Más grupos <span className="ml-2 text-xl"><BsChevronDown/></span></Link>
             </div>
         </div>
