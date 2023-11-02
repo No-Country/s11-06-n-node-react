@@ -69,18 +69,18 @@ console.log(editedUser);
   const handleAvatarChange = async (e) => {
     e.preventDefault();
     //Para eliminar la imagen anterior
-    const array = editedUser.avatar.split("/")
+    let array
+    if(editedUser.avatar){
+       array = editedUser.avatar.split("/")
     const [publicID, etc] = array[array.length - 1].split(".")
-    console.log(publicID)
-    setLoadingImage(true)
-    //borrar la imagen anterior ------------------------------------------------
-    try {
+  console.log(publicID)
+setLoadingImage(true)
+try {
       const delResponse = await axios.delete(
         `${url}/users/eliminar-imagen/${publicID}`
       );
-      console.log(delResponse);
+      // console.log(delResponse);
   
-      // Subir la nueva imagen
       const file = e.target.files[0];
       console.log(file);
       const formData = new FormData();
@@ -98,7 +98,6 @@ console.log(editedUser);
           },
         }
       );
-  
       const cloudinaryData = uploadResponse.data;
       const uploadedUrl = cloudinaryData.secure_url;
   
@@ -110,6 +109,41 @@ console.log(editedUser);
     } catch (error) {
       console.error('Error:', error);
     }
+
+      }else{
+
+        const file = e.target.files[0];
+        // console.log(file);
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', 'GlobalMateApp');
+        formData.append('api_key', cloudinaryApiKey);
+        formData.append('public_id', editedUser.id);
+    
+        const uploadResponse = await axios.post(
+          'https://api.cloudinary.com/v1_1/GlobalMate/image/upload',
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          }
+        );
+        const cloudinaryData = uploadResponse.data;
+        const uploadedUrl = cloudinaryData.secure_url;
+    
+        setLoadingImage(false);
+        setEditedUser((prevEditedUser) => ({
+          ...prevEditedUser,
+          avatar: uploadedUrl,
+        }));
+      }
+    
+    
+    
+    
+    //borrar la imagen anterior ------------------------------------------------
+    
   };
 
   const handleSave = async () => {
