@@ -32,6 +32,7 @@ const openModal = () => {
 const closeModal = () => {
   setModal(false)
 }
+
 // console.log(user);
     const [editedUser, setEditedUser] = useState({
         id: user._id,
@@ -68,7 +69,6 @@ console.log(editedUser);
 
   const handleAvatarChange = async (e) => {
     e.preventDefault();
-    //Para eliminar la imagen anterior
     let array
     if(editedUser.avatar){
        array = editedUser.avatar.split("/")
@@ -215,7 +215,7 @@ try {
               >
                 <RiImageEditLine className="text-xl" />
               </label>
-              <ImageProfileUserLarge imagen={editedUser.avatar} />
+              <ImageProfileUserLarge imagen={editedUser.avatar? editedUser.avatar: "https://res.cloudinary.com/dbwmesg3e/image/upload/v1698886031/GlobalMate/pngegg_21_pm25ge.png"} />
               <input
                 type="file"
                 className="hidden"

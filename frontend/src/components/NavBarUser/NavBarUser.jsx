@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Logo  from '../img/logo-1.png'
 import { FiMenu } from 'react-icons/fi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GrMenu, GrClose } from 'react-icons/gr';
 import LinksMenu from '../Sidebar/LinksMenu';
 import { CiLocationOn } from 'react-icons/ci';
@@ -14,6 +14,11 @@ import { BsPerson, BsNewspaper } from 'react-icons/bs';
 import BtnMessages from '../Buttons/BtnMessages';
 import BtnNotifications from '../Buttons/BtnNotifications';
 
+import { useDispatch, useSelector } from 'react-redux';
+import Cookies from 'js-cookie';
+import { getUserDetail } from '../../Redux/Actions/UserGet';
+   
+
 export default function NavBarUser() {
 
     const [isOpen, setIsOpen] = useState(false)
@@ -22,11 +27,37 @@ export default function NavBarUser() {
         setIsOpen(!isOpen)
     }
 
+
+
+  const cookieData = Cookies.get('data');
+  const [actualUser, setactualUser] = useState();
+  const userDetail = useSelector((state) => state.user.userDetail);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (cookieData && !actualUser) {
+      const userData = JSON.parse(cookieData);
+      if(userData){
+        setactualUser(userData)
+        // console.log(userData);
+      }
+    } else {
+      console.log("Usuario cargado");
+    }
+  }, 
+  [cookieData, actualUser, dispatch]);
+      
+  useEffect(() => {
+    if (actualUser) {
+      dispatch(getUserDetail(actualUser));
+    }
+  }, [actualUser, dispatch]);
+
+
     return (
         <div className="bg-white h-16 fixed top-0 w-full flex justify-between items-center z-20 px-3 md:px-10 shadow-md opacity-90">
             <div className='flex items-center gap-x-4 sm:gap-x-10'>
                 <div className='w-40'><Link to={'/dashboard'}><img src={Logo}/></Link></div>
-                <p className="border border-gray-500 px-2 py-1 rounded-2xl flex items-center text-sm"><p className='mr-1 text-xl -ml-1'><CiLocationOn/></p>Argentina</p>
+                <p className="border border-gray-500 px-2 py-1 rounded-2xl flex items-center text-sm"><p className='mr-1 text-xl -ml-1'><CiLocationOn/></p>{userDetail.location }</p>
             </div>
             <div className='hidden lg:flex items-center gap-x-5 text-2xl'>
                 <span className='flex'><BtnMessages/></span>

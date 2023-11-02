@@ -7,23 +7,52 @@ import { ImageBg } from '../../../components/Images/ImageProfileUser'
 import { useParams } from 'react-router-dom'
 import EventList from '../../Dashboard/components/EventList'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getEventDetail } from '../../../Redux/Actions/EventGet'
+import { set } from 'react-hook-form'
+
+function AddIncludes(prop){
+    if(JSON.stringify(prop.includes)){
+        if(prop.includes && prop.includes.length > 0){
+            return(
+                <section className='flex flex-col md:flex-row gap-4 w-full '>
+                    {prop.includes.map((include, index) => (
+                        <CustomCard key={index} className=" min-w-min p-4">
+                            <CustomCard.Body className="min-w-min   ">
+                                <Typography>
+                                    <Typography.Base className="font-semibold ">{include.title}</Typography.Base>
+                                    <Typography.Small>
+                                        {include.description &&
+                                            include.description.map((oneInclude) => (
+                                                <div>{ oneInclude }</div>
+                                            ))}
+                                    </Typography.Small>
+                                </Typography>
+                            </CustomCard.Body>
+                        </CustomCard>
+                    ))}
+                </section>
+            )
+        }
+    }
+    return null
+}
+
 
 export default function EventoIdPage() {
     let { eventId } = useParams()
     const dispatch = useDispatch()
     const event = useSelector((state) => state.event.eventDetail)
     useEffect(() => {
+        console.log(eventId);
         dispatch(getEventDetail(eventId))
     },[dispatch])
-    
+
     return (
-        <div className='flex'>
+        <div>
+            <SearchBar />
             <section className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3   gap-4 w-full mt-8 overflow-x-auto '>
                 <div className='max-w-7xl mx-auto  flex flex-col gap-8'>
-                    <SearchBar />
-
                     <Typography>
                         <Typography.TitleContainer>
                             {event.name}
@@ -74,23 +103,7 @@ export default function EventoIdPage() {
 
                     <Typography>
                         <Typography.SubtitleContainer> Qué incluye </Typography.SubtitleContainer>
-                        <section className='flex flex-col md:flex-row gap-4 w-full '>
-                            {event.includes && event.includes.map((include, index) => (
-                                <CustomCard key={index} className=" min-w-min p-4">
-                                    <CustomCard.Body className="min-w-min   ">
-                                        <Typography>
-                                            <Typography.Base className="font-semibold ">{include.title}</Typography.Base>
-                                            <Typography.Small>
-                                                {include.description &&
-                                                    include.description.map((oneInclude) => (
-                                                        <div>{ oneInclude }</div>
-                                                    ))}
-                                            </Typography.Small>
-                                        </Typography>
-                                    </CustomCard.Body>
-                                </CustomCard>
-                            ))}
-                        </section>
+                        <AddIncludes includes={event.includes} />
                     </Typography>
 
                     <hr />
@@ -99,15 +112,15 @@ export default function EventoIdPage() {
                         <Typography.SubtitleContainer> Lo que debes saber </Typography.SubtitleContainer>
                         <section className='flex gap-20'>
                             {event.youMustKnow && event.youMustKnow.map((include, index) => (
-                                        <Typography>
-                                            <Typography.Base className="font-semibold ">{include.title}</Typography.Base>
-                                            <Typography.Small>
-                                                {include.description &&
-                                                    include.description.map((oneInclude) => (
-                                                        <div>{ oneInclude }</div>
-                                                    ))}
-                                            </Typography.Small>
-                                        </Typography>
+                                <Typography>
+                                    <Typography.Base className="font-semibold ">{include.title}</Typography.Base>
+                                    <Typography.Small>
+                                        {include.description &&
+                                            include.description.map((oneInclude) => (
+                                                <div>{ oneInclude }</div>
+                                            ))}
+                                    </Typography.Small>
+                                </Typography>
                             ))}
                         </section>
                     </Typography>
