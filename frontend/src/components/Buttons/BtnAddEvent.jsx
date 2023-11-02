@@ -1,15 +1,23 @@
-import { useState } from 'react';
 import Modal from 'react-modal'
 Modal.setAppElement('#root');
-import { AiOutlineTags } from 'react-icons/ai';
-import { BsPostcard, BsCardImage } from 'react-icons/bs';
+import { useState } from 'react';
+
+
+import { BsCardImage } from 'react-icons/bs';
 import { CiLocationOn } from 'react-icons/ci';
 import { GrClose } from 'react-icons/gr';
 import { ImageProfileUserSmall } from '../Images/ImageProfileUser';
 import image1 from '../../../public/user1.jpeg'
+import ModalAddEvent from '../Modals/ModalAddEvent';
+
+
+
+import { AiOutlineTags } from 'react-icons/ai';
+
 
 
 export default function BtnAddEvent() {
+
     const [modal, setModal] = useState(false)
     const openModal = () => {
         setModal(true)
@@ -17,13 +25,8 @@ export default function BtnAddEvent() {
     const closeModal = () => {
         setModal(false)
     }
-
-    return (
+    return(
         <>
-            <button onClick={openModal} className='w-14 h-14 bg-greenSecundary rounded-full m-1 absolute -top-32  -right-14 text-white flex flex-col justify-center items-center'>
-                <span className='text-xl'><AiOutlineTags/></span>
-                <p className='text-xs'>Evento</p>
-            </button>
             <Modal isOpen={modal} onRequestClose={closeModal} className={'overflow-y-scroll h-full'}>
                 <div className='flex justify-center items-center h-full text-sm text-greenPrimary'>
                     <div className='border border-graySecundary max-w-xs sm:max-w-xl w-full p-5 sm:p-14 shadow-2xl bg-white rounded-lg relative'>
@@ -53,7 +56,7 @@ export default function BtnAddEvent() {
                                     <button className='text-xl'><BsCardImage/></button>
                                 </div>
                             </div>
-                            <input type="submit" value="Publicar" className='bg-greenSecundary w-full py-2 text-white font-bold rounded-md cursor-pointer hover:bg-greenPrimary duration-75'/>
+                            <input type="submit" value="Publicar" className='bg-greenPrimary w-full py-2 text-white font-bold rounded-md cursor-pointer hover:bg-greenSecundary duration-75'/>
                         </form>
                     </div>
                 </div>

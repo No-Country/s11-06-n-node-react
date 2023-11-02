@@ -16,7 +16,7 @@ const datos = [
         perfil:'https://st3.depositphotos.com/1017228/34538/i/450/depositphotos_345381774-stock-photo-portrait-of-young-scared-woman.jpg',
         nombre: 'Camilo', 
         idioma: 'https://www.astroninternacional.es/18829-large_default/bandera-espana-con-escudo-constitucional-exterior.jpg'
-    }
+    },
 ]
 
 export default datos
