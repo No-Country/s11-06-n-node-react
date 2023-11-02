@@ -15,7 +15,6 @@ export default function GruposPage() {
       dispatch(getAllGroups());
       
   }, []);
-console.log(AllGroups);
  
 
   return (
