@@ -15,11 +15,10 @@ export default function CardGrupoPage({
   location,
   imageUser,
   imagePlace,
-  description,
+  title,
   date,
 }) {
   const [join, setJoin] = useState(false);
-
   const handlerJoin = () => {
     setJoin(!join);
   };
@@ -40,7 +39,7 @@ export default function CardGrupoPage({
         <div className="mb-8 px-4">
           <div className="flex justify-between items-center gap-x-5 mb-10">
             <div>
-              <p className="text-center text-xl">{description}</p>
+              <p className="text-center text-xl">{title}</p>
               <div className="flex items-center justify-start gap-x-3">
                 <p className="border border-gray-500 px-2 py-1 rounded-2xl flex items-center text-sm">
                   <p className="mr-1 text-xl -ml-1">
