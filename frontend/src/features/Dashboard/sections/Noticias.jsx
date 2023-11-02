@@ -35,7 +35,6 @@ export default function Noticias() {
     return (
         <div>
             <Typography.TitleContainer>Últimas noticias</Typography.TitleContainer>
-
             <div className="flex flex-col md:flex-row gap-10 md:gap-20">
                 {noticiasData.map(noticiaData => {
                     return(  
@@ -53,7 +52,6 @@ export default function Noticias() {
                         )
                     })}
                 </div>
-
             <div className="my-10 border-b-2 border-gray-300 pb-2">
                 <Link to={'/noticias'} className="w-full flex justify-end items-center cursor-pointer">Más noticias <span className="ml-2 text-xl"><BsChevronDown/></span></Link>
             </div>
