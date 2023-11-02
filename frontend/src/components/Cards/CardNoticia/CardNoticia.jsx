@@ -9,7 +9,7 @@ export default function CardNoticia({ _id, name, title, location, imageUser, ima
 
 
     return (
-        <div className="border border-gray-100 rounded-lg shadow-lg">
+        <div className="border border-gray-100 rounded-lg shadow-lg" key={_id}>
 
 
             {/* ----- Portada */}

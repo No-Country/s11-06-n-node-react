@@ -1,7 +1,6 @@
 import { CiLocationOn } from "react-icons/ci";
 import { BiMessageRoundedDots } from "react-icons/bi";
 import { MdRemoveRedEye } from "react-icons/md";
-
 import { Link } from "react-router-dom";
 import {
   ImageBg,
@@ -17,56 +16,58 @@ export default function CardGrupoPage({
   imagePlace,
   title,
   date,
+  title
 }) {
   const [join, setJoin] = useState(false);
   const handlerJoin = () => {
+   console.log("boton unirse"); 
     setJoin(!join);
   };
 
   return (
     <div className="border border-gray-100 rounded-lg shadow-lg my-4">
-      {/* ----- Portada */}
-      <div className="h-28 md:h-40">
-        <ImageBg imagen={imagePlace} />
-        {/* <div className='text-xl'>
-                    <div className='bg-gray-200 p-2 rounded-full'><BsShare/></div>
-                    <div className='bg-gray-200 p-2 rounded-full'><MdFavoriteBorder/></div>
-                </div> */}
-      </div>
 
-      {/* ----- Info */}
-      <div className="px-5 py-5 flex flex-col mx-auto">
-        <div className="mb-8 px-4">
-          <div className="flex justify-between items-center gap-x-5 mb-10">
-            <div>
-              <p className="text-center text-xl">{title}</p>
-              <div className="flex items-center justify-start gap-x-3">
-                <p className="border border-gray-500 px-2 py-1 rounded-2xl flex items-center text-sm">
-                  <p className="mr-1 text-xl -ml-1">
-                    <CiLocationOn />
-                  </p>
-                  {location}
-                </p>
-              </div>
+      <div className="flex">
+        <div className="w-1/4 relative"> {/* Agrega posición relativa para el contenedor */}
+          <Link to={`/grupo/${_id}`}> {/* Enlace para la descripción */}
+            <div className="h-full">
+              <ImageBg imagen={imagePlace} />
+
             </div>
-            <div className="flex  gap-y-2">
-              <p className="text-xl font-bold text-end">{name}</p>
-              <div>
+          </Link>
+        </div>
+        <div className="w-3/4 p-5">
+          <div className="flex justify-between items-start">
+            <div>
+              <Link to={`/grupo/${_id}`}>
+                <p className="text-lg font-bold mb-1">{title}</p>
+              </Link>
+              <div className="flex items-center gap-x-3">
                 <ImageProfileUserMedium imagen={imageUser} />
+                <div>
+                  <p className="text-sm font-bold">{name}</p>
+                  <p className="text-sm">{date}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-x-3">
+                <CiLocationOn className="text-xl" />
+                <p className="text-sm">{location}</p>
               </div>
             </div>
           </div>
-         
-        </div>
-        <div className="flex justify-between items-center">
-        <button
-          onClick={handlerJoin}
-            className={
-              !join
-                ? "bg-greenPrimary h-[30px] w-[15rem]  text-white font-bold rounded-md cursor-pointer hover:bg-greenSecundary duration-75 "
-                : "bg-grayPrimary w-[15rem] h-[30px] text-white font-bold rounded-md cursor-pointer hover:bg-greenSecundary duration-75 "
-            }
-          >{!join ? "Unirse" : "Solicitud pendiente"}</button>
+          <p className="text-lg my-4">{description}</p>
+          <div className="text-right"> {/* Nuevo contenedor para alinear el botón a la derecha */}
+            <button
+              onClick={handlerJoin}
+              className={
+                !join
+                  ? "bg-greenPrimary w-[10rem] h-[30px] text-white font-bold rounded-md cursor-pointer hover:bg-greenSecundary duration-75 "
+                  : "bg-grayPrimary w-[10rem] h-[30px] text-white font-bold rounded-md cursor-pointer hover:bg-greenSecundary duration-75 "
+              }
+            >
+              {!join ? "Unirse" : "Solicitud pendiente"}
+            </button>
+          </div>
         </div>
       </div>
     </div>

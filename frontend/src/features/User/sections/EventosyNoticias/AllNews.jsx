@@ -2,7 +2,8 @@ import Typography from "../../../../components/Typography"
 import SearchBar from "../../../../components/SearchBar/SearchBar"
 import CardNoticia from "../../../../components/Cards/CardNoticia/CardNoticia"
 import { useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
+import { IoMdArrowRoundBack, IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 export default function AllNews() {
     const userNews = useSelector((state) => state.user.userNews);

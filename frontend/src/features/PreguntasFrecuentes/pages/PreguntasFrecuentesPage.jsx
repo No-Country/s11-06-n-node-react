@@ -11,28 +11,33 @@ export default function PreguntasFrecuentesPage() {
 
     const questions = [
         {
-            question: '¿Cómo funciona el sitio web para encontrar acompañantes en un lugar específico?',
-            answer: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro quibusdam eaque facilis mollitia hic maxime veniam incidunt unde, iste necessitatibus?',
+            question: '¿Qué puedo hacer dentro de la plataforma?',
+            answer: 'Encuentra GlobalMates y conecta con otros viajeros en el destino donde te encuentres. También tienes la posibilidad de realizar actividades y experiencias locales, y contactar a otros usuarios para planificar encuentros.',
             id: new Date()
         },
         {
-            question: '¿Puedo elegir el tipo de acompañante que deseo para mi salida?',
-            answer: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro quibusdam eaque facilis mollitia hic maxime veniam incidunt unde, iste necessitatibus?',
+            question: '¿Es seguro conocer a personas a través de esta aplicación?',
+            answer: 'Nuestra prioridad es crear un entorno seguro donde se fomente la conexión entre usuarios y las experiencias inolvidables. Verificamos los perfiles de los usuarios y fomentamos la comunicación a través de la plataforma antes de encontrarse en persona. Puedes conocer nuestros consejos de seguridad y recomendaciones para reuniones seguras.',
             id: new Date()
         },
         {
-            question: '¿Cómo puedo puntuar al acompañante después de la experiencia?',
-            answer: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro quibusdam eaque facilis mollitia hic maxime veniam incidunt unde, iste necessitatibus?',
+            question: '¿Puedo usar la aplicación para encontrar compañeros de viaje?',
+            answer: 'Nuestra aplicación es ideal para encontrar compañeros de viaje. Puedes buscar personas que tengan planes similares o estén interesadas en continuar el viaje en conjunto.',
             id: new Date()
         },
         {
-            question: '¿Qué medidas de seguridad toma el sitio web para garantizar la calidad de los acompañantes?',
-            answer: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro quibusdam eaque facilis mollitia hic maxime veniam incidunt unde, iste necessitatibus?',
+            question: '¿Cómo puedo descubrir las experiencias locales disponibles en mi destino?',
+            answer: 'Busca experiencias locales en tu destino utilizando nuestro buscador y aplicando los filtros disponibles. Simplemente ingresa tu ubicación y selecciona las actividades que te interesen. Nuestra aplicación mostrará los eventos disponibles cerca de donde estás.',
             id: new Date()
         },
         {
-            question: '¿Cuál es el proceso de reserva y pago en el sitio web?',
-            answer: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro quibusdam eaque facilis mollitia hic maxime veniam incidunt unde, iste necessitatibus?',
+            question: '¿Es necesario pagar para usar la aplicación?',
+            answer: 'Nuestra aplicación es gratuita para descargar y usar, pero ofrecemos opciones premium que desbloquean características adicionales, como ver quién ha visitado tu perfil o acceder a contenido exclusivo. Sin embargo, la mayoría de las funciones esenciales son accesibles de forma gratuita.',
+            id: new Date()
+        },
+        {
+            question: '¿Cuáles son las recomendaciones básicas a seguir cuando conozco a alguien?',
+            answer: 'Antes de planificar un encuentro o ir a una experiencia, revisa el perfil del usuario y las reseñas de otras personas que hayan interactuado con ellos. Esto te ayudará a conocer su historial y reputación en la comunidad. Si planeas encontrarte con alguien en persona, elige un lugar público y concurrido para el primer encuentro. Evita compartir información de ubicación exacta de tu alojamiento o residencia personal.',
             id: new Date()
         }
     ]

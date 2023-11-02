@@ -52,7 +52,7 @@ const formatDate = (dateString) => {
       }
     }, [actualUser, dispatch]);
 
-console.log(userDetail);
+// console.log(userDetail);
 
   return (
     <div className='flex'>

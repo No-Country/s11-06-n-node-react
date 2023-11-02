@@ -2,7 +2,7 @@ import {useForm} from 'react-hook-form';
 import axios from "axios"
 import logo from '../../components/img/logo-1.png'
 import logoGoogle from '../../components/img/Google-Sign-In.png'
-import passwordIcon from '../../components/img/Vpn key.png'
+// import passwordIcon from '../../components/img/Vpn key.png'
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Swal from "sweetalert2";
