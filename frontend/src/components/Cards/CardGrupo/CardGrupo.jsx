@@ -9,7 +9,7 @@ export default function CardGrupo({ _id, image, description }) {
 
 
     return (
-        <div className="border border-gray-100 rounded-lg shadow-lg max-w-[200px] w-[200px]">
+        <div className="border border-gray-100 rounded-lg shadow-lg max-w-[200px] min-w-[200px]">
 
 
             {/* ----- Portada */}

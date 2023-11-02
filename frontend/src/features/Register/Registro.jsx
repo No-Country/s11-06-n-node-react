@@ -2,18 +2,30 @@ import {useForm} from 'react-hook-form';
 import logo from '../../components/img/logo-1.png'
 import logoGoogle from '../../components/img/Google-Sign-In.png'
 import axios from "axios"
+import Swal from "sweetalert2";
+
 const Register = () =>{
     const {handleSubmit,register, watch, formState: {errors}} = useForm()    
     const onSubmit = (data) =>{
         axios.post(`${import.meta.env.VITE_API_URL}/users`,data).then(resp => {
+            console.log(resp);
             if(resp.status == 201){
-                location.href = "/login"
+                Swal.fire({
+                    icon: "success",
+                    title: "Registro Exitoso",
+                    text: `¡${resp.data.message}!`,
+                  }).then((r) => {
+                    // console.log(r);
+                    if (r.isConfirmed) {
+                     location.href = "/login"
+                    }
+                  });
+                
             }else{
                 console.log(resp.data);
             }
         })
     }
-
     return (
         <>
             <div className='w-[1366px] h-[1493px]'>
@@ -28,7 +40,7 @@ const Register = () =>{
                         <path d="M-53.5 0H333.5C333.5 0 387 172.5 362.5 306C338 439.5 282.659 459.893 231.5 558.5C158.607 699 85.5 896 166 1120.5C246.5 1345 387 1493 387 1493H-53.5V0Z" fill="#098D82"/>
                         </svg>
                     </div>
-                    <div className='absolute top-[212px] right-[178px] '>
+                    <div className='absolute top-[100px] right-[178px] '>
                         <div>
                             <div className=''>
                                 <img src={logo} alt="" className=''/>

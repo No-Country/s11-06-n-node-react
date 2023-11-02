@@ -29,7 +29,7 @@ export default function BtnPlus() {
             </button>
 
             {displayIcons && (
-                <div className='absolute duration-200 -top-64 right-10 flex flex-col gap-4'>
+                <div className='absolute duration-200 -top-64 right-0 lg:right-10 flex flex-col gap-4'>
                     <ModalAddEvent />
                     <ModalAddGroup />
                     <ModalAddNews />

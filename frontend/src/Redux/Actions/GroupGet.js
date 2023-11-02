@@ -33,9 +33,11 @@ const getGroupDetail = (id) => {
 
 //POST para crear un nuevo grupo
 const groupPost = (eventData) => {
+  console.log(eventData)
   return async (dispatch) => {
     try {
        const response = await axios.post(`${import.meta.env.VITE_API_URL}/groups`, eventData);
+       console.log(response)
        dispatch(postGroup(response.data));
     } catch (error) {
       console.error(error);
