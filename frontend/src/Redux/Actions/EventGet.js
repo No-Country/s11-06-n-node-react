@@ -14,7 +14,6 @@ const getAllEvents = () => {
 			return dispatch(getEvents(dbData));
 		} catch (error) {
       console.log(error);
-			alert({error: error.message});
 		}
 	};
 };
@@ -32,7 +31,6 @@ const getEventDetail = (id) => {
 			return dispatch(getDetailEvent(dbData));
 		} catch (error) {
       console.log(error);
-			alert({error: error.message});
 		}
 	};
 };
@@ -61,7 +59,7 @@ const modifyTheEvent = (id, event) => {
             const dbData = await axios.put(`${import.meta.env.VITE_API_URL}/events/${id}`, event);
             return dispatch(modifyEvent(dbData));
         } catch (error) {
-            alert({error: error.message});
+    
         }
     };
 };

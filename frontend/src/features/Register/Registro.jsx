@@ -3,11 +3,13 @@ import logo from '../../components/img/logo-1.png'
 import logoGoogle from '../../components/img/Google-Sign-In.png'
 import axios from "axios"
 import Swal from "sweetalert2";
+import { getAuth } from '../../utils/checkAuth';
 
 const Register = () =>{
     const {handleSubmit,register, watch, formState: {errors}} = useForm()    
     const onSubmit = (data) =>{
-        axios.post(`${import.meta.env.VITE_API_URL}/users`,data).then(resp => {
+        const config = getAuth();
+        axios.post(`${import.meta.env.VITE_API_URL}/users`, config, data).then(resp => {
             console.log(resp);
             if(resp.status == 201){
                 Swal.fire({
@@ -53,7 +55,7 @@ const Register = () =>{
                             <form action="#" onSubmit={handleSubmit(onSubmit)} id='form' className=''>
                                 <div className='flex gap-3 flex-col'>
                                     <div className="mb-6">
-                                        <label for="name" className="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Nombre</label>
+                                        <label htmlFor="name" className="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Nombre</label>
                                         <input type="text" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                                             {...register("name", 
                                                 {
@@ -67,7 +69,7 @@ const Register = () =>{
                                         {errors.name && <span>{errors.name.message}</span>}
                                     </div>
                                     <div className="mb-6">
-                                        <label for="lastname" className="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Apellido</label>
+                                        <label htmlFor="lastname" className="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Apellido</label>
                                         <input type="text" id="lastname" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             {
                                                 ...register("lastname", 
@@ -82,8 +84,8 @@ const Register = () =>{
                                         {errors.lastname && <span>{errors.lastname.message}</span>}
                                     </div>
                                     <div className="mb-6">
-                                        <label for="password" className="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Email</label>
-                                        <input type="text" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        <label htmlFor="email" className="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Email</label>
+                                        <input type="text" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             {...register("email", 
                                                 {
                                                     required:{
@@ -100,7 +102,7 @@ const Register = () =>{
                                         {errors.email && <span>{errors.email.message}</span>}
                                     </div>
                                     <div className="mb-6">
-                                        <label for="password" className="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Contraseña</label>
+                                        <label htmlFor="password" className="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Contraseña</label>
                                         <input type="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                                             {...register("password",
                                                 {
@@ -114,8 +116,8 @@ const Register = () =>{
                                         {errors.password && <span>{errors.password.message}</span>}
                                     </div>
                                     <div className="mb-6">
-                                        <label for="confirm_password" className="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Confirmar Contraseña</label>
-                                        <input type="password" id="confirm_password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        <label htmlFor="confirm_password" className="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Confirmar Contraseña</label>
+                                        <input type="confirm_password" id="confirm_password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             {...register("confirm_password",
                                                 {
                                                     required:{

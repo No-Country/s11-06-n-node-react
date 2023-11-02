@@ -8,18 +8,16 @@ export default function ModalComentarios({closeModal}) {
 
     const comentariosData = [
         {
-            imageUser: user1,
-            name: 'Henry Ramirez',
-            comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-            date: '21 h'
+            "user": "Henry Ramirez",
+            "comment": "Me encantaría estar en ese lugar ahora mismo. ¡El viaje debe de haber sido increíble! ✈️🌍",
+            "date": "21 h"
         },
         {
-            imageUser: user2,
-            name: 'Kevin Tea',
-            comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum sint magni veritatis vitae dolorem explicabo.',
-            date: '14 h'
+            "user": "Kevin Tea",
+            "comment": "Los viajes son la mejor forma de enriquecer el alma. Parece que tuviste una experiencia única. ¿Algún consejo para el próximo viajero? 🌄🌴",
+            "date": "14 h"
         }
-    ]
+    ]    
 
     return (
         <div className="flex justify-center items-center h-full px-5">
