@@ -5,7 +5,7 @@ import axios from "axios";
 import { getAuth } from "../../utils/checkAuth";
 
 //GET para mostrar todos los eventos creados. CAMBIAR A LA URL CORRECTA QUE AUN NO ESTÁ
-const getAllEvents= () => {
+const getAllEvents = () => {
 	return async (dispatch) => {
 		try {
       const config = getAuth();
@@ -23,11 +23,15 @@ const getAllEvents= () => {
  //GET Traer el detalle de un evento por Id. CAMBIAR A LA URL CORRECTA QUE AUN NO ESTÁ
  
 const getEventDetail = (id) => {
+  console.log(id);
 	return async (dispatch) => {
 		try {
-			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/events/${id}`)).data;
-			dispatch(getDetailEvent(dbData));
+      const config = getAuth();
+			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/events/${id}`, config)).data;
+      console.log(dbData);
+			return dispatch(getDetailEvent(dbData));
 		} catch (error) {
+      console.log(error);
 			alert({error: error.message});
 		}
 	};
