@@ -1,0 +1,50 @@
+paths:
+  /chat/history/{idUser1}/{idUser2}:
+    get:
+      summary: Obtener o crear un chat entre dos usuarios
+      tags: [Chat]
+      security:
+        - BearerAuth: []
+      parameters:
+        - in: path
+          name: idUser1
+          required: true
+          schema:
+            type: string
+          description: ID del primer usuario
+        - in: path
+          name: idUser2
+          required: true
+          schema:
+            type: string
+          description: ID del segundo usuario
+      responses:
+        "200":
+          description: Chat obtenido o creado exitosamente
+          content:
+            application/json:
+              schema:
+                type: string
+                description: ID del chat
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Descripción del error
+definitions:
+  Chat:
+    type: object
+    properties:
+      _id:
+        type: string
+        description: ID del chat
+securitySchemes:
+  BearerAuth:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
