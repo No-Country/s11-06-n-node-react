@@ -7,26 +7,28 @@ import LinkButton from '../../../../components/LinkButton';
 import { Link } from 'react-router-dom';
 import { BsChevronDown } from 'react-icons/bs';
 import { ImageBg } from '../../../../components/Images/ImageProfileUser'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAllEvents } from '../../../../Redux/Actions/EventGet'
 
 const EventList = () => {
-    const { getAllEvents } = createEventRepository();
-    const events = getAllEvents();
-
-    // Estado para almacenar las tarjetas de eventos seleccionadas aleatoriamente
-    const [randomEvents, setRandomEvents] = useState([]);
+    const dispatch = useDispatch()
+    const events = useSelector((state) => state.event.events)
 
     useEffect(() => {
-        // Función para seleccionar 4 eventos aleatorios
-        const getRandomEvents = () => {
-            const shuffledEvents = events.sort(() => 0.5 - Math.random());
-            const selectedEvents = shuffledEvents.slice(0, 3);
-            setRandomEvents(selectedEvents);
-        };
+        dispatch(getAllEvents())
+    }, [dispatch])
 
-        if (events.length > 4) {
-            getRandomEvents();
+    // Función para seleccionar 3 eventos aleatorios
+    const getRandomEvents = () => {
+        const randomEvents = [...events];
+        for (let i = randomEvents.length - 1; i > 2; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [randomEvents[i], randomEvents[j]] = [randomEvents[j], randomEvents[i]];
         }
-    }, [events]);
+        return randomEvents.slice(0, 3);
+    }
+
+    const randomEvents = getRandomEvents();
 
     return (
         <div>
@@ -35,7 +37,7 @@ const EventList = () => {
             </Typography.TitleContainer>
             <section className='flex flex-col md:flex-row gap-4 w-full '>
                 {randomEvents.map((event) => (
-                    <CustomCard key={event.id}>
+                    <CustomCard key={event._id}>
                         <CustomCard.Header className="w-full h-20 bg-zinc-300 rounded-tl-2xl rounded-tr-2xl">
                             <ImageBg imagen={event.image} />
                         </CustomCard.Header>
@@ -43,7 +45,7 @@ const EventList = () => {
                             <Typography>
                                 <ul className='flex  gap-2'>
                                     {event.topics && event.topics.map((topic) => (
-                                        <li key={event.id} className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">
+                                        <li key={event._id} className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">
                                             {topic}
                                         </li>
                                     ))}
@@ -55,7 +57,7 @@ const EventList = () => {
                             </Typography>
                         </CustomCard.Body>
                         <CustomCard.Footer className="p-4">
-                            <LinkButton className='bg-greenSecundary' href={`/eventos/${event.id}`} >Ver más</LinkButton>
+                            <LinkButton className='bg-greenSecundary' href={`/eventos/${event._id}`} >Ver más</LinkButton>
                         </CustomCard.Footer>
                     </CustomCard>
                 ))}
