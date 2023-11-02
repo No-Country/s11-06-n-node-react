@@ -49,7 +49,6 @@ export default function NavBarUser() {
                             </div>
                             <button onClick={toggleMenu} className='text-2xl mr-1'><GrClose/></button>
                         </div>
-
                     </div>
                     
 
