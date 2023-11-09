@@ -9,6 +9,7 @@ import { BsChevronDown } from 'react-icons/bs'
 import { ImageBg } from '../../../../components/Images/ImageProfileUser'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllEvents } from '../../../../Redux/Actions/EventGet'
+import loader from "../../../../../public/loadermate.gif"
 
 const EventList = () => {
   const dispatch = useDispatch()
@@ -31,7 +32,8 @@ const EventList = () => {
   const randomEvents = getRandomEvents()
 
   return (
-    <div>
+!randomEvents.length? (<div className="w-[100%] h-[100%] justify-center mt-8 flex"><img src={loader} className="h-[50%] w-[30%]" alt="Cargando..." /></div>): (
+<div>
       <Typography.TitleContainer>Eventos</Typography.TitleContainer>
       <section className="flex flex-col md:flex-row gap-4 w-full ">
         {randomEvents.map((event) => (
@@ -85,7 +87,9 @@ const EventList = () => {
           </span>
         </Link>
       </div>
-    </div>
+    </div>)
+
+    
   )
 }
 

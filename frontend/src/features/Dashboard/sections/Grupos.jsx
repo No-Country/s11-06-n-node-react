@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllGroups } from "../../../Redux/Actions/GroupGet";
 import { Link } from "react-router-dom";
 import { BsChevronDown } from "react-icons/bs";
+import loader from "../../../../public/loadermate.gif"
 
 export default function Grupos() {
     const dispatch = useDispatch()
@@ -16,6 +17,7 @@ export default function Grupos() {
     },[dispatch])
 
     return (
+      !groups.length? (<div className="w-[100%] h-[100%] justify-center mt-8 flex"><img src={loader} className="h-[50%] w-[30%]" alt="Cargando..." /></div>): (
         <div className="h-96">
           <Typography.TitleContainer>Grupos</Typography.TitleContainer>
           <div className="flex flex-col md:flex-row gap-10 md:gap-20">
@@ -34,5 +36,5 @@ export default function Grupos() {
                 <Link to={'/grupos'} className="w-full flex justify-end items-center cursor-pointer">Más grupos <span className="ml-2 text-xl"><BsChevronDown/></span></Link>
             </div>
         </div>
-    )
+    ))
 }

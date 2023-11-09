@@ -48,7 +48,7 @@ const Login = () => {
 
     return (
         <>
-        <div className='w-[100%] h-[100%]'>
+        <div className='w-[100%] h-[100%] h-screen flex flex-col'>
             <div className='flex flex-row '>
 <div>
             <div className='absolute'>

@@ -43,6 +43,8 @@ export default function EventoIdPage() {
     let { eventId } = useParams()
     const dispatch = useDispatch()
     const event = useSelector((state) => state.event.eventDetail)
+    
+    console.log(event);
     useEffect(() => {
         console.log(eventId);
         dispatch(getEventDetail(eventId))
@@ -60,15 +62,15 @@ export default function EventoIdPage() {
                         <Typography.Base> {event.location} </Typography.Base>
                         <hr />
                     </Typography>
-                    <div className="w-full h-96 grid grid-cols-4 gap-2">
-                        <ImageBg imagen={event.image} className="rounded-t-none h-96" />
+                    <div className="w-full h-96 grid grid-cols-1 gap-2">
+                        <ImageBg imagen={event.image} className="rounded-t-none h-full w-full" />
                         <ImageBg imagen={event.image} className="rounded-t-none h-96" />
                         <ImageBg imagen={event.image} className="rounded-t-none h-96" />
                         <ImageBg imagen={event.image} className="rounded-t-none h-96" />
                     </div>
 
                     <Typography>
-                        <Typography.SubtitleContainer> Experiencia ofrecida por Alexander </Typography.SubtitleContainer>
+                        <Typography.SubtitleContainer> `Experiencia ofrecida por $Traer informacion del usuario que creo el evento`</Typography.SubtitleContainer>
                         <ul className='flex  gap-2'>
                             {event.topics && event.topics.map((topic) => (
                                 <li class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">
