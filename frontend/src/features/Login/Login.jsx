@@ -50,7 +50,7 @@ const Login = () => {
 
     return (
         <>
-        <div className='h-[100%] h-screen flex flex-row'>
+        <div className='h-[100%] flex flex-row'>
         <div className='min-w-[110px] min-w-[110px] '>
     {/* <video src={fondo} className="object-cover w-full h-full"  autoPlay loop muted></video> */}
     <img src={fondo} className="object-cover w-full h-full" alt="fondo" />     
@@ -85,10 +85,10 @@ const Login = () => {
                                 </div>
 
 
-                            </div> 
-                <form action="#" onSubmit={handleSubmit(onSubmit)} id='form' className='w-[100%] flex '>
-                    <div className='flex items-center gap-3 flex-col text-center w-[100%] sm:w-[70%] '>
-                        
+                            </div>
+                            <form action="#" onSubmit={handleSubmit(onSubmit)} id='form' className='w-[100%] flex '>
+                                <div className='flex items-center gap-3 flex-col text-center w-[100%] sm:w-[70%] '>
+
 
                         <div className='flex flex-col justify-center gap-3 sm:flex sm:items-center sm:w-[60%] '>
                             <div className='flex w-[100%] sm:w-[100%] items-center gap-3 mt-6 mb-3'>
@@ -135,12 +135,12 @@ const Login = () => {
                     </div>
                 </form>
 
-                </div> 
-                
-                </div>
+                        </div>
 
+                    </div>
+
+                </div>
             </div>
-        </div>
         </>
     )
 }
