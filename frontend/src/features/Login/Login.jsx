@@ -50,7 +50,7 @@ const Login = () => {
 
     return (
         <>
-        <div className='h-[100%] h-screen flex flex-row'>
+        <div className='h-[100%] flex flex-row'>
         <div className='min-w-[110px] min-w-[110px] '>
     {/* <video src={fondo} className="object-cover w-full h-full"  autoPlay loop muted></video> */}
     <img src={fondo} className="object-cover w-full h-full" alt="fondo" />     
