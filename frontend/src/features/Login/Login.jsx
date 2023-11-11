@@ -2,8 +2,8 @@ import {useForm} from 'react-hook-form';
 import axios from "axios"
 import logo from '../../components/img/logo-1.png'
 import logoGoogle from '../../components/img/Google-Sign-In.png'
-import fondo from '../../../public/fondo.mp4'
-
+// import fondo from '../../../public/fondo.mp4'
+import fondo from '../../../public/fondo2.gif'
 // import passwordIcon from '../../components/img/Vpn key.png'
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -50,14 +50,14 @@ const Login = () => {
 
     return (
         <>
-        <div className='h-[100%] h-screen flex flex-row'>
+        <div className='h-[100%] flex flex-row'>
         <div className='min-w-[110px] min-w-[110px] '>
-    <video src={fondo} className="object-cover w-full h-full"  autoPlay loop muted></video>
-         
+    {/* <video src={fondo} className="object-cover w-full h-full"  autoPlay loop muted></video> */}
+    <img src={fondo} className="object-cover w-full h-full" alt="fondo" />     
 
 </div>    
             <div className='flex flex-row ml-[5%]'>
-            <div className='mt-[100px]  flex flex-col '>
+            <div className='mt-[100px] mb-[100px] flex flex-col '>
             
          <div className='flex flex-col w-[100%] '>
             <div>
@@ -66,7 +66,7 @@ const Login = () => {
                 </div>
 
                 <div className='w-full'>
-                <p className='text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl'>
+                <p className='ml-[2%] text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl'>
     <span className='text-greenSecundary'>Conoce lugares,</span>
     <br />
     <span className='text-greenPrimary'>descubrí personas</span>
@@ -85,10 +85,10 @@ const Login = () => {
                                 </div>
 
 
-                            </div> 
-                <form action="#" onSubmit={handleSubmit(onSubmit)} id='form' className='w-[100%] flex '>
-                    <div className='flex items-center gap-3 flex-col text-center w-[100%] sm:w-[70%] '>
-                        
+                            </div>
+                            <form action="#" onSubmit={handleSubmit(onSubmit)} id='form' className='w-[100%] flex '>
+                                <div className='flex items-center gap-3 flex-col text-center w-[100%] sm:w-[70%] '>
+
 
                         <div className='flex flex-col justify-center gap-3 sm:flex sm:items-center sm:w-[60%] '>
                             <div className='flex w-[100%] sm:w-[100%] items-center gap-3 mt-6 mb-3'>
@@ -135,12 +135,12 @@ const Login = () => {
                     </div>
                 </form>
 
-                </div> 
-                
-                </div>
+                        </div>
 
+                    </div>
+
+                </div>
             </div>
-        </div>
         </>
     )
 }
