@@ -6,6 +6,7 @@ import user4 from '../../../../public/person4.png'
 import place1 from '../../../../public/place1.jpeg'
 import place4 from '../../../../public/place4.jpeg'
 import Typography from '../../../components/Typography'
+import loader from "../../../../public/loadermate.gif"
 
 export default function Noticias() {
   const noticiasData = [
@@ -34,6 +35,7 @@ export default function Noticias() {
   ]
 
   return (
+    !noticiasData.length? (<div className="w-[100%] h-[100%] justify-center mt-8 flex"><img src={loader} className="h-[50%] w-[30%]" alt="Cargando..." /></div>): (
     <div>
       <Typography.TitleContainer>Últimas noticias</Typography.TitleContainer>
       <div className="flex flex-col md:flex-row gap-10 md:gap-20">
@@ -65,5 +67,5 @@ export default function Noticias() {
         </Link>
       </div>
     </div>
-  )
+  ))
 }

@@ -22,7 +22,7 @@ export default function AllEvents() {
   }
 
   return (
-    <div>
+    <div className=''>
       <SearchBar />
       <Typography.TitleContainer>Eventos</Typography.TitleContainer>
       <Link to="/perfil">
@@ -35,7 +35,7 @@ export default function AllEvents() {
       <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3   gap-4 w-full mt-8 overflow-x-auto ">
         {userEvents &&
           userEvents.map((event) => (
-            <CustomCard key={event.id} className=" ">
+            <CustomCard key={event._id} className=" ">
               <CustomCard.Header className="w-full h-20 bg-zinc-300 rounded-tl-2xl rounded-tr-2xl">
                 <ImageBg imagen={event.image} />
                 {/* imagen del header */}
@@ -66,7 +66,7 @@ export default function AllEvents() {
               <CustomCard.Footer className="p-4">
                 <LinkButton
                   className="bg-greenSecundary"
-                  href={`/eventos/${event.id}`}
+                  href={`/eventos/${event._id}`}
                 >
                   Ver más
                 </LinkButton>
