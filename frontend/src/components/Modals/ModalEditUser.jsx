@@ -60,7 +60,7 @@ export default function ModalEditUser({ user, token }) {
         console.error('Error al obtener la lista de idiomas:', error);
       });
     // setuserImage(editedUser.avatar)
-  }, []);
+  }, [ languagesList]);
   // console.log("edituser",editedUser);
 
 

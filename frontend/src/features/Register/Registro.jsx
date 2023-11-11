@@ -4,11 +4,14 @@ import logoGoogle from '../../components/img/Google-Sign-In.png'
 import axios from "axios"
 import Swal from "sweetalert2";
 import fondo from '../../../public/fondo2.gif'
+import { getAuth } from '../../utils/checkAuth';
+
 
 const Register = () =>{
     const {handleSubmit,register, watch, formState: {errors}} = useForm()    
     const onSubmit = (data) =>{
-        axios.post(`${import.meta.env.VITE_API_URL}/users`,data).then(resp => {
+        const config = getAuth();
+        axios.post(`${import.meta.env.VITE_API_URL}/users`, config, data).then(resp => {
             console.log(resp);
             if(resp.status == 201){
                 Swal.fire({
@@ -52,10 +55,12 @@ const Register = () =>{
                             </div>
                         <div className='pl-10 w-full mt-8'>
                             <form action="#" onSubmit={handleSubmit(onSubmit)} id='form' className=''>
+
                                 <div className='flex gap-3 w-[80%] flex-col'>
                                     <div className="mb-6 ">
                                         <label for="name" className="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Nombre</label>
                                         <input type="text" id="name" className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none border-2 min-w-[200px] focus-visible:ring-greenSecundary focus:border-greenSecundary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+
                                             {...register("name", 
                                                 {
                                                     required:{
@@ -85,6 +90,7 @@ const Register = () =>{
                                     <div className="mb-6">
                                         <label for="password" className="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Email</label>
                                         <input type="text" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none border-2 min-w-[200px] focus-visible:ring-greenSecundary focus:border-greenSecundary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+
                                             {...register("email", 
                                                 {
                                                     required:{
@@ -117,6 +123,7 @@ const Register = () =>{
                                     <div className="mb-6">
                                         <label for="confirm_password" className="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Confirmar Contraseña</label>
                                         <input type="password" id="confirm_password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none border-2 min-w-[200px] focus-visible:ring-greenSecundary focus:border-greenSecundary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+
                                             {...register("confirm_password",
                                                 {
                                                     required:{
