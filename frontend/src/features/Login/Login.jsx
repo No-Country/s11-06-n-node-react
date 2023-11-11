@@ -2,6 +2,8 @@ import {useForm} from 'react-hook-form';
 import axios from "axios"
 import logo from '../../components/img/logo-1.png'
 import logoGoogle from '../../components/img/Google-Sign-In.png'
+import fondo from '../../../public/fondo.mp4'
+
 // import passwordIcon from '../../components/img/Vpn key.png'
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -48,100 +50,95 @@ const Login = () => {
 
     return (
         <>
-        <div className='w-[1366px] h-[1493px]'>
-            
-
-
-            <div className='relative '>
-
-
-            <div className='absolute'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1493" viewBox="0 0 320 1493" fill="none">
-                    <path d="M-121 1493H266C266 1493 319.5 1320.5 295 1187C270.5 1053.5 215.159 1033.11 164 934.5C91.1069 794 18 597 98.5 372.5C179 148 319.5 0 319.5 0H-121V1493Z" fill="#01363A"/>
-                    </svg>
+            <div className='h-[100%] h-screen flex flex-row'>
+                <div className='min-w-[110px] min-w-[85px] '>
+                    <video src={fondo} className="object-cover w-full h-full" autoPlay loop muted></video>
                 </div>
-                <div className='z-10'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="387" height="1493" viewBox="0 0 387 1493" fill="none">
-                    <path d="M-53.5 0H333.5C333.5 0 387 172.5 362.5 306C338 439.5 282.659 459.893 231.5 558.5C158.607 699 85.5 896 166 1120.5C246.5 1345 387 1493 387 1493H-53.5V0Z" fill="#098D82"/>
-                    </svg>
-                </div>
+                <div className='flex flex-row ml-[5%]'>
+                    <div className='mt-[100px]  flex flex-col '>
+
+                        <div className='flex flex-col w-[100%] '>
+                            <div>
+                                <div className=''>
+                                    <img src={logo} alt="logo" className='w-[80%] ' />
+                                </div>
+
+                                <div className='w-full'>
+                                    <p className='text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl'>
+                                        <span className='text-greenSecundary'>Conoce lugares,</span>
+                                        <br />
+                                        <span className='text-greenPrimary'>descubrí personas</span>
+                                    </p>
+                                </div>
+                            </div>
 
 
+                            <div className='flex flex-col sm:w-[70%]  '>
+                                <div className="justify-center mt-20 w-[100%] flex items-center flex dark:bg-gray-800">
+                                    <button className="px-4 w-[60%] min-w-[200px] py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150 justify-center">
+                                        <img className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
+                                        <span>Login with Google</span>
+                                    </button>
 
-            <div className='absolute top-[212px] right-[178px] '>
-            
-        
-            <div>
-                <div className=''>
-                    <img src={logo} alt="" className=''/>
-                </div>
-
-                <div className=''>
-                    <p className='text-6xl'>Conoce lugares, <br /> descubrí personas</p>
-                </div>
-            </div>
+                                </div>
 
 
-            <div className='pl-20 w-[50%]'>
-                <div className='w-[281px] h-12 mt-[78px] mb-[68px] '>
-                    <button >
-                        <img src={logoGoogle} alt="" />
-                    </button>
-                </div>
+                            </div>
+                            <form action="#" onSubmit={handleSubmit(onSubmit)} id='form' className='w-[100%] flex '>
+                                <div className='flex items-center gap-3 flex-col text-center w-[100%] sm:w-[70%] '>
 
-            <div className='flex items-center gap-3 mb-6'>
-                <hr className='border-2 w-full h-full'/> <p> Or </p> 
-                <hr className='border-2 w-full h-full'/>
-            </div>
 
-                <form action="#" onSubmit={handleSubmit(onSubmit)} id='form' className=''>
-                    <div className='flex gap-3 flex-col text-center'>
-                        <div className='flex flex-col justify-center '>
-                            
-                            <input className='border-2 border-[#E5E7EB] rounded-md h-12' type="email" 
-                            placeholder='Correo Eléctronico'
-                            {...register("email", 
-                            {
-                                required:{
-                                    value: true,
-                                    message:"Correo requerido"
-                                },
-                                pattern:{
-                                    value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                                    message:"Correo no valido"
-                                }
-                            })}
-                            />
-                            
-                            {errors.email && <span>{errors.email.message}</span>}
+                                    <div className='flex flex-col justify-center gap-3 sm:flex sm:items-center sm:w-[60%] '>
+                                        <div className='flex w-[100%] sm:w-[100%] items-center gap-3 mt-6 mb-3'>
+                                            <hr className='border-1 w-full h-[1px]' /> <p> Or </p>
+                                            <hr className='border-1 w-full h-[1px]' />
+                                        </div>
+                                        <div className='flex flex-col justify-center w-[100%] sm:w-[100%] '>
+
+                                            <input className='p-[10px] focus:outline-none border-2 min-w-[200px] border-[#E5E7EB]  w-[100%] rounded-md h-12 focus-visible:ring-greenSecundary focus:border-greenSecundary' type="email"
+                                                placeholder=' Correo Eléctronico'
+                                                {...register("email",
+                                                    {
+                                                        required: {
+                                                            value: true,
+                                                            message: "Correo requerido"
+                                                        },
+                                                        pattern: {
+                                                            value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                                                            message: "Correo no valido"
+                                                        }
+                                                    })}
+                                            />
+
+                                            {errors.email && <span className='mb-[3%] sm:w-[100%] flex text-red-800 text-sm'>{errors.email.message}</span>}
+                                        </div>
+                                        <div className='flex flex-col justify-center w-[100%] sm:w-[100%] '>
+                                            <input type="password" className='p-[10px] focus:outline-none focus-visible:ring-greenSecundary focus:border-greenSecundary border-2  min-w-[200px] w-[50%] sm:w-[100%]  border-[#E5E7EB] rounded-md h-12'
+                                                placeholder=' Contraseña'
+                                                {...register("password",
+                                                    {
+                                                        required: {
+                                                            value: true,
+                                                            message: "Ingresar contraseña por favor"
+                                                        }
+                                                    }
+                                                )} />
+                                            {errors.password && <span className='sm:w-[100%] flex text-red-800 text-sm  sm:text-sm'>{errors.password.message}</span>}
+                                        </div>
+                                        <button className='min-w-[200px] flex justify-start w-[50%]'>¿Olvidaste tu contraseña?</button>
+                                        <button type='submit' className={(errors.password) ? 'bg-[#97CAC5] w-[80%] active:false min-w-[200px] rounded-md px-5 py-2.5 text-white ' : 'min-w-[200px] bg-[#11aa9e] w-[80%] text-sm sm:text-base rounded-md px-5 py-2.5 text-white hover:bg-[#098D82]'}>Continuar</button>
+
+                                        <Link to="/register" className='min-w-[200px] text-white w-[80%] bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm sm:text-base px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>Crear Cuenta</Link>
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
 
-                        <div className='flex flex-col justify-center gap-3'>
-                            
-                            <input type="password" className='border-2 border-[#E5E7EB] rounded-md h-12'
-                            placeholder='Contraseña'
-                            {...register("password",
-                            {
-                                required:{
-                                    value: true,
-                                    message:"Ingresar contraseña por favor"
-                                }
-                                }
-                                )}/>
-                            {errors.password && <span>{errors.password.message}</span>}
-                        <button className='flex justify-start'>¿Olvidaste tu contraseña?</button>
-                        <button type='submit' className={(errors.password) ? 'bg-[#97CAC5] border-2 border-[#098D82] rounded-md h-12 text-white' : 'bg-[#098D82] border-2 border-[#098D82] rounded-md h-12 text-white'}>Continuar</button>
-                        <Link to="/register" className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>Crear Cuenta</Link>
-                        </div>
                     </div>
-                </form>
 
-                </div> 
-                
                 </div>
-
             </div>
-        </div>
         </>
     )
 }

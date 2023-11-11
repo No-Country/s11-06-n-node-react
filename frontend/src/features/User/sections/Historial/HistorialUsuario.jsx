@@ -32,8 +32,8 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
       <div className="bg-[#FFFFFF] container mx-auto p-4 lg:p-8">
   <div className="w-full lg:flex">
     <div className="w-full lg:w-1/2 p-3 flex">
-      <div className="border p-4 shadow-xl bg-graySecundary ">
-        <h3 className="text-xl font-semibold">Eventos</h3>
+      <div className="border shadow-xl bg-graySecundary ">
+        <h3 className="text-xl mt-2 ml-2 font-semibold">Eventos</h3>
         <hr className="mb-4 mt-2 bg-grayPrimary" />
         {userEvents?.length > 0 ? (
           <div className="relative flex flex-col items-center">
@@ -82,8 +82,8 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
       </div>
     </div>
     <div className="w-full lg:w-1/2 p-3">
-      <div className="border p-4 shadow-xl bg-graySecundary">
-        <h3 className="text-xl font-semibold">Noticias</h3>
+      <div className="border shadow-xl bg-graySecundary">
+        <h3 className="text-xl mt-2 ml-2 font-semibold">Noticias</h3>
         <hr className="mb-4 mt-2 bg-grayPrimary" />
         {userNews?.length > 0 ? (
           <div className="relative flex flex-col items-center">
@@ -115,7 +115,7 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
             <Link to="/news/user">
               <button
                 title="Ver todas"
-                className="bg-greenPrimary text-white py-2 px-4 rounded-full cursor-pointer hover:bg-greenSecundary duration-75 absolute bottom-4 right-4"
+                className="bg-greenPrimary text-white py-2 px-4 rounded-full cursor-pointer hover:bg-greenSecundary duration-75 absolute bottom-4 right-4 "
               >
                 <IoIosArrowForward />
               </button>

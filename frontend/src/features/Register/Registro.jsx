@@ -3,6 +3,7 @@ import logo from '../../components/img/logo-1.png'
 import logoGoogle from '../../components/img/Google-Sign-In.png'
 import axios from "axios"
 import Swal from "sweetalert2";
+import fondo from '../../../public/fondo.mp4'
 
 const Register = () =>{
     const {handleSubmit,register, watch, formState: {errors}} = useForm()    
@@ -28,27 +29,24 @@ const Register = () =>{
     }
     return (
         <>
-            <div className='w-[1366px] h-[1493px]'>
-                <div className='relative '>
-                    <div className='absolute'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1493" viewBox="0 0 320 1493" fill="none">
-                        <path d="M-121 1493H266C266 1493 319.5 1320.5 295 1187C270.5 1053.5 215.159 1033.11 164 934.5C91.1069 794 18 597 98.5 372.5C179 148 319.5 0 319.5 0H-121V1493Z" fill="#01363A"/>
-                        </svg>
-                    </div>
-                    <div className='z-10'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="387" height="1493" viewBox="0 0 387 1493" fill="none">
-                        <path d="M-53.5 0H333.5C333.5 0 387 172.5 362.5 306C338 439.5 282.659 459.893 231.5 558.5C158.607 699 85.5 896 166 1120.5C246.5 1345 387 1493 387 1493H-53.5V0Z" fill="#098D82"/>
-                        </svg>
-                    </div>
-                    <div className='absolute top-[100px] right-[178px] '>
-                        <div>
-                            <div className=''>
-                                <img src={logo} alt="" className=''/>
+            <div >
+                <div className='h-[100%] h-full flex flex-row'>
+                <div className='min-w-[110px] min-w-[85px] '>
+    <video src={fondo} className="object-cover w-full h-full"  autoPlay loop muted></video>
+</div>  
+                    <div className='mt-[100px]'>
+                         <div>
+                                <div className=''>
+                                    <img src={logo} alt="logo" className='ml-[5%] w-[70%] ' />
+                                </div>
+
+                                <div className='w-full'>
+                                    <p className='text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-6xl'>
+                                        <span className='text-greenSecundary'>Queremos saber más de ti...</span>
+                                        
+                                    </p>
+                                </div>
                             </div>
-                            <div className=''>
-                                <p className='text-3xl'>Queremos saber más de ti</p>
-                            </div>
-                        </div>
                         <div className='pl-20 w-full mt-8'>
                             <form action="#" onSubmit={handleSubmit(onSubmit)} id='form' className=''>
                                 <div className='flex gap-3 flex-col'>
