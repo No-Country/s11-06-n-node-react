@@ -49,7 +49,7 @@ const Register = () =>{
                 <div className='min-w-[130px]  '>
                 <img src={fondo} className="object-cover w-full h-full" alt="fondo" />    
 </div>  
-                   {!loading? (<div className='h-screen flex flex-col justify-center items-center'>
+                   {loading? (<div className='h-screen flex flex-col justify-center items-center'>
                                     <img src={logomov} alt="logomov" className=' w-[80%]  sm:w-[70%]' />
                                     {/* <p className='text-l text-greenSecundary font-bold'>registrándote...</p> */}
                                 </div> ):
