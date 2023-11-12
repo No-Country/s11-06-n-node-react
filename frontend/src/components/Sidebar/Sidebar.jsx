@@ -49,7 +49,7 @@ export default function Sidebar() {
               ):(
                   <div className="flex items-center gap-x-3 py-10">
                    <Link to={'/login'} className='flex items-center'> 
-                   <ImageProfileUserSmall imagen = {"https://res.cloudinary.com/dbwmesg3e/image/upload/v1698627185/GlobalMate/png-transparent-computer-icons-user-profile-user-avatar-blue-heroes-electric-blue-thumbnail_nm1glh.png"}/>
+                   <ImageProfileUserSmall imagen = {"https://res.cloudinary.com/dbwmesg3e/image/upload/v1698886031/GlobalMate/pngegg_21_pm25ge.png"}/>
                    <p className='font-bold ml-2'>{`usuario`}</p>
                     </Link>
 

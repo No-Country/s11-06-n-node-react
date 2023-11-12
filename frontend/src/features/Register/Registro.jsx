@@ -14,8 +14,10 @@ const Register = () =>{
     const [loading, setLoading] = useState(false);  
     const onSubmit = (data) =>{
         setLoading(true)
-        const config = getAuth();
-        axios.post(`${import.meta.env.VITE_API_URL}/users`, config, data).then(resp => {
+        // const config = getAuth();
+        console.log(data);
+        // console.log(config);
+        axios.post(`${import.meta.env.VITE_API_URL}/users`, data).then(resp => {
             console.log(resp);
             if(resp.status == 201){
                 Swal.fire({
@@ -36,8 +38,8 @@ const Register = () =>{
         setLoading(false)
     }
     // console.log(formState);
-    console.log(errors);
-    console.log(Object.keys(errors).length);
+    // console.log(errors);
+    // console.log(Object.keys(errors).length);
     
     return (
         <>

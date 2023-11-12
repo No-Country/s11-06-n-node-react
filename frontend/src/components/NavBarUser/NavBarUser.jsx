@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { GrMenu, GrClose } from 'react-icons/gr';
 import LinksMenu from '../Sidebar/LinksMenu';
 import { CiLocationOn } from 'react-icons/ci';
-
+import { RiLogoutBoxRLine } from 'react-icons/ri';
 
 import { LuFileSignature, LuLayoutDashboard } from 'react-icons/lu';
 import { AiOutlineTags, AiOutlineQuestionCircle } from 'react-icons/ai';
@@ -52,6 +52,17 @@ export default function NavBarUser() {
     }
   }, [actualUser, dispatch]);
 
+  const handleLogout = () => {
+    if (Cookies.get('data')) {
+        Cookies.remove('data', { path: '/auth' });
+        Cookies.remove('data', { path: '/' });
+        console.log("usuario desconectado");
+        window.location.reload();
+      } else {
+        console.log("La cookie 'userData' no existe.");
+      }
+
+  };
 
     return (
         <div className="bg-white h-16 fixed top-0 w-full flex justify-between items-center z-20 px-3 md:px-10 shadow-md">
@@ -91,9 +102,9 @@ export default function NavBarUser() {
                             <Link to={'/eventos'} className='flex items-center' onClick={toggleMenu}><span className='text-2xl mr-2'><AiOutlineTags/></span>Eventos</Link>
                             <Link to={'/noticias'} className='flex items-center' onClick={toggleMenu}><span className='text-2xl mr-2'><BsNewspaper/></span>Noticias</Link>
                             <Link to={'/grupos'} className='flex items-center' onClick={toggleMenu}><span className='text-2xl mr-2'><HiOutlineUserGroup/></span>Grupos</Link>
-                            {/* <button onClick={handleLogout} className="flex flex-row  content-center items-center text-auto w-full text-red hover:text-red-900 transition duration-300">
+                            <button onClick={handleLogout} className="flex flex-row  content-center items-center text-auto w-full text-red hover:text-red-900 transition duration-300">
                                 <span className="text-base mr-2 flex flex-row  content-center items-center text-auto w-full"><RiLogoutBoxRLine className='mr-2'></RiLogoutBoxRLine> Cerrar sesión</span>
-                            </button> */}
+                            </button>
                         </div>
                         
                         <div className='flex justify-between'>
