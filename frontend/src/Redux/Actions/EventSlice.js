@@ -12,7 +12,7 @@ const Slice = createSlice({
     initialState,
     reducers: {
         getEvents: (state, action) => {
-            console.log(action.payload);
+            // console.log(action.payload);
             state.events = action.payload;
         },
         postEvent:(state, action) => {
@@ -24,7 +24,7 @@ const Slice = createSlice({
         },   
       
         modifyEvent: (state, action) => {
-            console.log(action.payload);
+            // console.log(action.payload);
             state.eventDetail = action.payload;
         },
     }

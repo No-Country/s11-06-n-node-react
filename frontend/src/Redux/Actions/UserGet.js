@@ -1,3 +1,4 @@
+import { getAuth } from "../../utils/checkAuth";
 import {
     getUsers, postUser, getDetailUser,  modifyUser, getUserGroups, getUserEvents, logOut, getUserNews
 } from "../Actions/UserSlice";
@@ -8,8 +9,10 @@ import axios from "axios";
 const getAllUsers= () => {
 	return async (dispatch) => {
 		try {
-			const dbData = await axios.get(`${import.meta.env.VITE_API_URL}/users`);			
-			dispatch(getUsers(dbData).data);
+			const config = await getAuth()
+			// console.log(config);
+			const dbData = await axios.get(`${import.meta.env.VITE_API_URL}/users`,config);			
+			dispatch(getUsers(dbData.data));
 		} catch (error) {
 			console.error(error);
 		}
@@ -84,7 +87,7 @@ const getEventsUser = (actualUser) => {
 	return async (dispatch) => {
 		try {
 			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/events/user/${actualUser.user._id}`));
-      console.log(dbData.data);
+    //   console.log(dbData.data);
 			dispatch(getUserEvents(dbData.data));
 		} catch (error) {
 			console.error(error);
@@ -111,10 +114,18 @@ const getNewsUser = (actualUser) => {
 //Traer todas las noticias del usuario
 // https://s11-06-n-node-react-back.onrender.com/documentation/new/user/:id
 
-const logOutUser= () => {
+const logOutUser= (user) => {
 	return async (dispatch) => {
-		try {		
-			dispatch(logOut());
+		try {	
+
+			const config = await getAuth()
+			console.log("config",config);
+			const dbData = await axios.get(`${import.meta.env.VITE_API_URL}/users/logout/${user.user._id}`,config);	
+			// console.log(dbData);
+			if(dbData == "Usuario desconectado"){
+				await dispatch(logOut());
+			}
+			
 		} catch (error) {
 			console.error(error);
 		}

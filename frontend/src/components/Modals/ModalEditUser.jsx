@@ -29,7 +29,7 @@ export default function ModalEditUser({ user, token }) {
   const closeModal = () => {
     setModal(false)
   }
-  console.log("lista de paises", languagesList);
+  // console.log("lista de paises", languagesList);
   const [editedUser, setEditedUser] = useState({
 
   });
@@ -51,19 +51,7 @@ export default function ModalEditUser({ user, token }) {
     )
   }, [user])
 
-  // useEffect(() => {
-  //   axios.get('https://demo1063061.mockable.io/idiomas_banderas')
-  //     .then((response) => {
-  //       setLanguagesList(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error al obtener la lista de idiomas:', error);
-  //     });
-  //   // setuserImage(editedUser.avatar)
-  // }, [ languagesList]);
-  // console.log("edituser",editedUser);
-
-
+ 
   const handleFieldChange = (field, value) => {
     setEditedUser({
       ...editedUser,
@@ -78,9 +66,9 @@ export default function ModalEditUser({ user, token }) {
     // console.log("editedUser.avatar",editedUser.avatar);
     if (editedUser.avatar) {
       array = editedUser.avatar.split("/")
-      console.log("array", array);
+      // console.log("array", array);
       const [publicID, etc] = array[array.length - 1].split(".")
-      console.log(publicID)
+      // console.log(publicID)
       setLoadingImage(true)
       try {
         const delResponse = await axios.delete(

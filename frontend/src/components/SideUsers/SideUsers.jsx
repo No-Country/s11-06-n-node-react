@@ -8,8 +8,26 @@ import user5 from '../../../public/person5.png'
 import user6 from '../../../public/person6.png'
 import user7 from '../../../public/person7.png'
 import Typography from "../Typography";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getAllUsers } from "../../Redux/Actions/UserGet";
+
 
 export default function SideUsers() {
+
+    const dispatch = useDispatch()
+    const allUsers = useSelector((state) => state.user.users);
+
+    useEffect(() => {
+          dispatch(getAllUsers());
+      }, []);
+// console.log("sideUsers",allUsers);
+
+const connectedUsers = allUsers?.filter((user) => user.status !== 'desconectado');
+const disconnectedUsers = allUsers?.filter((user) => user.status === 'desconectado');
+
+console.log("conectados",connectedUsers);
+console.log("desconectados",disconnectedUsers);
 
     const photoUsers = [
         {
