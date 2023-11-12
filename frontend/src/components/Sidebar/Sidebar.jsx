@@ -48,12 +48,11 @@ export default function Sidebar() {
     <p className='font-bold'>{`${userDetail.name} ${userDetail.lastname}`}</p>
   </>
 ) : (
-  <div className="flex items-center gap-x-3 py-10">
     <Link to={'/perfil'} className='flex items-center'> 
       <ImageProfileUserSmall imagen='https://res.cloudinary.com/dbwmesg3e/image/upload/v1698886031/GlobalMate/pngegg_21_pm25ge.png'/>
       <p className='font-bold ml-2'>{`${userDetail.name} ${userDetail.lastname}`}</p>
     </Link>
-  </div>
+ 
 )}
             </div>
             

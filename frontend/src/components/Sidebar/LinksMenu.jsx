@@ -7,15 +7,20 @@ import { Link } from 'react-router-dom';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
 import Cookies from 'js-cookie';
 import { FiLogIn } from 'react-icons/fi';
+import { useDispatch } from 'react-redux';
+import { logOutUser } from '../../Redux/Actions/UserGet';
 
 export default function LinksMenu(user) {
 //   console.log(Object.keys(user.user).length);
-// console.log(user);
-    const handleLogout = () => {
+// console.log("user en linksMenu",user.user._id);
+const dispatch = useDispatch()
+    const handleLogout = async () => {
+
         if (Cookies.get('data')) {
+          dispatch(logOutUser(user))
             Cookies.remove('data', { path: '/auth' });
             Cookies.remove('data', { path: '/' });
-            console.log("usuario desconectado");
+            // console.log("usuario desconectado");
             window.location.reload();
           } else {
             console.log("La cookie 'userData' no existe.");

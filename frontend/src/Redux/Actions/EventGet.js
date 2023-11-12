@@ -10,7 +10,7 @@ const getAllEvents = () => {
 		try {
       const config = getAuth();
 			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/events`, config)).data;
-      console.log(dbData);
+      // console.log(dbData);
 			return dispatch(getEvents(dbData));
 		} catch (error) {
       console.log(error);
@@ -27,7 +27,7 @@ const getEventDetail = (id) => {
 		try {
       const config = getAuth();
 			const dbData = (await axios.get(`${import.meta.env.VITE_API_URL}/events/${id}`, config)).data;
-      console.log(dbData);
+      // console.log(dbData);
 			return dispatch(getDetailEvent(dbData));
 		} catch (error) {
       console.log(error);
