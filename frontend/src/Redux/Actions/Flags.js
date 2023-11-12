@@ -7,7 +7,7 @@ import { getFlags } from "./flagsSlice";
 const getAllFlags= () => {
 	return async (dispatch) => {
 		try {
-			const dbData = await axios.get(`http://localhost:8080/flags`);	
+			const dbData = await axios.get(`${import.meta.env.VITE_API_URL}/flags`);	
 			// console.log(dbData);		
 			dispatch(getFlags(dbData.data));
 		} catch (error) {
