@@ -6,9 +6,7 @@ import LinkButton from '../../../../components/LinkButton';
 
 export default function HistorialUsuario({userEvents, formatDate, userGroups, userNews}) {
     // console.log(userEvents);
-
-
-
+// console.log(userGroups);
     const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
     const [currentEventIndex, setCurrentEventIndex] = useState(0);
 
@@ -134,7 +132,7 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
       {userGroups?.length > 0 ? (
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
           {userGroups?.map((group) => (
-            <li key={group.id} className="flex items-center mt-2.5">
+            <li key={group._id} className="flex items-center mt-2.5">
               <div className="w-10 h-10 mr-2">
                 <img
                   src={group.image}
