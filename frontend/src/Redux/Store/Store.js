@@ -4,6 +4,7 @@ import group from "../Actions/GroupSlice"
 import news from "../Actions/NewsSlice"
 import event from "../Actions/EventSlice"
 import activity from "../Actions/ActivitySlice"
+import FlagsSlice from '../Actions/flagsSlice';
 
 
 const store = configureStore({
@@ -12,8 +13,8 @@ const store = configureStore({
        group: group,
        news: news,
        event: event,
-       activity: activity
-       
+       activity: activity,
+        flags: FlagsSlice
     },
 });
 
