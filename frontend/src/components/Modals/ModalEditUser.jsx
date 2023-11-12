@@ -18,7 +18,7 @@ export default function ModalEditUser({ user, token }) {
 
   const cloudinaryApiKey = import.meta.env.VITE_CLOUDINARY_API_KEY;
   const url = import.meta.env.VITE_API_URL;
-  // const user = useSelector((state) => state.user.userDetail);
+  const languagesList = useSelector((state) => state.flag.flags);
   const [loading, setLoading] = useState(false);
   const [loadingImage, setLoadingImage] = useState(false);
   const dispatch = useDispatch();
@@ -29,11 +29,11 @@ export default function ModalEditUser({ user, token }) {
   const closeModal = () => {
     setModal(false)
   }
-  // console.log("user en modal", user);
+  console.log("lista de paises", languagesList);
   const [editedUser, setEditedUser] = useState({
 
   });
-  const [languagesList, setLanguagesList] = useState([]);
+  // const [languagesList, setLanguagesList] = useState([]);
 
   useEffect(() => {
     setEditedUser(
@@ -51,16 +51,16 @@ export default function ModalEditUser({ user, token }) {
     )
   }, [user])
 
-  useEffect(() => {
-    axios.get('http://demo1063061.mockable.io/idiomas_banderas')
-      .then((response) => {
-        setLanguagesList(response.data);
-      })
-      .catch((error) => {
-        console.error('Error al obtener la lista de idiomas:', error);
-      });
-    // setuserImage(editedUser.avatar)
-  }, [ languagesList]);
+  // useEffect(() => {
+  //   axios.get('https://demo1063061.mockable.io/idiomas_banderas')
+  //     .then((response) => {
+  //       setLanguagesList(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error al obtener la lista de idiomas:', error);
+  //     });
+  //   // setuserImage(editedUser.avatar)
+  // }, [ languagesList]);
   // console.log("edituser",editedUser);
 
 

@@ -10,6 +10,7 @@ import ModalEditUser from "../../../components/Modals/ModalEditUser";
 import DatosUsuario from "../sections/Datos/DatosUsuario";
 import HistorialUsuario from "../sections/Historial/HistorialUsuario";
 import loader from "../../../../public/loadermate.gif"
+import { getAllFlags } from "../../../Redux/Actions/FlagGet";
 
 const UserProfile = () => {
 const cookieData = Cookies.get('data');
@@ -48,6 +49,7 @@ const formatDate = (dateString) => {
         dispatch(getGroupsUser(actualUser));
         dispatch(getEventsUser(actualUser));
         dispatch(getNewsUser(actualUser));
+        dispatch(getAllFlags());
       }
     }, [actualUser, dispatch]);
 

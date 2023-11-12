@@ -99,7 +99,7 @@ const getNewsUser = (actualUser) => {
         throw new Error("New user is undefined.");
   };
 			const dbData = (await axios.get(`https://s11-06-n-node-react-back.onrender.com/news/user/${actualUser.user._id}`));
-      console.log("news user",dbData.data);
+    //   console.log("news user",dbData.data);
 			dispatch(getUserNews(dbData.data));
 		} catch (error) {
 			console.error(error);

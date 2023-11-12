@@ -42,21 +42,19 @@ export default function Sidebar() {
         <div className="w-60 text-white z-10">
           <div className='fixed bg-greenPrimary h-screen w-60 px-4'>
             <div className="flex items-center gap-x-3 py-10">
-              {Object.keys(userDetail).length ?(
-              <><ImageProfileUserSmall imagen = {userDetail.avatar} />
-                <p className='font-bold'>{`${userDetail.name} ${userDetail.lastname}`}</p>
-              </>
-              ):(
-                  <div className="flex items-center gap-x-3 py-10">
-                   <Link to={'/login'} className='flex items-center'> 
-                   <ImageProfileUserSmall imagen = {"https://res.cloudinary.com/dbwmesg3e/image/upload/v1698886031/GlobalMate/pngegg_21_pm25ge.png"}/>
-                   <p className='font-bold ml-2'>{`usuario`}</p>
-                    </Link>
-
-                  </div>
-                )
-
-              }
+            {Object.keys(userDetail).length && userDetail.avatar && Object.keys(userDetail.avatar).length ? (
+  <>
+    <ImageProfileUserSmall imagen={userDetail.avatar} />
+    <p className='font-bold'>{`${userDetail.name} ${userDetail.lastname}`}</p>
+  </>
+) : (
+  <div className="flex items-center gap-x-3 py-10">
+    <Link to={'/perfil'} className='flex items-center'> 
+      <ImageProfileUserSmall imagen='https://res.cloudinary.com/dbwmesg3e/image/upload/v1698886031/GlobalMate/pngegg_21_pm25ge.png'/>
+      <p className='font-bold ml-2'>{`${userDetail.name} ${userDetail.lastname}`}</p>
+    </Link>
+  </div>
+)}
             </div>
             
             <LinksMenu user={userDetail}/>

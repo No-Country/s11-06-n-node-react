@@ -62,7 +62,7 @@ const sess = {
 };
 
 initializePassport();
-app.use(cors())
+app.use(cors({ origin: '*' }));
 app.use(session(sess));
 app.use(passport.initialize())
 app.use(passport.session())

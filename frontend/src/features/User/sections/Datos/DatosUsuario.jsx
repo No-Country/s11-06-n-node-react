@@ -1,17 +1,13 @@
-import { ImageProfileUserMedium } from '../../../../components/Images/ImageProfileUser'
+import { ImageProfileUserLarge, ImageProfileUserMedium } from '../../../../components/Images/ImageProfileUser'
 import user1 from '../../../../../public/user1.jpeg'
 import { FcPhoneAndroid } from 'react-icons/fc';
 
 export default function DatosUsuario({userDetail}) {
     return (
         <div className="flex mt-4">
-     <div className="w-1/4 text-center">
-       <img
-         src={userDetail.avatar} // Asegúrate de que userDetail.avatar contenga la URL de la imagen
-         alt=""
-         className="rounded-full w-32 h-32 border border-gray-300 mx-auto"
-       />
-     </div>
+          {userDetail.avatar?<ImageProfileUserLarge imagen={userDetail.avatar}></ImageProfileUserLarge>:<ImageProfileUserLarge imagen='https://res.cloudinary.com/dbwmesg3e/image/upload/v1698886031/GlobalMate/pngegg_21_pm25ge.png'></ImageProfileUserLarge>
+}
+
      <div className="w-3/4 pl-4 flex flex-col">
        <p className="text-2xl font-bold">
          {userDetail.name} {userDetail.lastname}
