@@ -17,13 +17,14 @@ export default function SideUsers() {
 
     const dispatch = useDispatch()
     const allUsers = useSelector((state) => state.user.users);
-
+    const actualUser = useSelector((state) => state.user.userDetail);
+    // console.log(actualUser);
     useEffect(() => {
           dispatch(getAllUsers());
       }, []);
 // console.log("sideUsers",allUsers);
 
-const connectedUsers = allUsers?.filter((user) => user.status !== 'desconectado');
+const connectedUsers = allUsers?.filter((user) => user.status !== 'desconectado' && user._id !== actualUser._id);
 const disconnectedUsers = allUsers?.filter((user) => user.status === 'desconectado');
 
 console.log("conectados",connectedUsers);
@@ -69,17 +70,17 @@ console.log("desconectados",disconnectedUsers);
 
     return (
          <div className="w-60 text-white">
-            <div className="fixed bg-grayPrimary h-screen w-60 px-4 py-10 shadow-lg">
+            <div className="fixed bg-grayPrimary h-screen overflow-y-scroll w-60 px-4 py-10 pb-[100px] shadow-lg">
                 <div className="mb-10">
                     <div className="border-b border-greenPrimary"><Typography.SubtitleContainer>Personas Activas</Typography.SubtitleContainer></div>
-                    <Typography.Small>Cerca tuyo</Typography.Small>
+                    {/* <Typography.Small>Cerca tuyo</Typography.Small> */}
                 </div>
                 <div className="flex flex-col gap-y-7">
-                    {photoUsers.map(photoUser => (
+                    {connectedUsers?.map(photoUser => (
                         <CardActiveUser
-                            photoUser={photoUser.photo}
+                            photoUser={photoUser.avatar}
                             name={photoUser.name}
-                            lang={photoUser.lang}
+                            lang={photoUser.languages}
                         />
                     ))}
                 </div>
