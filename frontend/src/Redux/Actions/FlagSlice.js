@@ -4,7 +4,7 @@ const initialState = {
     flags:[]//Traigo todos los Usuarios
 };
 const Slice = createSlice({
-    name: 'flags',
+    name: 'flag',
     initialState,
     reducers: {
         getFlags: (state, action) => {

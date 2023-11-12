@@ -5,7 +5,7 @@ import LinkButton from '../../../../components/LinkButton';
 
 
 export default function HistorialUsuario({userEvents, formatDate, userGroups, userNews}) {
-    console.log(userEvents);
+    // console.log(userEvents);
 
 
 
@@ -27,7 +27,7 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
       setCurrentNewsIndex((prevIndex) => (prevIndex - 1 + userNews.length) % userNews.length);
     };
 
-    console.log(userNews);
+    // console.log(userNews);
     return (
       <div className="bg-[#FFFFFF] container mx-auto p-4 lg:p-8">
   <div className="w-full lg:flex">

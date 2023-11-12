@@ -18,7 +18,7 @@ export default function ModalEditUser({ user, token }) {
 
   const cloudinaryApiKey = import.meta.env.VITE_CLOUDINARY_API_KEY;
   const url = import.meta.env.VITE_API_URL;
-  const languagesList = useSelector((state) => state.flags.flags);
+  const languagesList = useSelector((state) => state.flag.flags);
   const [loading, setLoading] = useState(false);
   const [loadingImage, setLoadingImage] = useState(false);
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export default function ModalEditUser({ user, token }) {
   const closeModal = () => {
     setModal(false)
   }
-  // console.log("lista de paises", languagesList);
+  console.log("lista de paises", languagesList);
   const [editedUser, setEditedUser] = useState({
 
   });
