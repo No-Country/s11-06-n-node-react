@@ -18,24 +18,25 @@ const Register = () =>{
         console.log(data);
         // console.log(config);
         axios.post(`${import.meta.env.VITE_API_URL}/users`, data).then(resp => {
-            console.log(resp);
-            if(resp.status == 201){
-                Swal.fire({
-                    icon: "success",
-                    title: "Registro Exitoso",
+            setTimeout(() => {
+                console.log(resp);
+                if (resp.status === 201) {
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Registro Exitoso',
                     text: `¡${resp.data.message}!`,
                   }).then((r) => {
-                    // console.log(r);
                     if (r.isConfirmed) {
-                     location.href = "/login"
+                      location.href = '/login';
                     }
                   });
-                
-            }else{
-                console.log(resp.data);
-            }
-        })
-        setLoading(false)
+                } else {
+                  console.log(resp.data);
+                }
+
+                setLoading(false);
+              }, 2000); // 1000 milisegundos = 1 segundo
+            });
     }
     // console.log(formState);
     // console.log(errors);
@@ -48,14 +49,17 @@ const Register = () =>{
                 <div className='min-w-[130px]  '>
                 <img src={fondo} className="object-cover w-full h-full" alt="fondo" />    
 </div>  
-                    <div className='mt-[100px] ml-[5%] mb-[100px]'>
+                   {!loading? (<div className='h-screen flex flex-col justify-center items-center'>
+                                    <img src={logomov} alt="logomov" className=' w-[80%]  sm:w-[70%]' />
+                                    {/* <p className='text-l text-greenSecundary font-bold'>registrándote...</p> */}
+                                </div> ):
+                                ( <div className='mt-[100px] ml-[5%] mb-[100px]'>
                          <div>
-                            {loading? <div className=''>
-                                    <img src={logomov} alt="logo" className=' w-[80%] sm:w-[70%]' />
-                                </div> : <div className=''>
+                            
+                                <div className=''>
                                     <img src={logo} alt="logo" className=' w-[80%] sm:w-[70%] ' />
                                 </div>
-                                }
+                                
                                 
                                 <div className='w-full ml-[5%]'>
                                     <p className='text-md sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl 2xl:text-4xl'>
@@ -163,7 +167,10 @@ const Register = () =>{
                                </div>
                             </form>
                         </div> 
-                    </div>
+                    </div>)
+                                } 
+                                
+                               
                 </div>
             </div>
         </>
