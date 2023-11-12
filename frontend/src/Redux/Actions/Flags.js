@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { getFlags } from "./flagsSlice";
+import { getFlags } from "../Actions/FlagsSlice";
 
 
 //GET para traer todos los usuarios logueados
