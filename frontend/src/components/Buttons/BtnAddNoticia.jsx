@@ -25,7 +25,8 @@ export default function BtnAddNoticia() {
             </button>
             <Modal isOpen={modal} onRequestClose={closeModal} className={'overflow-y-scroll h-full'}>
                 <div className='flex justify-center items-center h-full text-sm text-greenPrimary'>
-                    <div className='border border-graySecundary max-w-xs sm:max-w-xl w-full p-14 shadow-2xl bg-white rounded-lg relative'>
+
+                    <div className='border border-graySecundary max-w-xs sm:max-w-xl w-full p-5 sm:p-14 shadow-2xl bg-white rounded-lg relative'>
                         <div className='border-b border-greenPrimary flex justify-between'>
                             <p className='text-2xl py-2'>Crear Noticia</p>
                             <button onClick={closeModal} className='absolute top-5 right-5 text-2xl text-greenSecundary'><GrClose/></button>
@@ -52,7 +53,7 @@ export default function BtnAddNoticia() {
                                     <button className='text-xl'><BsCardImage/></button>
                                 </div>
                             </div>
-                            <input type="submit" value="Publicar" className='bg-greenSecundary w-full py-2 text-white font-bold rounded-md cursor-pointer hover:bg-greenPrimary duration-75'/>
+                            <input type="submit" value="Publicar" className='bg-greenPrimary w-full py-2 text-white font-bold rounded-md cursor-pointer hover:bg-greenSecundary duration-75'/>
                         </form>
                     </div>
                 </div>

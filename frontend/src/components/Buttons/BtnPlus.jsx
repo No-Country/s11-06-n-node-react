@@ -1,10 +1,10 @@
 import { BiPlus } from 'react-icons/bi';
-import { AiOutlineTags } from 'react-icons/ai';
-import { HiOutlineUserGroup } from 'react-icons/hi';
 import { useState } from 'react';
 import BtnAddNoticia from './BtnAddNoticia';
-import BtnAddEvent from './BtnAddEvent';
 import BtnAddGrupo from './BtnAddGrupo';
+import ModalAddEvent from '../Modals/ModalAddEvent';
+import ModalAddGroup from '../Modals/ModalAddGroup';
+import ModalAddNews from '../Modals/ModalAddNews';
 
 
 
@@ -23,26 +23,16 @@ export default function BtnPlus() {
         <div className=''>
             <button
                 onClick={toggleBtnAdd}
-                className={`bg-greenPrimary p-2 rounded-full text-4xl text-white flex justify-center items-center duration-75 ${rotated && 'rotate-45'}`}
+                className={`bg-greenPrimary p-3 rounded-full text-4xl text-white flex justify-center items-center duration-75 lg:mr-10 ${rotated && 'rotate-45'}`}
             >
                 <span className=''><BiPlus/></span>
             </button>
 
             {displayIcons && (
-                <div className='absolute duration-200'>
-                    <BtnAddNoticia/>
-                    <BtnAddEvent/>
-                    <BtnAddGrupo/>
-
-
-                    {/* <button className='w-14 h-14 bg-greenSecundary rounded-full m-1 absolute -top-48 -right-14 text-white flex flex-col justify-center items-center'>
-                        <span className='text-xl'><HiOutlineUserGroup/></span>
-                        <p className='text-xs'>Grupo</p>
-                    </button> */}
-                    {/* <button className='w-14 h-14 bg-greenSecundary rounded-full m-1 absolute -top-32 -right-14 text-white flex flex-col justify-center items-center'>
-                        <span className='text-xl'><AiOutlineTags/></span>
-                        <p className='text-xs'>Evento</p>
-                    </button> */}
+                <div className='absolute duration-200 -top-64 right-0 lg:right-10 flex flex-col gap-4'>
+                    <ModalAddEvent />
+                    <ModalAddGroup />
+                    <ModalAddNews />
                 </div>
             )}
         </div>

@@ -4,11 +4,11 @@
 
 function CardFriend({usuario}) {
     return (
-        <div className='bg-[#555050] cursor-pointer w-11/12 h-20 shadow-xl rounded-lg my-3 flex flex-col'>
+        <div className='bg-greenSecundary cursor-pointer w-11/12 h-20 shadow-xl rounded-lg my-3 flex flex-col'>
             <div className='relative h-12 w-12 '>
                 <figure className='  absolute -top-2 -left-2'>
                     <span >
-                        <img className='h-12 w-12 rounded-full border border-solid border-black' src={usuario.perfil} alt={`foto de perfil de ${usuario.nombre}`} />
+                        <img className='h-12 w-12 rounded-full border border-solid border-[#098D82]' src={usuario.perfil} alt={`foto de perfil de ${usuario.nombre}`} />
                     </span>
                 </figure>   
                 <div className='absolute top-2 left-12'>

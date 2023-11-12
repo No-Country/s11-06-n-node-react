@@ -3,6 +3,7 @@ import Sidebar from "../../../components/Sidebar/Sidebar";
 import ListCardFirends from "../../../components/ListCardFriends";
 import CardGrupoPage from "../components/CardGrupoPage";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getAllGroups } from "../../../Redux/Actions/GroupGet";
 import { useEffect } from "react";
 
@@ -12,10 +13,41 @@ export default function GruposPage() {
   const dispatch = useDispatch();
   useEffect(() => {
       dispatch(getAllGroups());
-
+      
   }, []);
-console.log(AllGroups[7].user);
-    // const gruposData = [
+ 
+
+  return (
+    <div>
+          <SearchBar />
+
+          <p>Grupo</p>
+          <hr />
+
+          {AllGroups.map((grupoData) => {
+
+             return (
+              <CardGrupoPage
+                key={grupoData._id}
+                _id={grupoData._id}
+                imagePlace={grupoData.image}
+
+                imageUser={grupoData.users_admin[0]?grupoData.users_admin[0].avatar : ""}
+                name={grupoData.users_admin[0].name? grupoData.users_admin[0]?.name : ""}
+                description={grupoData.description}
+                date={grupoData.date}
+                location={grupoData.users_admin[0]?grupoData.users_admin[0].location : ""}
+                title={grupoData.name?grupoData.name : ""}
+              />
+              
+            ); 
+          })}
+          
+
+    </div>
+  );
+}
+   // const gruposData = [
     //     {
     //       _id: 1,
     //       description: "Argentinos en Punta Cana",
@@ -89,29 +121,3 @@ console.log(AllGroups[7].user);
     //         date: "12/10/2023",
     //       },
     //   ];
-
-  return (
-    <div>
-          <SearchBar />
-
-          <p>Grupo</p>
-          <hr />
-          {AllGroups.map((grupoData) => {
-             return (
-              <CardGrupoPage
-                key={grupoData._id}
-                _id={grupoData._id}
-                imagePlace={grupoData.image}
-                imageUser={grupoData.users_admin[0].imageUser}
-                name={grupoData.users_admin[0].name}
-                description={grupoData.description}
-                date={grupoData.date}
-                location={grupoData.users_admin[0].location}
-              />
-            ); 
-          })}
-          
-
-    </div>
-  );
-}
