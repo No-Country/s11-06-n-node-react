@@ -20,13 +20,13 @@ function ImageProfileUserSmall2({imagen}) {
 }
 function ImageProfileUserMedium({imagen}) {
     return (
-        imagen?
+        (imagen?
             <div 
                 className="w-20 h-20 rounded-full bg-cover bg-center"
                 style={{backgroundImage: `url(${imagen})`}}
             >
             </div> : 
-            <div>Cargando...</div>
+            <div>Cargando...</div>)
     )
 }
 function ImageProfileUserLarge({imagen}) {
