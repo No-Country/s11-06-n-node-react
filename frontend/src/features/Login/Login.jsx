@@ -1,13 +1,12 @@
 import {useForm} from 'react-hook-form';
 import axios from "axios"
 import logo from '../../components/img/logo-1.png'
-import logoGoogle from '../../components/img/Google-Sign-In.png'
-// import fondo from '../../../public/fondo.mp4'
-import fondo from '../../../public/fondo2.gif'
-// import passwordIcon from '../../components/img/Vpn key.png'
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Swal from "sweetalert2";
+
+
+let fondo = '/fondo2.gif'
 
 const Login = () => {
   const { handleSubmit, register, formState: { errors } } = useForm();
@@ -51,7 +50,7 @@ const Login = () => {
     return (
         <>
         <div className='h-[100%] flex flex-row'>
-        <div className='min-w-[110px] min-w-[110px] '>
+        <div className='smin-w-[110px] '>
     {/* <video src={fondo} className="object-cover w-full h-full"  autoPlay loop muted></video> */}
     <img src={fondo} className="object-cover w-full h-full" alt="fondo" />     
 

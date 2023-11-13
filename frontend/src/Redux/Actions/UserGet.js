@@ -9,7 +9,7 @@ import axios from "axios";
 const getAllUsers= () => {
 	return async (dispatch) => {
 		try {
-			const config = await getAuth()
+			const config = getAuth()
 			// console.log(config);
 			const dbData = await axios.get(`${import.meta.env.VITE_API_URL}/users`,config);			
 			dispatch(getUsers(dbData.data));
@@ -18,6 +18,8 @@ const getAllUsers= () => {
 		}
 	};
 };
+
+
 
  //GET para mostrar los datos del Usuario
 const getUserDetail = (actualUser) => {
@@ -141,5 +143,5 @@ export{
     getGroupsUser,
     logOutUser,
     getEventsUser,
-    getNewsUser
+    getNewsUser,
 }

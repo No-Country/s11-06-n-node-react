@@ -1,12 +1,12 @@
 import { BsChevronDown } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import CardNoticia from '../../../components/Cards/CardNoticia/CardNoticia'
-import user1 from '../../../../public/person1.png'
-import user4 from '../../../../public/person4.png'
-import place1 from '../../../../public/place1.jpeg'
-import place4 from '../../../../public/place4.jpeg'
+let user1  = '/person1.png'
+let user4  = '/person4.png'
+let place1 =  '/place1.jpeg'
+let place4 =  '/place4.jpeg'
+let loader =  "/loadermate.gif"
 import Typography from '../../../components/Typography'
-import loader from "../../../../public/loadermate.gif"
 
 export default function Noticias() {
   const noticiasData = [

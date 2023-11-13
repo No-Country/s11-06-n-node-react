@@ -3,8 +3,8 @@ import { MdFavoriteBorder } from 'react-icons/md'
 import { BiMessageRoundedDots } from 'react-icons/bi'
 import { CiLocationOn } from 'react-icons/ci'
 
-import user1 from '../../../../public/user1.jpeg'
-import place1 from '../../../../public/place1.jpeg'
+let user1 = '/user1.jpeg'
+let place1 = '/place1.jpeg'
 
 import {
   ImageProfileUserSmall,
