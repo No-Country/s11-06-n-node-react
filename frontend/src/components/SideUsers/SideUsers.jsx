@@ -27,8 +27,8 @@ export default function SideUsers() {
 const connectedUsers = allUsers?.filter((user) => user.status !== 'desconectado' && user._id !== actualUser._id);
 const disconnectedUsers = allUsers?.filter((user) => user.status === 'desconectado');
 
-console.log("conectados",connectedUsers);
-console.log("desconectados",disconnectedUsers);
+// console.log("conectados",connectedUsers);
+// console.log("desconectados",disconnectedUsers);
 
     const photoUsers = [
         {

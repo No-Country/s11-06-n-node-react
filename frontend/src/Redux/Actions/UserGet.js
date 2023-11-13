@@ -114,12 +114,12 @@ const getNewsUser = (actualUser) => {
 //Traer todas las noticias del usuario
 // https://s11-06-n-node-react-back.onrender.com/documentation/new/user/:id
 
-const logOutUser= (user) => {
+const logOutUser= (user, config) => {
 	return async (dispatch) => {
 		try {	
 
-			const config = await getAuth()
-			console.log("config",config);
+			// const config = await getAuth()
+			// console.log("config",config);
 			const dbData = await axios.get(`${import.meta.env.VITE_API_URL}/users/logout/${user.user._id}`,config);	
 			// console.log(dbData);
 			if(dbData == "Usuario desconectado"){
