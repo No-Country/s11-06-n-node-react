@@ -7,7 +7,6 @@ import { BsCardImage } from 'react-icons/bs';
 import { CiLocationOn } from 'react-icons/ci';
 import { GrClose } from 'react-icons/gr';
 import { ImageProfileUserSmall } from '../Images/ImageProfileUser';
-import image1 from '../../../public/user1.jpeg'
 import ModalAdd from './ModalAdd';
 import { CustomForm } from '../CustomForm';
 import TextArea from '../Input/textarea';

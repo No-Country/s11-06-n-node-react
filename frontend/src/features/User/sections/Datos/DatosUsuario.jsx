@@ -1,5 +1,5 @@
-import { ImageProfileUserLarge, ImageProfileUserMedium } from '../../../../components/Images/ImageProfileUser'
-import user1 from '../../../../../public/user1.jpeg'
+import { ImageProfileUserLarge } from '../../../../components/Images/ImageProfileUser'
+let user1 = '/user1.jpeg'
 import { FcPhoneAndroid } from 'react-icons/fc';
 
 export default function DatosUsuario({userDetail}) {

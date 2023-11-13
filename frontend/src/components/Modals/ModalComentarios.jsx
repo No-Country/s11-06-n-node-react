@@ -1,7 +1,5 @@
 import CardComentario from "../Cards/CardComentario/CardComentario";
-import Typography from "../Typography";
-import user1 from '../../../public/person4.png'
-import user2 from '../../../public/person6.png'
+
 import { AiOutlineClose } from 'react-icons/ai';
 
 export default function ModalComentarios({closeModal}) {

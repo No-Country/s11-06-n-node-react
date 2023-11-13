@@ -9,7 +9,7 @@ import { BsChevronDown } from 'react-icons/bs'
 import { ImageBg } from '../../../../components/Images/ImageProfileUser'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllEvents } from '../../../../Redux/Actions/EventGet'
-import loader from "../../../../../public/loadermate.gif"
+let loader = "/loadermate.gif"
 
 const EventList = () => {
   const dispatch = useDispatch()
@@ -36,8 +36,8 @@ const EventList = () => {
 <div>
       <Typography.TitleContainer>Eventos</Typography.TitleContainer>
       <section className="flex flex-col md:flex-row gap-4 w-full ">
-        {randomEvents.map((event) => (
-          <CustomCard key={event._id}>
+        {randomEvents.map((event, index) => (
+          <CustomCard key={index}>
             <CustomCard.Header className="w-full h-20 bg-zinc-300 rounded-tl-2xl rounded-tr-2xl">
               <ImageBg imagen={event.image} />
             </CustomCard.Header>
@@ -45,9 +45,9 @@ const EventList = () => {
               <Typography>
                 <ul className="flex  gap-2">
                   {event.topics &&
-                    event.topics.map((topic) => (
+                    event.topics.map((topic, index) => (
                       <li
-                        key={event._id}
+                        key={index}
                         className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm"
                       >
                         {topic}

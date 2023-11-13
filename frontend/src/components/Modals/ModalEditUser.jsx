@@ -12,8 +12,7 @@ import { modifyTheUser } from '../../Redux/Actions/UserGet';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import Swal from "sweetalert2";
-import loader from '../../../public/loaderimg.gif'
-
+let loader = '/loaderimg.gif'
 export default function ModalEditUser({ user, token }) {
 
   const cloudinaryApiKey = import.meta.env.VITE_CLOUDINARY_API_KEY;

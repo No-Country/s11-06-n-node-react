@@ -3,13 +3,13 @@ import { CustomForm } from "../CustomForm";
 import Input from "../Input";
 import ModalAdd from "./ModalAdd";
 import { ImageProfileUserLarge } from "../Images/ImageProfileUser";
-import place1 from "../../../public/place1.jpeg";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { groupPost } from "../../Redux/Actions/GroupGet";
 import { useState } from "react";
 import { RiImageEditLine } from "react-icons/ri";
+const place1 = '/place1.jpeg'
 export default function ModalAddGroup() {
   const user = useSelector((state) => state.user.userDetail);
   const cloudinaryApiKey = import.meta.env.VITE_CLOUDINARY_API_KEY;
