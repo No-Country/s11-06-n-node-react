@@ -5,7 +5,6 @@ import { BsPostcard, BsCardImage } from 'react-icons/bs';
 import { CiLocationOn } from 'react-icons/ci';
 import { GrClose } from 'react-icons/gr';
 import { ImageProfileUserSmall } from '../Images/ImageProfileUser';
-import image1 from '../../../public/user1.jpeg'
 
 
 export default function BtnAddNoticia() {
@@ -33,7 +32,7 @@ export default function BtnAddNoticia() {
                         </div>
                         <div className='flex gap-x-3 items-center my-5'>
                             <div>
-                                <ImageProfileUserSmall imagen={image1}/>
+                                <ImageProfileUserSmall imagen="/user1.jpeg"/>
                             </div>
                             <div>
                                 <p className='font-bold mb-1'>Henry Ramirez</p>

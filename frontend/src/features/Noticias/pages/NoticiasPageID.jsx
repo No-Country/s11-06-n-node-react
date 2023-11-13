@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import userData from '../../../utils/data.json'
-import place1 from '../../../../public/place1.jpeg'
-import person1 from '../../../../public/person1.png'
-import person5 from '../../../../public/person5.png'
-import person2 from '../../../../public/person2.png'
+let place1  ='./place1.jpeg'
+let person1 = '/person1.png'
+let person5 = '/person5.png'
+let person2 = '/person2.png'
 import Typography from "../../../components/Typography";
-import { ImageBg, ImageProfileUserLarge, ImageProfileUserMedium, ImageProfileUserSmall, ImageProfileUserSmall2 } from "../../../components/Images/ImageProfileUser";
+import { ImageBg, ImageProfileUserMedium, ImageProfileUserSmall, ImageProfileUserSmall2 } from "../../../components/Images/ImageProfileUser";
 import { AiTwotoneStar } from 'react-icons/ai';
 
 export default function NoticiasPageID() {

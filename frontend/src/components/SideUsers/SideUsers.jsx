@@ -1,16 +1,9 @@
 import CardActiveUser from "../Cards/CardActiveUser/CardActiveUser";
-
-import user1 from '../../../public/person1.png'
-import user2 from '../../../public/person2.png'
-import user3 from '../../../public/person3.png'
-import user4 from '../../../public/person4.png'
-import user5 from '../../../public/person5.png'
-import user6 from '../../../public/person6.png'
-import user7 from '../../../public/person7.png'
 import Typography from "../Typography";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getAllUsers } from "../../Redux/Actions/UserGet";
+import ModalUserActive from "../Modals/ModalUserActive";
 
 
 export default function SideUsers() {
@@ -18,55 +11,22 @@ export default function SideUsers() {
     const dispatch = useDispatch()
     const allUsers = useSelector((state) => state.user.users);
     const actualUser = useSelector((state) => state.user.userDetail);
-    // console.log(actualUser);
+    const [selectedUser, setSelectedUser] = useState({})
+    const [modal, setModal] = useState(false)
+    const openModal = () => {
+        setModal(true)
+    }
+    const closeModal = () => {
+        setModal(false)
+    }
+
     useEffect(() => {
           dispatch(getAllUsers());
       }, []);
-// console.log("sideUsers",allUsers);
 
 const connectedUsers = allUsers?.filter((user) => user.status !== 'desconectado' && user._id !== actualUser._id);
-const disconnectedUsers = allUsers?.filter((user) => user.status === 'desconectado');
 
-console.log("conectados",connectedUsers);
-console.log("desconectados",disconnectedUsers);
-
-    const photoUsers = [
-        {
-            photo: user1,
-            name: 'Estefanía Menendez',
-            lang: 'Esp'
-        },
-        {
-            photo: user2,
-            name: 'Gustavo Torres',
-            lang: 'Esp'
-        },
-        {
-            photo: user3,
-            name: 'Carolina Ramirez',
-            lang: 'Esp, Por'
-        },
-        {
-            photo: user4,
-            name: 'Henry Ramirez',
-            lang: 'Esp'
-        },
-        {
-            photo: user5,
-            name: 'Elvis Segovia',
-            lang: 'Esp'
-        },
-        {
-            photo: user6,
-            name: 'Kevin Tea',
-            lang: 'Esp'
-        },
-        {
-            photo: user7,
-            name: 'Alexander Briones',
-            lang: 'Esp'
-        }
-    ]
+    
 
     return (
          <div className="w-60 text-white">
@@ -76,15 +36,18 @@ console.log("desconectados",disconnectedUsers);
                     {/* <Typography.Small>Cerca tuyo</Typography.Small> */}
                 </div>
                 <div className="flex flex-col gap-y-7">
-                    {connectedUsers?.map(photoUser => (
+                    {connectedUsers?.map(usuario => (
                         <CardActiveUser
-                            photoUser={photoUser.avatar}
-                            name={photoUser.name}
-                            lang={photoUser.languages}
+                            key={usuario._id}
+                            usuario={usuario}
+                            setSelectedUser={setSelectedUser}
+                            openModal={openModal}
                         />
                     ))}
                 </div>
             </div>
+
+            <ModalUserActive selectedUser={selectedUser} openModal={openModal} closeModal={closeModal} modal={modal} />
         </div>
     )
 }

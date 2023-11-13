@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllGroups } from "../../../Redux/Actions/GroupGet";
 import { Link } from "react-router-dom";
 import { BsChevronDown } from "react-icons/bs";
-import loader from "../../../../public/loadermate.gif"
+let loader = "/loadermate.gif"
 
 export default function Grupos() {
     const dispatch = useDispatch()

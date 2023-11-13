@@ -1,11 +1,9 @@
 import {useForm} from 'react-hook-form';
 import logo from '../../components/img/logo-1.png'
-import logoGoogle from '../../components/img/Google-Sign-In.png'
 import axios from "axios"
 import Swal from "sweetalert2";
-import fondo from '../../../public/fondo2.gif'
-import logomov from '../../../public/logomov.gif'
-import { getAuth } from '../../utils/checkAuth';
+let fondo = '/fondo2.gif'
+let logomov = '/logomov.gif'
 import { useState } from 'react';
 
 

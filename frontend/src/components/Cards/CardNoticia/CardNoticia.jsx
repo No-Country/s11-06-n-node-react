@@ -1,9 +1,9 @@
-import { CiLocationOn } from 'react-icons/ci'
-import { BiMessageRoundedDots } from 'react-icons/bi'
-import { MdRemoveRedEye } from 'react-icons/md'
-import { ImageBg, ImageProfileUserMedium } from '../../Images/ImageProfileUser'
-import { Link } from 'react-router-dom'
-import BtnViewComments from '../../Buttons/BtnViewComments'
+import { CiLocationOn } from "react-icons/ci";
+import { BiMessageRoundedDots } from "react-icons/bi";
+import { MdRemoveRedEye } from "react-icons/md";
+import { ImageBg, ImageProfileUserMedium } from "../../Images/ImageProfileUser";
+import { Link } from "react-router-dom";
+import BtnViewComments from "../../Buttons/BtnViewComments";
 
 export default function CardNoticia({
   _id,
@@ -16,7 +16,7 @@ export default function CardNoticia({
   date,
 }) {
   return (
-    <div className="border border-gray-100 rounded-lg shadow-lg" key={_id}>
+    <div className="border border-gray-100 rounded-lg shadow-lg">
       {/* ----- Portada */}
       <div className="h-28 md:h-40">
         <ImageBg imagen={imagePlace} />
@@ -38,9 +38,11 @@ export default function CardNoticia({
               <div className="flex items-center justify-end gap-x-3">
                 <p className="">{date}</p>
                 <p className="border border-gray-500 px-2 py-1 rounded-2xl flex items-center text-sm">
-                  <p className="mr-1 text-xl -ml-1">
-                    <CiLocationOn />
-                  </p>
+                  {" "}
+                </p>
+                <p className="mr-1 text-xl -ml-1">
+                  <CiLocationOn />
+
                   {location}
                 </p>
               </div>
@@ -55,7 +57,7 @@ export default function CardNoticia({
             to={`/noticias/${_id}`}
             className="cursor-pointer flex items-center gap-x-2 border border-gray-500 px-3 py-1 rounded-2xl"
           >
-            Ver más{' '}
+            Ver más{" "}
             <span className="text-lg">
               <MdRemoveRedEye />
             </span>
@@ -63,5 +65,5 @@ export default function CardNoticia({
         </div>
       </div>
     </div>
-  )
+  );
 }

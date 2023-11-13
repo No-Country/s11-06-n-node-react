@@ -9,18 +9,18 @@ import Cookies from 'js-cookie';
 import { FiLogIn } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { logOutUser } from '../../Redux/Actions/UserGet';
+import { getAuth } from '../../utils/checkAuth';
 
 export default function LinksMenu(user) {
-//   console.log(Object.keys(user.user).length);
-// console.log("user en linksMenu",user.user._id);
-const dispatch = useDispatch()
-    const handleLogout = async () => {
 
+const dispatch = useDispatch()
+
+const config = getAuth()
+    const handleLogout = async () => {
+      await dispatch(logOutUser(user,config))
         if (Cookies.get('data')) {
-          dispatch(logOutUser(user))
             Cookies.remove('data', { path: '/auth' });
             Cookies.remove('data', { path: '/' });
-            // console.log("usuario desconectado");
             window.location.reload();
           } else {
             console.log("La cookie 'userData' no existe.");
