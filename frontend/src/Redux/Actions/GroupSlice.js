@@ -28,8 +28,11 @@ const Slice = createSlice({
         modifyGroup: (state, action) => {
             state.groupDetail = action.payload;
         },
+        joinUserToGroup:(state, action) => {
+            // state.groupDetail = action.payload;
+        },
     }
 });
 
-export const { getGroups, postGroup, getDetailGroup, modifyGroup } = Slice.actions;
+export const { getGroups, postGroup, getDetailGroup, modifyGroup, joinUserToGroup } = Slice.actions;
 export default Slice.reducer;
