@@ -6,8 +6,7 @@ router.get("/google", passport.authenticate("google", { scope: ["profile", "emai
 
 router.get(
   "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/failure" }),
-  AuthControllers.getGoogle
+  passport.authenticate("google", { failureRedirect: "/failure" }),AuthControllers.getGoogle
 );
 
 module.exports = router;
