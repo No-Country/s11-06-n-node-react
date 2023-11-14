@@ -198,7 +198,7 @@ async function addToGroup(groupId,userId){
     if (group.users_common.includes(userId)) { return "The user is already a member of the group" }
     if (group.users_admin.includes(userId)) { return "The user is already an administrator of the group" }
     if (group.users_pending.includes(userId)) { return "Your request to join the group is pending" }
-    group.users_common.push(userId);
+    group.users_pending.push(userId);
     await group.save();
     return group
     } catch (error) {

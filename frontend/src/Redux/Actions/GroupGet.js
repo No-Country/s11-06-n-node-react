@@ -1,5 +1,5 @@
 import {
-    getGroups, postGroup, getDetailGroup,  modifyGroup
+    getGroups, postGroup, getDetailGroup,  modifyGroup, joinUserToGroup
 } from "../Actions/GroupSlice";
 import axios from "axios";
 
@@ -63,9 +63,24 @@ const modifyTheGroup = ( group) => {
     };
 };
 
+const joinUser = ( idGroup, idUser) => {
+  return async (dispatch) => {
+      try {
+          if (!idGroup) {
+              throw new Error("Group is undefined.");
+            }
+          const dbData = await axios.put(`${import.meta.env.VITE_API_URL}/groups/add-user?groupId=${idGroup}&userId=${idUser}`);
+          return dispatch(joinUserToGroup(dbData));
+      } catch (error) {
+          alert({error: error.message});
+      }
+  };
+};
+
 export{
     getAllGroups,
     getGroupDetail,
     groupPost,
-    modifyTheGroup
+    modifyTheGroup,
+    joinUser
 }

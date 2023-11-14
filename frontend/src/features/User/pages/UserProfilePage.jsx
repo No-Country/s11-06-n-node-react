@@ -26,7 +26,6 @@ const formatDate = (dateString) => {
 
   return `${day}-${month}-${year}`;
 };
-
   useEffect(() => {
  if (cookieData && !actualUser) {
   const userData = JSON.parse(cookieData);
@@ -68,7 +67,7 @@ const formatDate = (dateString) => {
    </div>
    <DatosUsuario userDetail={userDetail}></DatosUsuario>
    <hr className="mb-4 mt-2 bg-grayPrimary mt-4" />
-   {userEvents.length && userNews.length && userGroups.length?
+   {userEvents && userNews && userGroups?
    <HistorialUsuario userEvents={userEvents} formatDate={formatDate} userGroups={userGroups} userNews={userNews}></HistorialUsuario> : 
    <div className="w-[100%] h-[100%] justify-center mt-8 flex"><img src={loader} className="h-[100%] w-[50%]" alt="Cargando..." /></div>
 }
