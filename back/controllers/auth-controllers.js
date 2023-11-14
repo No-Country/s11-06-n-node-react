@@ -11,7 +11,7 @@ async function getGoogle(req, res) {
   };
   try {
     const response = await AuthServices.signUp(usuario);
-    res.status(200).send(response);
+    res.redirect(`${process.env.CLIENT_URL}/login?data=${JSON.stringify(response)}`);
   } catch (error) {
     res.status(500).json({ error });
   }
