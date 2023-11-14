@@ -4,11 +4,12 @@ import logo from "../../components/img/logo-1.png";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
-import { googleAuth } from "../../api/authApi";
-
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 let fondo = "/fondo2.gif";
 
 const Login = () => {
+  const location = useLocation();
   const {
     handleSubmit,
     register,
@@ -26,9 +27,23 @@ const Login = () => {
     },
   });
 
-  const handleGoogle = () => {
-    googleAuth().then(response => console.log(response))
-  }
+  const handleGoogle = async () => {
+    window.open("http://localhost:8080/auth/google", "_self")
+ 
+  };
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const data = params.get("data");
+
+    if (data) {
+      Cookies.set("data", data, { expires: 3 });
+
+      window.location.href = "/";
+    }
+  }, [location]);
+
+
   const onSubmit = (data) => {
     axios
       .post(`${import.meta.env.VITE_API_URL}/users/login`, data)
@@ -81,7 +96,10 @@ const Login = () => {
 
               <div className="flex flex-col sm:w-[70%]  ">
                 <div className="justify-center mt-20 w-[100%] items-center flex dark:bg-gray-800">
-                  <button onClick={handleGoogle} className="px-4 w-[60%] min-w-[200px] py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150 justify-center">
+                  <button
+                    onClick={handleGoogle}
+                    className="px-4 w-[60%] min-w-[200px] py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150 justify-center"
+                  >
                     <img
                       className="w-6 h-6"
                       src="https://www.svgrepo.com/show/475656/google-color.svg"
