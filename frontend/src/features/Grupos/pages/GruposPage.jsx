@@ -39,6 +39,9 @@ export default function GruposPage() {
                 date={grupoData.date}
                 location={grupoData.users_admin[0]?grupoData.users_admin[0].location : ""}
                 title={grupoData.name?grupoData.name : ""}
+                usersAdmin={grupoData.users_admin}
+                usersPending={grupoData.users_pending}
+                usersCommon={grupoData.users_common}
               />
               
             ); 
