@@ -63,7 +63,6 @@ const sess = {
 
 initializePassport();
 
-app.use(cors({ origin: '*' }));
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
