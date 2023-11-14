@@ -4,12 +4,10 @@ import logo from "../../components/img/logo-1.png";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
-import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 let fondo = "/fondo2.gif";
 
 const Login = () => {
-  const location = useLocation();
   const {
     handleSubmit,
     register,
@@ -28,20 +26,19 @@ const Login = () => {
   });
 
   const handleGoogle = async () => {
-    window.open("http://localhost:8080/auth/google", "_self")
+    window.open(`${import.meta.env.VITE_API_URL}/auth/google`, "_self")
  
   };
 
-  useEffect(() => {
+   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const data = params.get("data");
-
     if (data) {
       Cookies.set("data", data, { expires: 3 });
 
-      window.location.href = "/";
+      location.href = "/";
     }
-  }, [location]);
+  }, [location]); 
 
 
   const onSubmit = (data) => {
