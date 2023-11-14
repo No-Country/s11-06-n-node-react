@@ -5,7 +5,6 @@ import { GrClose } from 'react-icons/gr';
 import { HiOutlineUserGroup } from 'react-icons/hi';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { ImageProfileUserLarge, ImageProfileUserSmall } from '../Images/ImageProfileUser';
-import place1 from '../../../public/place1.jpeg'
 
 
 export default function BtnAddGrupo() {
@@ -32,7 +31,7 @@ export default function BtnAddGrupo() {
                         </div>
 
                         <div className='flex justify-center py-8'>
-                            <ImageProfileUserLarge imagen={place1}/>
+                            <ImageProfileUserLarge imagen='/place1'/>
                         </div>
 
                         <form className='flex flex-col gap-y-5'>

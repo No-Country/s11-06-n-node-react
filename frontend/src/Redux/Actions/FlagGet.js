@@ -8,7 +8,7 @@ const getAllFlags= () => {
 	return async (dispatch) => {
 		try {
 			const dbData = await axios.get(`${import.meta.env.VITE_API_URL}/flags`);	
-			console.log(dbData);		
+			// console.log(dbData);		
 			dispatch(getFlags(dbData.data));
 		} catch (error) {
 			console.error(error);

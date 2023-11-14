@@ -1,16 +1,14 @@
 
 import React, { useState, useEffect } from "react";
-import { FiEdit } from "react-icons/fi";
 import { getEventsUser, getGroupsUser, getNewsUser, getUserDetail } from "../../../Redux/Actions/UserGet";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from 'js-cookie';
-import Sidebar from '../../../components/Sidebar/Sidebar'
-import ListCardFirends from '../../../components/ListCardFriends'
 import ModalEditUser from "../../../components/Modals/ModalEditUser";
 import DatosUsuario from "../sections/Datos/DatosUsuario";
 import HistorialUsuario from "../sections/Historial/HistorialUsuario";
-import loader from "../../../../public/loadermate.gif"
 import { getAllFlags } from "../../../Redux/Actions/FlagGet";
+
+let loader = "/loadermate.gif"
 
 const UserProfile = () => {
 const cookieData = Cookies.get('data');
@@ -20,7 +18,6 @@ const userGroups = useSelector((state) => state.user.userGroups);
 const userEvents = useSelector((state) => state.user.userEvents);
 const userNews = useSelector((state) => state.user.userNews);
 const dispatch = useDispatch();
-// console.log(userEvents);
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   const day = date.getDate().toString().padStart(2, '0');

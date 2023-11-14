@@ -12,8 +12,7 @@ import { modifyTheUser } from '../../Redux/Actions/UserGet';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import Swal from "sweetalert2";
-import loader from '../../../public/loaderimg.gif'
-
+let loader = '/loaderimg.gif'
 export default function ModalEditUser({ user, token }) {
 
   const cloudinaryApiKey = import.meta.env.VITE_CLOUDINARY_API_KEY;
@@ -29,7 +28,7 @@ export default function ModalEditUser({ user, token }) {
   const closeModal = () => {
     setModal(false)
   }
-  console.log("lista de paises", languagesList);
+  // console.log("lista de paises", languagesList);
   const [editedUser, setEditedUser] = useState({
 
   });
@@ -51,19 +50,7 @@ export default function ModalEditUser({ user, token }) {
     )
   }, [user])
 
-  // useEffect(() => {
-  //   axios.get('https://demo1063061.mockable.io/idiomas_banderas')
-  //     .then((response) => {
-  //       setLanguagesList(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error al obtener la lista de idiomas:', error);
-  //     });
-  //   // setuserImage(editedUser.avatar)
-  // }, [ languagesList]);
-  // console.log("edituser",editedUser);
-
-
+ 
   const handleFieldChange = (field, value) => {
     setEditedUser({
       ...editedUser,
@@ -78,9 +65,9 @@ export default function ModalEditUser({ user, token }) {
     // console.log("editedUser.avatar",editedUser.avatar);
     if (editedUser.avatar) {
       array = editedUser.avatar.split("/")
-      console.log("array", array);
+      // console.log("array", array);
       const [publicID, etc] = array[array.length - 1].split(".")
-      console.log(publicID)
+      // console.log(publicID)
       setLoadingImage(true)
       try {
         const delResponse = await axios.delete(
@@ -186,14 +173,14 @@ export default function ModalEditUser({ user, token }) {
 
   return (
 
-    <div className="mt-10">
+    <div className="">
       <button onClick={openModal} className='w-16 h-16 p-2 bg-greenPrimary rounded-full text-white flex flex-col justify-center items-center border-solid shadow-2xl border-greenPrimary hover:bg-greenSecundary'>
         <span className='text-xl'> {<LiaUserEditSolid />}</span>
         <p className='text-xs'>Editar</p>
       </button>
       <Modal className={'overflow-y-scroll h-full'} isOpen={modal} onRequestClose={closeModal}>
         <div className='flex justify-center items-center h-full text-sm text-greenPrimary'>
-          <div className='border border-graySecundary max-w-xs sm:max-w-xl w-full p-5 sm:p-14 shadow-2xl bg-white rounded-lg relative'>
+          <div className='border border-graySecundary max-w-xs max-sm sm:max-w-xl p-4  sm:p-14 shadow-2xl bg-white rounded-lg relative mt-[150px] sm:mt-2'>
             <div className="flex flex-col items-center">
               <div className='border-b border-greenPrimary flex justify-between w-full mb-2'>
                 <p className='text-2xl py-2'>Editar datos</p>
@@ -221,7 +208,7 @@ export default function ModalEditUser({ user, token }) {
               </div>) }
              
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
               <div>
                 <label htmlFor="name" className="text-gray-600 font-bold">Nombre:</label>
                 <input

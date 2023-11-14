@@ -1,5 +1,4 @@
 import { ImageProfileUserSmall } from "../Images/ImageProfileUser"
-import image1 from '../../../public/user1.jpeg'
 import { CiLocationOn } from "react-icons/ci"
 import { useSelector } from "react-redux";
 
