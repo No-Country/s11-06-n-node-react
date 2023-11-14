@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     users:[], //Traigo todos los Usuarios
     post:[], //Uusuarios Nuevos
-    userDetail: {}, //detalles del usuario
+    userDetail: {}, //detalles del usuario Activo
     put:[], //modificar datos del usuario
     userGroups: [],
     userEvents: [],

@@ -13,9 +13,11 @@ export default function DatosUsuario({userDetail}) {
          {userDetail.name} {userDetail.lastname}
        </p>
        <p className="text-gray-600 mt-2.5">{userDetail.email}</p>
-       <div className="text-gray-600 flex items-center"><FcPhoneAndroid></FcPhoneAndroid> {userDetail.phone}</div>
+       <div className="text-gray-600 flex items-center">
+        {/* <FcPhoneAndroid></FcPhoneAndroid> */}
+       Teléfono: {userDetail.phone}</div>
        <p className="text-gray-600">Fecha de Nacimiento: {userDetail.birthdate?userDetail.birthdate: 'no hay datos'}</p>
-       <p className="text-gray-600">País: {userDetail.location}</p>
+       <p className="text-gray-600">Ubicación: {userDetail.location}</p>
        <div className="flex flex-row">
           <p className="text-gray-600">Idiomas:</p>
           {userDetail.languages ? (
