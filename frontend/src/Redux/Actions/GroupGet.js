@@ -69,8 +69,9 @@ const joinUser = ( idGroup, idUser) => {
           if (!idGroup) {
               throw new Error("Group is undefined.");
             }
-          const dbData = await axios.put(`${import.meta.env.VITE_API_URL}/groups/add-user?groupId=${idGroup}&userId=${idUser}`);
-          return dispatch(joinUserToGroup(dbData));
+          const dbData = await axios.post(`${import.meta.env.VITE_API_URL}/groups/add-user?groupId=${idGroup}&userId=${idUser}`);
+          console.log(dbData);
+          return dispatch(joinUserToGroup(dbData.data));
       } catch (error) {
           alert({error: error.message});
       }

@@ -29,7 +29,7 @@ const Slice = createSlice({
             state.groupDetail = action.payload;
         },
         joinUserToGroup:(state, action) => {
-            // state.groupDetail = action.payload;
+            state.groupDetail = action.payload;
         },
     }
 });

@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
+import { joinUser } from "../../../Redux/Actions/GroupGet";
 
 
 
@@ -66,11 +67,13 @@ setisRequestPending(RequestPending)
        console.log("user en el grupo",isUserInGroup, "solicitud pendiente",isRequestPending);
 
 
-  const [join, setJoin] = useState(false);
+  // const [join, setJoin] = useState(false);
   
   const handlerJoin = () => {
     console.log("boton unirse"); 
-    setJoin(!join);
+    dispatch(joinUser(_id, actualUser.user._id))
+    setisRequestPending(true)
+    // setJoin(!join);
   };
 
   return (
