@@ -62,7 +62,7 @@ const sess = {
 };
 
 initializePassport();
-const allowedOrigins = ['http://localhost:5173', 'https://s11-06-n-node-react.vercel.app/', 'http://localhost:8080'];
+const allowedOrigins = ['http://localhost:5173', 'https://s11-06-n-node-react.vercel.app', 'http://localhost:8080'];
 
 const corsOptions = {
   origin: function (origin, callback) {
