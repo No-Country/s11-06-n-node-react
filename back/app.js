@@ -80,7 +80,7 @@ initializePassport();
 
 
 app.use((req, res, next) => {
-  const allowedOrigins = ['http://127.0.0.1:5173', 'https://s11-06-n-node-react.vercel.app', 'https://globalmate.vercel.app', 'http://localhost:8080'];
+  const allowedOrigins = ['http://127.0.0.1:5173', 'http://localhost:5173', 'https://s11-06-n-node-react.vercel.app', 'https://globalmate.vercel.app', 'http://localhost:8080'];
   const origin = req.headers.origin;
 
   if (allowedOrigins.includes(origin)) {
