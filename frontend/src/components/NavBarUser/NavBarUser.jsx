@@ -34,7 +34,6 @@ export default function NavBarUser() {
       const userData = JSON.parse(cookieData);
       if (userData) {
         setactualUser(userData);
-        // console.log(userData);
       }
     } else {
       console.log("Usuario cargado");

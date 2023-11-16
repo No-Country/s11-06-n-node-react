@@ -30,7 +30,7 @@ export default function privateRoute(){
                 element: <EventoIdPage/>
             },
             {
-                path:"/mensajes",
+                path:"/mensajes/:iduser",
                 element:<MessageContainer/>
             },
             {

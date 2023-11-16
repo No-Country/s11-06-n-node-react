@@ -3,11 +3,10 @@ Modal.setAppElement("#root");
 import { useState } from "react";
 import { GrClose } from "react-icons/gr";
 import { CiLocationOn } from "react-icons/ci";
-
 import { ImageProfileUserMedium } from "../Images/ImageProfileUser";
+import { Link } from "react-router-dom";
 
 const ModalUserActive = ({ selectedUser, openModal, closeModal, modal }) => {
-    
   return (
     <>
       <Modal
@@ -52,11 +51,11 @@ const ModalUserActive = ({ selectedUser, openModal, closeModal, modal }) => {
                 </div>
               </div>
             </div>
-            <input
-              type="submit"
-              value="Comenzar charla"
-              className="bg-greenPrimary p-2 text-white font-bold w-fit  rounded-md cursor-pointer hover:bg-greenSecundary duration-75"
-            />
+            <Link to={`/mensajes/${selectedUser._id}`}>
+              <button className="bg-greenPrimary p-2 text-white font-bold w-fit  rounded-md cursor-pointer hover:bg-greenSecundary duration-75">
+                Comenzar charla
+              </button>
+            </Link>
           </div>
         </div>
       </Modal>
