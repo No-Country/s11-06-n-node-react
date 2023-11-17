@@ -28,7 +28,6 @@ export default function ModalEditUser({ user, token }) {
   const closeModal = () => {
     setModal(false)
   }
-  // console.log("lista de paises", languagesList);
   const [editedUser, setEditedUser] = useState({
 
   });
@@ -57,25 +56,19 @@ export default function ModalEditUser({ user, token }) {
       [field]: value,
     });
   };
-  // console.log(editedUser);
 
   const handleAvatarChange = async (e) => {
     e.preventDefault();
     let array
-    // console.log("editedUser.avatar",editedUser.avatar);
     if (editedUser.avatar) {
       array = editedUser.avatar.split("/")
-      // console.log("array", array);
       const [publicID, etc] = array[array.length - 1].split(".")
-      // console.log(publicID)
       setLoadingImage(true)
       try {
         const delResponse = await axios.delete(
           `${url}/users/eliminar-imagen/${publicID}`
         );
-        // console.log(delResponse);
         const file = e.target.files[0];
-        console.log(file);
         const formData = new FormData();
         formData.append('file', file);
         formData.append('upload_preset', 'GlobalMateApp');
@@ -136,7 +129,6 @@ export default function ModalEditUser({ user, token }) {
     event.preventDefault();
     setLoading(true);
     const result = await dispatch(modifyTheUser(editedUser, token));
-    // console.log(result);
     if (result.payload) {
       Swal.fire({
         icon: "success",
