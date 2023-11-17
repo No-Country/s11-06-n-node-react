@@ -3,7 +3,8 @@ const Chat = require("../models/chat.model");
 const User = require("../models/user.model");
 
 const getHistoryById = async (id) => {
-  const history = await Chat.findById({ _id: id });
+
+  const history = await Chat.findById(id);
   let messages = await Promise.all(
     history.messages.map(async (msg) => {
       let user = await User.findById(msg.idUser).select(
@@ -17,15 +18,16 @@ const getHistoryById = async (id) => {
     })
   );
   let { idUser1, idUser2, _id } = history;
-  return { messages, idUser1, idUser2, _id };
+
+  return { messages: messages || [], idUser1, idUser2, _id };
 };
 
-const addMessage = async (id, message) => {
+const addMessage = async (id, data) => {
   try {
     const updatedChat = await Chat.findById(id);
-    let text = message.message.text;
-    let date = new Date(message.message.date);
-    let idUser = message.user.idUser;
+    let text = data.message.text;
+    let date = new Date(data.message.date);
+    let idUser = data.user._id;
     let objMsg = { text, date, idUser };
     updatedChat.messages.push(objMsg);
     let user = await User.findById(idUser).select(
@@ -33,7 +35,7 @@ const addMessage = async (id, message) => {
     );
     if (user) {
       updatedChat.save();
-      let newMessage = {user, message: {text, date}}
+      let newMessage = { user, message: { text, date } };
       return newMessage;
     }
   } catch (error) {
@@ -43,21 +45,35 @@ const addMessage = async (id, message) => {
 };
 
 function setupWebSocket(server) {
-  const io = new Server(server /* , {path: '/chat'} */);
-  let id;
+  const io = new Server(server, {
+    cors: {
+      origin: [
+        "http://localhost:5173",
+        "https://s11-06-n-node-react.vercel.app",
+      ],
+      methods: ["GET", "POST"],
+    },
+  });
   io.on("connection", async (socket) => {
     socket.on("joinChat", async (chatId) => {
-      id = chatId;
       socket.join(chatId);
-      const chatHistory = await getHistoryById(chatId);
-      if (chatHistory) {
-        socket.emit("log", chatHistory);
+      try {
+        const chatHistory = await getHistoryById(chatId);
+        if (chatHistory) {
+          socket.emit("log", chatHistory);
+        }
+      } catch (error) {
+        console.log(error);
       }
-     
     });
     socket.on("message", async (data) => {
-      let savedMessage = await addMessage(id, data);
-      io.to(id).emit("log", savedMessage);
+      const { id } = data;
+      try {
+        let savedMessage = await addMessage(id, data);
+        io.to(id).emit("log", savedMessage);
+      } catch (error) {
+        console.log(error);
+      }
     });
   });
 }

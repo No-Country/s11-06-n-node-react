@@ -44,9 +44,7 @@ export default function EventoIdPage() {
     const dispatch = useDispatch()
     const event = useSelector((state) => state.event.eventDetail)
     
-    console.log(event);
     useEffect(() => {
-        console.log(eventId);
         dispatch(getEventDetail(eventId))
     },[dispatch])
 

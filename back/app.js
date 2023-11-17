@@ -63,26 +63,10 @@ const sess = {
 
 initializePassport();
 
-// const allowedOrigins = ['http://127.0.0.1:5173', 'https://s11-06-n-node-react.vercel.app/', 'http://localhost:8080'];
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   },
-//   credentials: true,
-// };
-
-// app.use(cors(corsOptions));
-
-
-
 app.use((req, res, next) => {
-  const allowedOrigins = ['http://127.0.0.1:5173', 'https://s11-06-n-node-react.vercel.app', 'https://globalmate.vercel.app', 'http://localhost:8080'];
-  const origin = req.headers.origin;
 
+  const allowedOrigins = ['http://127.0.0.1:5173', 'http://localhost:5173', 'https://s11-06-n-node-react.vercel.app', 'https://globalmate.vercel.app', 'http://localhost:8080'];
+  const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
   }
