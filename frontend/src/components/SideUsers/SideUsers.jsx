@@ -30,7 +30,7 @@ const connectedUsers = allUsers?.filter((user) => user.status !== 'desconectado'
 
     return (
          <div className="w-60 text-white">
-            <div className="fixed bg-grayPrimary h-screen overflow-y-scroll w-60 px-4 py-10 pb-[100px] shadow-lg">
+            <div className="fixed bg-grayPrimary h-screen overflow-y-scroll w-60 px-4 py-10 pb-[100px] shadow-lg ">
                 <div className="mb-10">
                     <div className="border-b border-greenPrimary"><Typography.SubtitleContainer>Personas Activas</Typography.SubtitleContainer></div>
                     {/* <Typography.Small>Cerca tuyo</Typography.Small> */}

@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug WebSocket",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/back/options/websocket.js", // Asegúrate de cambiar la ruta según tu estructura de carpetas
+      "args": [], // Puedes agregar argumentos aquí si tu aplicación los utiliza
+      "runtimeArgs": ["--inspect-brk"], // Agrega este argumento para iniciar en modo de inspección de depuración
+      "sourceMaps": true,
+      "protocol": "inspector",
+      "restart": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"] // Ajusta la ruta según tu estructura de carpetas si estás utilizando transpilación
+    }
+  ]
+}

@@ -27,7 +27,11 @@ const ModalUserActive = ({ selectedUser, openModal, closeModal, modal }) => {
             <div className="px-7 py-5 flex flex-col max-w-4xl mx-auto">
               <div className="flex justify-between items-center gap-x-5 mb-10">
                 <div>
-                  <ImageProfileUserMedium imagen={selectedUser.avatar} />
+                  {selectedUser.avatar ? (
+                    <ImageProfileUserMedium imagen={selectedUser.avatar} />
+                  ) : (
+                    <ImageProfileUserMedium imagen="https://res.cloudinary.com/dbwmesg3e/image/upload/v1698886031/GlobalMate/pngegg_21_pm25ge.png" />
+                  )}
                 </div>
                 <div className="flex flex-col gap-y-2 items-center">
                   <p className="text-xl font-bold text-center">
@@ -52,7 +56,7 @@ const ModalUserActive = ({ selectedUser, openModal, closeModal, modal }) => {
               </div>
             </div>
             <Link to={`/mensajes/${selectedUser._id}`}>
-              <button className="bg-greenPrimary p-2 text-white font-bold w-fit  rounded-md cursor-pointer hover:bg-greenSecundary duration-75">
+              <button onClick={closeModal} className="bg-greenPrimary p-2 text-white font-bold w-fit  rounded-md cursor-pointer hover:bg-greenSecundary duration-75">
                 Comenzar charla
               </button>
             </Link>

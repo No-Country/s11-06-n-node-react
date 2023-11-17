@@ -8,7 +8,7 @@ import SideUsers from '../SideUsers/SideUsers.jsx'
 export default function Layout() {   
     return (
         <>
-            <div className='body-layout text-greenPrimary'>
+            <div className='body-layout text-greenPrimary bg-[#f9f4f4] h-screen'>
                 <NavBarUser/>       
                 <div className='flex justify-between my-16 w-full px-5 lg:px-0'>
                     <div className='hidden lg:flex'><Sidebar/></div>

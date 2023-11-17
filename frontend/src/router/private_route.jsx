@@ -9,9 +9,10 @@ import EventoIdPage from "../features/Events/pages/EventoIdPage";
 import UserProfilePage from "../features/User/pages/UserProfilePage";
 import AllEvents from "../features/User/sections/EventosyNoticias/AllEvents";
 import AllNews from "../features/User/sections/EventosyNoticias/AllNews";
-import MessageContainer from "../components/MessageContainer";
+import MessageContainer from "../features/Chat/components/MessageContainer";
 import { GrupoDetail } from "../features/Grupos/components/GrupoDetail";
 import NoticiasPageID from "../features/Noticias/pages/NoticiasPageID";
+import ChatIdPage from "../features/Chat/pages/ChatIdPage";
 
 export default function privateRoute(){
     return {
@@ -31,7 +32,7 @@ export default function privateRoute(){
             },
             {
                 path:"/mensajes/:iduser",
-                element:<MessageContainer/>
+                element:<ChatIdPage/>
             },
             {
                 path:"/noticias",
