@@ -1,5 +1,6 @@
+import { getAuth } from "../../utils/checkAuth";
 import {
-    getGroups, postGroup, getDetailGroup,  modifyGroup, joinUserToGroup
+    getGroups, postGroup, getDetailGroup,  modifyGroup, joinUserToGroup, leaveUserToGroup, acceptUserToGroup
 } from "../Actions/GroupSlice";
 import axios from "axios";
 
@@ -33,7 +34,7 @@ const getGroupDetail = (id) => {
 
 //POST para crear un nuevo grupo
 const groupPost = (eventData) => {
-  console.log(eventData)
+  // console.log(eventData)
   return async (dispatch) => {
     try {
        const response = await axios.post(`${import.meta.env.VITE_API_URL}/groups`, eventData);
@@ -62,7 +63,7 @@ const modifyTheGroup = ( group) => {
         }
     };
 };
-
+//Agregar usuario al grupo - envia solicitud y queda en pendiente
 const joinUser = ( idGroup, idUser) => {
   return async (dispatch) => {
       try {
@@ -78,10 +79,49 @@ const joinUser = ( idGroup, idUser) => {
   };
 };
 
+//Aceptar usuario consolicitud pendiente
+// /acceptpending/:groupId/accept/:userId
+const acceptUserPending = ( groupId, userId) => {
+  return async (dispatch) => {
+      try {
+
+          if (!groupId) {
+              throw new Error("Group is undefined.");
+            }
+          const dbData = await axios.put(`${import.meta.env.VITE_API_URL}/groups/acceptpending/${groupId}/accept/${userId}`);
+          // console.log(dbData);
+          return dispatch(acceptUserToGroup(userId));
+      } catch (error) {
+          alert({error: error.message});
+      }
+  };
+};
+
+const leaveGroup = ( groupId, userId) => {
+  return async (dispatch) => {
+    // console.log("idGroup",groupId,"idUser", userId);
+    const config = getAuth()
+      try {
+          if (!groupId) {
+              throw new Error("Group is undefined.");
+            }
+            const url = `${import.meta.env.VITE_API_URL}/groups/leave/${groupId}/${userId}`
+            // console.log(url);
+          const dbData = await axios.delete(url,config);
+          // console.log(dbData);
+          return dispatch(leaveUserToGroup(userId));
+      } catch (error) {
+          alert({error: error.message});
+      }
+      // /leave/:groupId/:userId
+  };
+};
 export{
     getAllGroups,
     getGroupDetail,
     groupPost,
     modifyTheGroup,
-    joinUser
+    joinUser,
+    acceptUserPending,
+    leaveGroup
 }

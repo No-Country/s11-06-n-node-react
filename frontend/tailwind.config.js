@@ -20,7 +20,10 @@ export default withMT({
       },
       maxWidth: {
         rem90: '90rem'
-      }
+      },
+      boxShadow: {
+        'reflect': '0 4px 8px rgba(0, 0, 0, 0.1), 0 -4px 8px rgba(255, 255, 255, 0.5)',
+      },
     },
   },
   plugins: [],

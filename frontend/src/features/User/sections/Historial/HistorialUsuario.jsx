@@ -145,7 +145,10 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
                   className="w-full h-full rounded-full"
                 />
               </div>
-              <span>{group.name}</span>
+              <Link to={`/grupo/${group._id}`}>
+                <span className="hover:font-bold">{group.name}</span>
+              </Link>
+              
             </li>
           ))}
         </ul>
