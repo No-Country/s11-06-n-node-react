@@ -147,8 +147,8 @@ async function getAllByIdUser(req, res) {
 
 async function leaveGroup(req, res) {
   try {
-    const userId = req.params.userId;
-    const groupId = req.params.groupId;
+    const groupId = await req.params.groupId;
+    const userId = await req.params.userId;
     const response = await GroupsServices.leaveUserGroup(groupId, userId);
     // console.log(userId);
     // console.log(groupId);
@@ -157,7 +157,20 @@ async function leaveGroup(req, res) {
     res.status(500).json({ error: "Error interno del servidor" });
   }
 }
-
+async function acceptUser(req, res) {
+  const { groupId, userId } = req.params; // Puedes obtener los parámetros de la URL o del cuerpo de la solicitud
+// console.log(groupId, userId);
+  try {
+    const updatedGroup = await GroupsServices.acceptPendingUser(groupId, userId);
+    res.status(200).json(updatedGroup);
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+      data: null,
+    });
+  }
+}
 async function newMessage(req, res) {
   const { groupId, userId, message } = req.body;
   try {
@@ -202,6 +215,6 @@ module.exports = {
   getAllByIdUser,
   leaveGroup,
   newMessage,
-  deleteMensajeToGroup
- 
+  deleteMensajeToGroup,
+  acceptUser
 };
