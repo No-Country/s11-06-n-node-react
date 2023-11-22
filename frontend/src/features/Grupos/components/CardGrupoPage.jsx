@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
+import { joinUser } from "../../../Redux/Actions/GroupGet";
 
 
 
@@ -63,25 +64,37 @@ setisRequestPending(RequestPending)
        }
 
  }, [actualUser, usersCommon, usersAdmin, usersPending])      
-       console.log("user en el grupo",isUserInGroup, "solicitud pendiente",isRequestPending);
+      //  console.log("user en el grupo",isUserInGroup, "solicitud pendiente",isRequestPending);
 
 
-  const [join, setJoin] = useState(false);
+  // const [join, setJoin] = useState(false);
   
   const handlerJoin = () => {
     console.log("boton unirse"); 
-    setJoin(!join);
+    dispatch(joinUser(_id, actualUser.user._id))
+    setisRequestPending(true)
+    // setJoin(!join);
   };
 
   return (
     <div className="border border-gray-100 rounded-lg shadow-lg my-4">
       <div className="flex">
         <div className="w-1/4 relative">
-          <Link to={`/grupo/${_id}`}>
+        {isUserInGroup && (
+            <Link to={`/grupo/${_id}`}>
+              <div className="h-full">
+                <ImageBg imagen={imagePlace} className="hover:blur-sm"/>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity text-white">
+                  <MdRemoveRedEye className="text-4xl text-white"/> Ver más 
+                </div>
+              </div>
+            </Link>
+          )}
+          {!isUserInGroup && (
             <div className="h-full">
               <ImageBg imagen={imagePlace} />
             </div>
-          </Link>
+          )}
         </div>
         <div className="w-3/4 p-5">
           <div className="flex justify-between items-start">
@@ -96,7 +109,7 @@ setisRequestPending(RequestPending)
                   <p className="text-sm">{date}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-x-3">
+              <div className="flex items-center gap-x-3 mt-2">
                 <CiLocationOn className="text-xl" />
                 <p className="text-sm">{location}</p>
               </div>
@@ -105,15 +118,16 @@ setisRequestPending(RequestPending)
           <p className="text-lg my-4">{description}</p>
           <div className="text-right">
             {isUserInGroup ? (
+              <Link to={`/grupo/${_id}`} className="flex justify-end">
               <button
-                className="bg-greenSecundary w-[10rem] h-[30px] text-white font-bold rounded-md"
-                disabled
+                className="text-greenSecundary font-medium hover:text-white border border-greenSecundary hover:bg-greenSecundary focus:ring-2 focus:outline-none focus:ring-greenSecundary flex items-center justify-around flex-row w-[7rem] h-[30px]  font-bold rounded-md"
               >
-                Eres miembro
-              </button>
+                <MdRemoveRedEye className="text-xl"/> Ver más
+                {/* Ingresar */}
+              </button></Link>
             ) : isRequestPending ? (
               <button
-                className="bg-grayPrimary w-[10rem] h-[30px] text-white font-bold rounded-md cursor-pointer hover:bg-greenSecundary duration-75"
+                className="bg-grayPrimary w-[10rem] h-[30px] text-white font-bold rounded-md"
                 disabled
               >
                 Solicitud pendiente
@@ -125,7 +139,7 @@ setisRequestPending(RequestPending)
                   "bg-greenPrimary w-[10rem] h-[30px] text-white font-bold rounded-md cursor-pointer hover:bg-greenSecundary duration-75"
                 }
               >
-                Unirse
+                Unirme
               </button>
             )}
           </div>

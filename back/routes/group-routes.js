@@ -23,5 +23,7 @@ router.delete('/leave/:groupId/:userId', GroupControllers.leaveGroup);
 router.put('/message', GroupControllers.newMessage);
 // ruta para eliminar un mensaje del grupo
 router.delete('/message/:groupId/delete/:messageId', GroupControllers.deleteMensajeToGroup);
+// aceptar usuario
+router.put('/acceptpending/:groupId/accept/:userId', GroupControllers.acceptUser);
 
 module.exports = router;

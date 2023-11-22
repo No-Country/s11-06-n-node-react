@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const Group = require("../models/group.model");
 const User = require("../models/user.model");
 // const jwt = require("jsonwebtoken");
@@ -80,12 +81,36 @@ async function createGroup(name, image, idUser, rules,description) {
 async function getGroupById(id) {
   try {
     const groupFound = await Group.findById(id);
+
     if (!groupFound) {
       return "Group not found";
     }
-    return groupFound;
+
+    const users_common = await User.find(
+      { _id: { $in: groupFound.users_common } },
+      '_id name lastname avatar email  location'
+    );
+
+    const users_admin = await User.find(
+      { _id: { $in: groupFound.users_admin } },
+      '_id name lastname avatar email  location'
+    );
+
+    const users_pending = await User.find(
+      { _id: { $in: groupFound.users_pending } },
+      '_id name lastname avatar email  location'
+    );
+
+    const formattedGroup = {
+      ...groupFound.toObject(),
+      users_common,
+      users_admin,
+      users_pending,
+    };
+
+    return formattedGroup;
   } catch (error) {
-    throw new Error("Error getting user");
+    throw new Error("Error getting group");
   }
 }
 
@@ -93,31 +118,65 @@ async function leaveUserGroup(groupId, userId) {
   try {
     const groupFound = await Group.findById(groupId);
     const userFound = await User.findById(userId);
-console.log(groupFound);
 
     if (!groupFound) {
-      return "Group not found";
+      throw new Error("Group not found");
     }
     if (!userFound) {
-      return "User not found";
+      throw new Error("User not found");
     }
-    if (!groupFound.users_common.includes(userId) && !groupFound.users_admin.includes(userId) && !groupFound.users_pending.includes(userId)){
+// console.log(userFound);
+    const userIdString = userId.toString(); 
+    if (!groupFound.users_common.map(id => id.toString()).includes(userIdString) &&
+        !groupFound.users_admin.map(id => id.toString()).includes(userIdString) &&
+        !groupFound.users_pending.map(id => id.toString()).includes(userIdString)) {
       return 'User is not a member of this group'
     }
-    if(groupFound.users_common.includes(userId)){
-      groupFound.users_common = groupFound.users_common.filter(id => id !== userId);
+
+    if (groupFound.users_common.map(id => id.toString()).includes(userIdString)) {
+      groupFound.users_common = groupFound.users_common.filter(id => id.toString() !== userIdString);
       await groupFound.save();
-      return 'User has left the group'
+      return groupFound;
     }
-    if(groupFound.users_admin.includes(userId) && groupFound.users_admin.length > 1 ){
-      groupFound.users_admin = groupFound.users_admin.filter(id => id !== userId);
+
+    if (groupFound.users_admin.map(id => id.toString()).includes(userIdString) && groupFound.users_admin.length > 1) {
+      groupFound.users_admin = groupFound.users_admin.filter(id => id.toString() !== userIdString);
       await groupFound.save();
-      return 'User has left the group'
-    }else{
-      return 'The user is the only administrator of the group'
+      return groupFound;
+    } else if (groupFound.users_admin.map(id => id.toString()).includes(userIdString) && groupFound.users_admin.length === 1) {
+      throw new Error('The user is the only administrator of the group');
+    }
+
+    if (groupFound.users_pending.map(id => id.toString()).includes(userIdString)) {
+      groupFound.users_pending = groupFound.users_pending.filter(id => id.toString() !== userIdString);
+      await groupFound.save();
+      return groupFound;
     }
   } catch (error) {
-    throw new Error("Error getting user");
+    throw new Error(`Error leaving group: ${error.message}`);
+  }
+}
+
+async function acceptPendingUser(groupId, userId) {
+  try {
+    const groupFound = await Group.findById(groupId);
+    if (!groupFound) {
+      throw new Error("Group not found");
+    }
+
+    const userIdString = userId.toString();
+    // Verificar si el usuario está en la lista de usuarios pendientes
+    if (!groupFound.users_pending.map(id => id.toString()).includes(userIdString)) {
+      throw new Error('User is not a pending member of this group');
+    }
+    groupFound.users_pending = groupFound.users_pending.filter(id => id.toString() !== userIdString);
+    groupFound.users_common.push(userId);
+
+
+    await groupFound.save();
+    return groupFound;
+  } catch (error) {
+    throw new Error(`Error accepting pending user: ${error.message}`);
   }
 }
 
@@ -189,7 +248,7 @@ async function deleteGroup(id) {
 //   }
 // }
 async function addToGroup(groupId,userId){
-  console.log(groupId,userId);
+  // console.log(groupId,userId);
   try {
     const group = await Group.findById(groupId);
     const user = await User.findById(userId);
@@ -260,6 +319,7 @@ module.exports = {
   getAllGroupsByUser,
   leaveUserGroup,
   createMessage,
-  deleteMessage
+  deleteMessage,
+  acceptPendingUser
 
 };
