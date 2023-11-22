@@ -29,8 +29,8 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
     return (
       <div className="bg-[#FFFFFF] container mx-auto p-4 lg:p-8">
   <div className="w-full lg:flex">
-    <div className="w-full lg:w-1/2 p-3 flex">
-      <div className="border shadow-xl bg-graySecundary ">
+    <div className="w-full lg:w-1/2 p-3">
+      <div className="border shadow-xl bg-graySecundary rounded-[2%]">
         <h3 className="text-xl mt-2 ml-2 font-semibold">Eventos</h3>
         <hr className="mb-4 mt-2 bg-grayPrimary" />
         {userEvents?.length > 0 ? (
@@ -75,12 +75,12 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
             </Link>
           </div>
         ) : (
-          <p>Aún no has creado ningún evento.</p>
+          <p className='p-3'>Aún no has creado ningún evento.</p>
         )}
       </div>
     </div>
     <div className="w-full lg:w-1/2 p-3">
-      <div className="border shadow-xl bg-graySecundary">
+      <div className="border shadow-xl bg-graySecundary rounded-[2%]">
         <h3 className="text-xl mt-2 ml-2 font-semibold">Noticias</h3>
         <hr className="mb-4 mt-2 bg-grayPrimary" />
         {userNews?.length > 0 ? (
@@ -120,14 +120,19 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
             </Link>
           </div>
         ) : (
-          <p>Aún no has publicado noticias.</p>
+          <p className='p-3'>Aún no has publicado noticias.</p>
         )}
       </div>
     </div>
   </div>
   <div className="mt-6">
-    <div className="border p-4 shadow-xl">
+    <div className="border p-4 shadow-xl rounded-[2%]">
+      <div className='w-full flex flex-row justify-between pb-2'>
       <h3 className="text-xl font-semibold mb-4">Grupos a los que perteneces</h3>
+      <Link to="/grupos">
+            <button title="Ver todos los grupos"
+                className="bg-greenPrimary text-white py-2 px-4 rounded-full cursor-pointer hover:bg-greenSecundary duration-75 bottom-4 right-4 ">+</button></Link>
+            </div>
       <hr />
       {userGroups?.length > 0 ? (
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
@@ -140,12 +145,16 @@ export default function HistorialUsuario({userEvents, formatDate, userGroups, us
                   className="w-full h-full rounded-full"
                 />
               </div>
-              <span>{group.name}</span>
+              <Link to={`/grupo/${group._id}`}>
+                <span className="hover:font-bold">{group.name}</span>
+              </Link>
+              
             </li>
           ))}
         </ul>
+        
       ) : (
-        <p>Aún no te has unido a ningún grupo.</p>
+        <p className='p-3'>Aún no te has unido a ningún grupo.</p>
       )}
     </div>
   </div>

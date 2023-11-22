@@ -21,7 +21,6 @@ export default function Sidebar() {
       const userData = JSON.parse(cookieData);
       if(userData){
         setactualUser(userData)
-        // console.log(userData);
       }
     } else {
       console.log("Usuario cargado");
@@ -34,7 +33,6 @@ export default function Sidebar() {
           }
         }, [actualUser, dispatch]);
 
-// console.log(userDetail);
     return (
         <div className="w-60 text-white z-10">
           <div className='fixed bg-greenPrimary h-screen w-60 px-4'>

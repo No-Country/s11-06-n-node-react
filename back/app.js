@@ -62,10 +62,20 @@ const sess = {
 };
 
 initializePassport();
-app.use(cors({
-  origin: '*',
-  credentials: true
-}));
+
+app.use((req, res, next) => {
+
+  const allowedOrigins = ['http://127.0.0.1:5173', 'http://localhost:5173', 'https://s11-06-n-node-react.vercel.app', 'https://globalmate.vercel.app', 'http://localhost:8080'];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Headers', 'Origin, Authorization, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
+});
+
 app.use(session(sess));
 app.use(passport.initialize())
 app.use(passport.session())

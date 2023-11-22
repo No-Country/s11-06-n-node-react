@@ -2,53 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Estilos personalizados para la barra de desplazamiento */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 12px;
+}
 
-  /* Estilos personalizados para la barra de desplazamiento */
-  .overflow-x-auto::-webkit-scrollbar {
-    height: 12px;
-  }
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: transparent; /* Fondo transparente */
+}
 
-  .overflow-x-auto::-webkit-scrollbar-track {
-    background: transparent; /* Fondo transparente */
-  }
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: #888;
+  border: 2px solid transparent;
+  border-radius: 6px;
+}
 
-  .overflow-x-auto::-webkit-scrollbar-thumb {
-    background: #888;
-    border: 2px solid transparent;
-    border-radius: 6px;
-  }
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 
-  .overflow-x-auto::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+.overflow-x-auto::-webkit-scrollbar {
+  margin-top: 4px;
+  border-radius: 50px;
+  height: 8px;
+}
 
+.overflow-x-auto::-webkit-scrollbar-track {
+  border-radius: 50px;
+  background: #f1f1f1;
+}
 
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background: #888;
+  padding-top: 8px;
+}
 
-  .overflow-x-auto::-webkit-scrollbar {
-    margin-top: 4px;
-    border-radius: 50px;
-    height: 8px;
-  }
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 
-  .overflow-x-auto::-webkit-scrollbar-track {
-    border-radius: 50px;
-    background: #f1f1f1;
-  }
-
-  .overflow-x-auto::-webkit-scrollbar-thumb {
-    border-radius: 50px;
-    background: #888;
-    padding-top: 8px;
-  }
-
-  .overflow-x-auto::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-
-
-
-  @media (min-width: 768px) {
-  
+@media (min-width: 768px) {
   ::-webkit-scrollbar {
     width: 12px;
   }
@@ -58,7 +52,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #098D82;
+    background: #098d82;
     border: 2px solid transparent;
     border-radius: 6px;
   }
@@ -66,6 +60,23 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #098479; /* Fondo transparente */
     border: 2px solid #085952;
+  }
+}
 
-  }  
+.no-custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+.no-custom-scrollbar::-webkit-scrollbar {
+  width: 0px;
+}
+
+.no-custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888;
+  border: 0px solid transparent;
+  border-radius: 6px;
+}
+
+.no-custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
